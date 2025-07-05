@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* ============================================
+   Fonts: Space Grotesk (headline), Inter (body)
+============================================ */
+
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  background: #080E3F;
+  color: #fff;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .font-headline {
+  font-family: 'Space Grotesk', 'Orbitron', Arial, Helvetica, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+/* ============================================
+   Glassmorphism Utility (Tech Blue)
+============================================ */
+.glass {
+  background: rgba(0, 18, 61, 0.55); /* blue glass */
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 115, 255, 0.38); /* accent blue */
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 32px 0 rgba(0, 115, 255, 0.13);
+}
+
+/* ============================================
+   Utility Classes for Your Palette
+============================================ */
+.bg-navy      { background-color: #080E3F !important; }
+.bg-navy-dk   { background-color: #000022 !important; }
+.bg-blue      { background-color: #0073FF !important; }
+.bg-cyan      { background-color: #00A3ED !important; }
+.bg-section   { background-color: #000033 !important; }
+
+.text-navy    { color: #080E3F !important; }
+.text-blue    { color: #0073FF !important; }
+.text-cyan    { color: #00A3ED !important; }
+.text-section { color: #B0C4DE !important; }
+
+.border-blue  { border-color: #0073FF !important; }
+
+/* ============================================
+   Optional: Decorative BG (Circuit)
+============================================ */
+.bg-circuit {
+  /* To use: uncomment and supply your SVG path */
+  /* background-image: url('../assets/images/circuit-bg.svg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.13;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   Buttons/Glow/Shadow
+============================================ */
+.shadow-neon-blue {
+  box-shadow: 0 0 18px 2px #0073FF88, 0 2px 8px #00004422;
+}
+
+/* ============================================
+   Accessibility Improvements
+============================================ */
+:focus-visible {
+  outline: 2px solid #00A3ED;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Responsive Utilities (optional enhancements)
+============================================ */
+/* Example: Center section content with max width */
+.section-center {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+

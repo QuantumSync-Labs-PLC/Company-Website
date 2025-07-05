@@ -1,0 +1,73 @@
+// src/data/blogPost.js
+
+const blogPosts = [
+  {
+    id: "secure-online-banking",
+    title: "How We Secure Online Banking with Modern AI",
+    excerpt:
+      "Discover how QuantumSync Labs uses advanced AI to enhance security in digital banking platforms.",
+    content: `
+      <p>
+        At <strong>QuantumSync Labs</strong>, our banking solutions use cutting-edge AI for real-time fraud detection, advanced risk scoring, and user distress analysis. We blend cybersecurity best practices with adaptive machine learning models to stay ahead of modern threats.
+      </p>
+      <h2>Our Approach</h2>
+      <ul>
+        <li>Continuous monitoring with anomaly detection</li>
+        <li>End-to-end encryption & biometric authentication</li>
+        <li>AI-powered alerting and risk assessment</li>
+      </ul>
+      <p>
+        <strong>Read the full story to see how we build trust with our partners.</strong>
+      </p>
+    `,
+    author: "Tharindu Gunarathna",
+    authorAvatar: "/assets/images/tharindu.jpg",
+    date: "2024-07-02",
+    tags: ["AI", "Security", "Banking"],
+    cover: "/assets/images/blog/ai-banking.jpg",
+  },
+  {
+    id: "building-scalable-apps",
+    title: "Building Scalable Apps with QuantumSync",
+    excerpt:
+      "See how our engineering team designs apps that scale from startup MVPs to enterprise platforms.",
+    content: `
+      <p>
+        Scalability is about people, process, and architecture. Our stack leverages cloud-native infrastructure, automated CI/CD, and a modular microservices approach for seamless growth.
+      </p>
+      <ol>
+        <li>Microservices design with API-first development</li>
+        <li>Cloud deployment for resilience and performance</li>
+        <li>Continuous delivery with automated testing</li>
+      </ol>
+    `,
+    author: "Thamash Weragoda",
+    authorAvatar: "/assets/images/thamash.jpg",
+    date: "2024-06-19",
+    tags: ["Apps", "Scalability", "Cloud"],
+    cover: "/assets/images/blog/scalable-apps.jpg",
+  },
+  {
+    id: "quantum-machine-learning",
+    title: "Quantum Machine Learning: What’s Next?",
+    excerpt:
+      "An introduction to quantum machine learning and its game-changing possibilities for business.",
+    content: `
+      <p>
+        Quantum computing is moving from research to real-world use cases. We explore quantum ML frameworks, practical pilot projects, and what this tech means for tomorrow’s enterprises.
+      </p>
+      <ul>
+        <li>IBM Qiskit and Cirq workflows</li>
+        <li>Potential business applications</li>
+        <li>Limitations and the road ahead</li>
+      </ul>
+    `,
+    author: "Ravindu Waduwala",
+    authorAvatar: "/assets/images/ravindu.jpg",
+    date: "2024-06-01",
+    tags: ["Quantum", "ML", "Research"],
+    cover: "/assets/images/blog/quantum-ml.jpg",
+  },
+];
+
+export default blogPosts;
