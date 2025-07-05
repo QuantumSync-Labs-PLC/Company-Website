@@ -12,6 +12,11 @@ const cardVariants = {
   }),
 };
 
+function handleImgError(e) {
+  e.target.src = "https://via.placeholder.com/56x56?text=?";
+  e.target.style.background = "#e0e7ef"; // fallback bg
+}
+
 export default function TechStackSection() {
   return (
     <section
@@ -45,15 +50,19 @@ export default function TechStackSection() {
               variants={cardVariants}
               className="flex flex-col items-center"
             >
-              <div className="glass p-5 flex flex-col items-center rounded-glass shadow-neon-blue w-full h-full transition hover:scale-105">
-                <img
-                  src={tech.logoPath}
-                  alt={tech.name + " logo"}
-                  className="w-12 h-12 mb-3 object-contain"
-                  loading="lazy"
-                  draggable={false}
-                />
-                <Badge className="bg-blue/10 text-blue text-xs font-semibold px-3 py-1 rounded">
+              <div className="glass p-5 flex flex-col items-center rounded-glass shadow-neon-blue w-full h-full transition hover:scale-105 duration-300">
+                {/* Icon/Image Wrapper with bg and ring */}
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/80 ring-1 ring-blue mb-3 shadow-md">
+                  <img
+                    src={tech.logoPath}
+                    alt={tech.name + " logo"}
+                    className="w-10 h-10 object-contain"
+                    loading="lazy"
+                    draggable={false}
+                    onError={handleImgError}
+                  />
+                </div>
+                <Badge className="bg-blue/90 text-white border border-blue text-xs font-semibold px-4 py-1 rounded shadow">
                   {tech.name}
                 </Badge>
               </div>

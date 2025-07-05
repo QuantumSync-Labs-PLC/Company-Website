@@ -2,6 +2,15 @@
 
 import { FaCogs, FaMobileAlt, FaCloud, FaPalette, FaChartLine, FaLock, FaSyncAlt } from "react-icons/fa";
 
+// Image imports (adjust these paths as necessary; they should point to your image files)
+import softwareDevCover from "../assets/images/software-dev.jpg";
+import mobileAppsCover from "../assets/images/mobile-apps.jpg";
+import cloudCover from "../assets/images/cloud.jpg";
+import uiuxCover from "../assets/images/ui-ux.jpg";
+import analyticsCover from "../assets/images/analytics.jpg";
+import cybersecurityCover from "../assets/images/cybersecurity.jpg";
+import maintenanceCover from "../assets/images/maintenance.jpg";
+
 const services = [
   {
     id: "custom-software-development",
@@ -17,7 +26,7 @@ const services = [
       "Ongoing maintenance & scaling"
     ],
     link: "/services/custom-software-development",
-    cover: "/assets/images/services/software-dev.jpg",
+    cover: softwareDevCover,
     featured: true
   },
   {
@@ -34,7 +43,7 @@ const services = [
       "Pixel-perfect UI/UX"
     ],
     link: "/services/mobile-and-web-apps",
-    cover: "/assets/images/services/mobile-apps.jpg"
+    cover: mobileAppsCover
   },
   {
     id: "cloud-architecture",
@@ -50,7 +59,7 @@ const services = [
       "24/7 monitoring & support"
     ],
     link: "/services/cloud-architecture",
-    cover: "/assets/images/services/cloud.jpg"
+    cover: cloudCover
   },
   {
     id: "ui-ux-design",
@@ -66,7 +75,7 @@ const services = [
       "Usability testing"
     ],
     link: "/services/ui-ux-design",
-    cover: "/assets/images/services/ui-ux.jpg"
+    cover: uiuxCover
   },
   {
     id: "data-analytics-ai",
@@ -82,7 +91,7 @@ const services = [
       "Predictive analytics"
     ],
     link: "/services/data-analytics-ai",
-    cover: "/assets/images/services/analytics.jpg"
+    cover: analyticsCover
   },
   {
     id: "cybersecurity",
@@ -98,7 +107,7 @@ const services = [
       "Employee security training"
     ],
     link: "/services/cybersecurity",
-    cover: "/assets/images/services/cybersecurity.jpg"
+    cover: cybersecurityCover
   },
   {
     id: "maintenance-support",
@@ -114,7 +123,7 @@ const services = [
       "Feature enhancements"
     ],
     link: "/services/maintenance-support",
-    cover: "/assets/images/services/maintenance.jpg"
+    cover: maintenanceCover
   }
 ];
 

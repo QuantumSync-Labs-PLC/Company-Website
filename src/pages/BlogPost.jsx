@@ -9,8 +9,18 @@ export default function BlogPost() {
   const post = blogPosts.find((p) => p.id === id);
   const navigate = useNavigate();
 
+  // Find related posts by sharing at least one tag, but not itself
+  const relatedPosts = post
+    ? blogPosts
+        .filter(
+          (p) =>
+            p.id !== post.id &&
+            p.tags.some((tag) => post.tags.includes(tag))
+        )
+        .slice(0, 2)
+    : [];
+
   if (!post) {
-    // Optionally navigate to 404 or render a custom error message
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-section">
         <h2 className="font-headline text-2xl text-blue font-bold mb-6">Post Not Found</h2>
@@ -50,7 +60,7 @@ export default function BlogPost() {
           </div>
           {/* Title */}
           <h1 className="font-headline text-2xl md:text-3xl font-bold text-blue mb-4">{post.title}</h1>
-          {/* Content */}
+          {/* Content (HTML string, safe if sanitized before) */}
           <div
             className="font-body text-section text-base leading-relaxed prose prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: post.content }}
@@ -74,6 +84,33 @@ export default function BlogPost() {
             ← Back to Blog
           </Link>
         </article>
+
+        {/* Related Posts */}
+        {relatedPosts.length > 0 && (
+          <section className="max-w-3xl w-full mx-auto mt-16">
+            <h2 className="font-headline text-xl text-blue font-bold mb-6">Related Posts</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {relatedPosts.map((rel) => (
+                <Link
+                  to={`/blog/${rel.id}`}
+                  key={rel.id}
+                  className="glass rounded-glass shadow transition hover:scale-[1.02] flex flex-col overflow-hidden"
+                >
+                  <img
+                    src={rel.cover}
+                    alt={rel.title}
+                    className="w-full h-36 object-cover mb-3"
+                    loading="lazy"
+                  />
+                  <div className="p-4 flex flex-col flex-1">
+                    <h3 className="font-headline text-blue text-lg font-semibold mb-1">{rel.title}</h3>
+                    <p className="font-body text-section text-xs line-clamp-3">{rel.excerpt}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
       <Footer />
     </div>

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import services from "../data/services";
 import Button from "../components/common/Button";
 
-// Number of services to show on the home page
-const SERVICE_PREVIEW_COUNT = 6; // Or filter for featured: services.filter(s => s.featured)
+// Only show the first N (or featured) services on home page
+const SERVICE_PREVIEW_COUNT = 6;
 
 const cardVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -19,7 +19,7 @@ const cardVariants = {
 };
 
 export default function ServicesSection() {
-  // For homepage, you might only want to show featured or first N services:
+  // Use only featured or the first few services for home page
   const visibleServices = services.slice(0, SERVICE_PREVIEW_COUNT);
 
   return (
@@ -53,17 +53,15 @@ export default function ServicesSection() {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.18 }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={cardVariants}
                 whileHover={{ y: -8, boxShadow: "0 6px 32px #0073FF55" }}
                 className="transition-transform"
               >
-                <div className="glass shadow-neon-blue flex flex-col items-center p-7 rounded-glass min-h-[350px] max-w-sm mx-auto h-full">
-                  {Icon && (
-                    <div className="mb-4 text-5xl text-blue flex justify-center items-center">
-                      <Icon className="text-blue text-4xl" />
-                    </div>
-                  )}
+                <div className="glass shadow-neon-blue flex flex-col items-center p-7 rounded-glass min-h-[370px] max-w-sm mx-auto h-full">
+                  <div className="mb-4 text-5xl text-blue flex justify-center items-center">
+                    {Icon && <Icon className="text-blue text-4xl" />}
+                  </div>
                   <h3 className="font-headline text-xl font-bold text-blue mb-2 text-center">
                     {service.title}
                   </h3>
@@ -71,7 +69,7 @@ export default function ServicesSection() {
                     {service.excerpt}
                   </p>
                   <ul className="mb-4 space-y-1 text-sm font-body text-section list-disc list-inside text-left w-full max-w-xs mx-auto">
-                    {service.features?.slice(0, 3).map((feat) => (
+                    {(service.features || []).slice(0, 3).map((feat) => (
                       <li key={feat}>{feat}</li>
                     ))}
                   </ul>
@@ -86,7 +84,7 @@ export default function ServicesSection() {
           })}
         </div>
 
-        {/* Optional: View All Services Button (for homepage) */}
+        {/* View All Services Button */}
         {services.length > SERVICE_PREVIEW_COUNT && (
           <div className="flex justify-center mt-10">
             <Link to="/services">

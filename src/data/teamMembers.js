@@ -2,6 +2,8 @@ import tharindu from "../assets/images/tharindu.jpg";
 import janani from "../assets/images/janani.jpg";
 import kaveesha from "../assets/images/kaveesha.PNG";
 import prabash from "../assets/images/prabash.jpg";
+import thamash from "../assets/images/thamash.png";
+import ravindu from "../assets/images/ravindu.jpg";
 
 const teamMembers = [
   {
@@ -16,19 +18,19 @@ const teamMembers = [
   {
     name: "Thamash Weragoda",
     role: "Co-Founder & CTO & Frontend Engineer",
-    photoPath: tharindu,
+    photoPath: thamash,
     socials: [
+      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/dinesh", label: "LinkedIn" },
     ]
   },
   {
-    name: "Ravindu Waduwala",
+    name: "Ravindu Waduwawala",
     role: "Co-Founder & CMO & QA Engineer",
-    photoPath: tharindu,
+    photoPath: ravindu,
     socials: [
+      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/dinesh", label: "LinkedIn" },
     ]
   },
   {
@@ -36,8 +38,8 @@ const teamMembers = [
     role: "Project Manager",
     photoPath: janani,
     socials: [
+      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/dinesh", label: "LinkedIn" },
     ]
   },
   {
@@ -45,8 +47,8 @@ const teamMembers = [
     role: "Software Security Engineer",
     photoPath: kaveesha,
     socials: [
+      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/dinesh", label: "LinkedIn" },
     ]
   },
   {
@@ -54,8 +56,8 @@ const teamMembers = [
     role: "Software Engineer Full Stack",
     photoPath: prabash,
     socials: [
+      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/dinesh", label: "LinkedIn" },
     ]
   },
 ];

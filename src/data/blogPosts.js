@@ -1,5 +1,12 @@
 // src/data/blogPost.js
 
+import tharindu from "../assets/images/tharindu.jpg";
+import thamash from "../assets/images/thamash.png";
+import ravindu from "../assets/images/ravindu.jpg";
+import aiBanking from "../assets/images/secure-online-banking.jpg";
+import scalableApps from "../assets/images/building-scalable-apps.jpg";
+import ibmQuantum from "../assets/images/IBM-Quantum-Lab.jpg";
+
 const blogPosts = [
   {
     id: "secure-online-banking",
@@ -20,11 +27,11 @@ const blogPosts = [
         <strong>Read the full story to see how we build trust with our partners.</strong>
       </p>
     `,
-    author: "Tharindu Gunarathna",
-    authorAvatar: "/assets/images/tharindu.jpg",
+    author: "Ravindu Waduwawala",
+    authorAvatar: ravindu,
     date: "2024-07-02",
     tags: ["AI", "Security", "Banking"],
-    cover: "/assets/images/blog/ai-banking.jpg",
+    cover: aiBanking,
   },
   {
     id: "building-scalable-apps",
@@ -42,10 +49,10 @@ const blogPosts = [
       </ol>
     `,
     author: "Thamash Weragoda",
-    authorAvatar: "/assets/images/thamash.jpg",
+    authorAvatar: thamash,
     date: "2024-06-19",
     tags: ["Apps", "Scalability", "Cloud"],
-    cover: "/assets/images/blog/scalable-apps.jpg",
+    cover: scalableApps,
   },
   {
     id: "quantum-machine-learning",
@@ -62,11 +69,11 @@ const blogPosts = [
         <li>Limitations and the road ahead</li>
       </ul>
     `,
-    author: "Ravindu Waduwala",
-    authorAvatar: "/assets/images/ravindu.jpg",
+    author: "Tharindu Gunarathna",
+    authorAvatar: tharindu,
     date: "2024-06-01",
     tags: ["Quantum", "ML", "Research"],
-    cover: "/assets/images/blog/quantum-ml.jpg",
+    cover: ibmQuantum,
   },
 ];
 

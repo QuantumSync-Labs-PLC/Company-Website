@@ -1,65 +1,67 @@
+// src/data/techStack.js
+
+import reactLogo from "../assets/icons/react.svg";
+import tailwindLogo from "../assets/icons/tailwindcss.svg";
+import awsLogo from "../assets/icons/aws.svg";
+import pythonLogo from "../assets/icons/python.svg";
+import dockerLogo from "../assets/icons/docker.svg";
+import mysqlLogo from "../assets/icons/mysql.svg";
+import firebaseLogo from "../assets/icons/firebase.svg";
+import kubernetesLogo from "../assets/icons/kubernetes.svg";
+import typescriptLogo from "../assets/icons/typescript.svg";
+import githubLogo from "../assets/icons/github.svg";
+
 const techStack = [
   {
     id: "react",
     name: "React",
-    logoPath: "/assets/logos/react.svg", // Place SVG/PNG in public/assets/logos/
+    logoPath: reactLogo,
   },
   {
     id: "tailwind",
     name: "Tailwind CSS",
-    logoPath: "/assets/logos/tailwind.svg",
+    logoPath: tailwindLogo,
   },
   {
     id: "aws",
     name: "AWS",
-    logoPath: "/assets/logos/aws.svg",
+    logoPath: awsLogo,
   },
   {
     id: "python",
     name: "Python",
-    logoPath: "/assets/logos/python.svg",
+    logoPath: pythonLogo,
   },
   {
     id: "docker",
     name: "Docker",
-    logoPath: "/assets/logos/docker.svg",
-  },
-  {
-    id: "mongodb",
-    name: "MongoDB",
-    logoPath: "/assets/logos/mongodb.svg",
+    logoPath: dockerLogo,
   },
   {
     id: "mysql",
     name: "MySQL",
-    logoPath: "/assets/logos/mysql.svg",
+    logoPath: mysqlLogo,
   },
   {
     id: "firebase",
     name: "Firebase",
-    logoPath: "/assets/logos/firebase.svg",
+    logoPath: firebaseLogo,
   },
   {
     id: "kubernetes",
     name: "Kubernetes",
-    logoPath: "/assets/logos/kubernetes.svg",
+    logoPath: kubernetesLogo,
   },
   {
     id: "typescript",
     name: "TypeScript",
-    logoPath: "/assets/logos/typescript.svg",
+    logoPath: typescriptLogo,
   },
   {
     id: "git",
     name: "Git",
-    logoPath: "/assets/logos/git.svg",
+    logoPath: githubLogo,
   },
-  {
-    id: "redux",
-    name: "Redux",
-    logoPath: "/assets/logos/redux.svg",
-  },
-  
 ];
 
 export default techStack;
