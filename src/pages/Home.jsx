@@ -15,7 +15,6 @@ export default function Home() {
       <Header />
       <main className="flex-grow flex flex-col">
         <HeroSection />
-        <ServicesSection />
         <WhyUsSection />
         <ProjectsSection />
         <TechStackSection />
