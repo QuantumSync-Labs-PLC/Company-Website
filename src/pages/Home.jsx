@@ -2,7 +2,7 @@ import ScrollToTop from "../components/common/ScrollToTop";
 import Header from "../components/layout/Header";
 import HeroSection from "../sections/HeroSection";
 import ServicesSection from "../sections/ServicesSection";
-import PreviousJobsSection from "../sections/PreviousJobsSection";
+import ProjectsSection from "../sections/ProjectsSection";
 import TechStackSection from "../sections/TechStackSection";
 import WhyUsSection from "../sections/WhyUsSection";
 import ContactSection from "../sections/ContactSection";
@@ -17,7 +17,7 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <WhyUsSection />
-        <PreviousJobsSection />
+        <ProjectsSection />
         <TechStackSection />
         <ContactSection />
       </main>

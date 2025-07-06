@@ -1,14 +1,13 @@
 import tharindu from "../assets/images/tharindu.jpg";
 import janani from "../assets/images/janani.jpg";
 import kaveesha from "../assets/images/kaveesha.PNG";
-import prabash from "../assets/images/prabash.jpg";
 import thamash from "../assets/images/thamash.png";
 import ravindu from "../assets/images/ravindu.jpg";
 
 const teamMembers = [
   {
     name: "Tharindu Gunarathna",
-    role: "Co-Founder & CEO & Backend Engineer",
+    role: "Co-Founder & CEO & AI Engineer",
     photoPath: tharindu,
     socials: [
       { icon: "FaLinkedin", url: "https://www.linkedin.com/in/tharindu-danushka/", label: "LinkedIn" },
@@ -17,7 +16,7 @@ const teamMembers = [
   },
   {
     name: "Thamash Weragoda",
-    role: "Co-Founder & CTO & Frontend Engineer",
+    role: "Co-Founder & CTO & Fullstack Engineer",
     photoPath: thamash,
     socials: [
       { icon: "FaLinkedin", url: "www.linkedin.com/in/thamash-weragoda", label: "LinkedIn" },
@@ -26,7 +25,7 @@ const teamMembers = [
   },
   {
     name: "Ravindu Waduwawala",
-    role: "Co-Founder & CMO & QA Engineer",
+    role: "Co-Founder & CFO & QA Engineer",
     photoPath: ravindu,
     socials: [
       { icon: "FaLinkedin", url: "https://www.linkedin.com/in/wrswaduwawala/", label: "LinkedIn" },
@@ -48,15 +47,6 @@ const teamMembers = [
     photoPath: kaveesha,
     socials: [
       { icon: "FaLinkedin", url: "https://www.linkedin.com/in/v-k-nethmini-444642262", label: "LinkedIn" },
-      { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
-    ]
-  },
-  {
-    name: "Prabash Wijerathne",
-    role: "Software Engineer Full Stack",
-    photoPath: prabash,
-    socials: [
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
     ]
   },

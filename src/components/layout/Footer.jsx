@@ -1,9 +1,9 @@
-import { 
-  FaFacebook, FaLinkedin, FaInstagram, FaGithub, FaTiktok,
-  FaEnvelope, FaPhone,
+import {
+  FaFacebook, FaLinkedin, FaInstagram, FaGithub, FaTiktok, FaEnvelope, FaPhone,
 } from "react-icons/fa";
-import logo from "../../assets/images/logo1.png"; // Adjust path as needed
+import logo from "../../assets/images/logo1.png";
 
+// Social Media Links
 const socialLinks = [
   { href: "https://github.com/QuantumSync-Labs-PLC/", icon: <FaGithub />, label: "GitHub" },
   { href: "https://www.linkedin.com/company/quantumsync-labs", icon: <FaLinkedin />, label: "LinkedIn" },
@@ -12,14 +12,7 @@ const socialLinks = [
   { href: "https://www.tiktok.com/@quantumsync.labs?_t=ZS-8xnNboWCY5q&_r=1", icon: <FaTiktok />, label: "TikTok" },
 ];
 
-const quickLinks = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "About", href: "/about" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
-];
-
+// Contact Details
 const contactDetails = [
   {
     icon: <FaEnvelope className="text-blue text-xl" />,
@@ -33,28 +26,38 @@ const contactDetails = [
     href: "tel:+94741240337",
     label: "Phone"
   },
-  // {
-  //   icon: <FaMapMarkerAlt className="text-blue text-xl" />,
-  //   text: "Colombo, Sri Lanka",
-  //   href: "https://goo.gl/maps/xyz123",
-  //   label: "Location"
-  // }
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-transparent mt-24 relative z-10">
-      <div className="glass max-w-7xl mx-auto px-6 py-10 md:py-14 rounded-t-glass shadow-neon-blue flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
-        {/* Logo & Intro */}
-        <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left mb-8 md:mb-0">
-          <img src={logo} alt="QuantumSync Labs Logo" className="h-12 mb-2" />
-          <h2 className="font-headline text-2xl text-blue font-bold mb-2 tracking-wide">
-            QuantumSync Labs
-          </h2>
-          <p className="text-section text-base mb-4 max-w-sm">
+      <div className="glass max-w-7xl mx-auto px-6 py-10 md:py-14 rounded-t-glass shadow-neon-blue flex flex-col md:flex-row md:items-start items-center justify-between gap-12 md:gap-20">
+        {/* Left: Logo & About */}
+        <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+          <img src={logo} alt="QuantumSync Labs Logo" className="h-12 mb-1" draggable={false} />
+          <h2 className="font-headline text-2xl text-blue font-bold tracking-wide">QuantumSync Labs</h2>
+          <p className="text-section text-base max-w-xs">
             Empowering your digital transformation with modern, secure, and scalable IT solutions.
           </p>
-          <div className="flex gap-5 mt-2">
+        </div>
+
+        {/* Right: Contact */}
+        <div className="flex-1 flex flex-col items-center md:items-end space-y-3">
+          <span className="font-headline text-lg font-semibold text-blue mb-2">Contact Us</span>
+          <ul className="flex flex-col gap-3 items-center md:items-end text-section w-full">
+            {contactDetails.map((item) => (
+              <li key={item.label} className="flex items-center gap-3">
+                {item.icon}
+                <a
+                  href={item.href}
+                  className="hover:text-blue transition break-all"
+                  aria-label={item.label}
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))}
+            <div className="flex gap-4 mt-2 flex-wrap justify-center md:justify-start">
             {socialLinks.map((item) => (
               <a
                 key={item.label}
@@ -68,46 +71,6 @@ export default function Footer() {
               </a>
             ))}
           </div>
-        </div>
-
-        {/* Quick Links */}
-        <div className="flex-1 flex flex-col items-center md:items-end mb-8 md:mb-0">
-          <span className="font-headline text-lg font-semibold text-blue mb-3">Quick Links</span>
-          <ul className="flex flex-col gap-2">
-            {quickLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="font-body text-section hover:text-blue transition px-2 py-1 rounded"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact Details */}
-        <div className="flex-1 flex flex-col items-center md:items-end">
-          <span className="font-headline text-lg font-semibold text-blue mb-3">Contact Us</span>
-          <ul className="flex flex-col gap-3 items-center md:items-end text-section">
-            {contactDetails.map((item) => (
-              <li key={item.label} className="flex items-center gap-3">
-                {item.icon}
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    target={item.label === "Location" ? "_blank" : undefined}
-                    rel={item.label === "Location" ? "noopener noreferrer" : undefined}
-                    className="hover:text-blue transition"
-                  >
-                    {item.text}
-                  </a>
-                ) : (
-                  <span>{item.text}</span>
-                )}
-              </li>
-            ))}
           </ul>
         </div>
       </div>

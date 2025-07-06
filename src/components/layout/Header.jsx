@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
+import { useState, useEffect, useRef } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/images/logo2.png"; // Update with your logo path
+import logo from "../../assets/images/logo2.png";
 
 const navLinks = [
   { name: "Home", to: "/" },
@@ -19,18 +19,36 @@ const linkVariants = {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const location = useLocation();
 
-  // Prevent background scroll when menu is open
+  // Prevent background scroll and trap focus when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
+      // Focus the first link in the mobile menu
+      setTimeout(() => {
+        menuRef.current?.querySelector("a")?.focus();
+      }, 100);
     } else {
       document.body.style.overflow = "";
     }
-    // Cleanup in case component unmounts
-    return () => {
-      document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  // Close on ESC
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e) => {
+      if (e.key === "Escape") setMenuOpen(false);
     };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   }, [menuOpen]);
 
   return (
@@ -62,10 +80,10 @@ export default function Header() {
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  `relative font-body text-base font-medium px-2 py-1 transition text-white hover:text-blue 
-                  after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:rounded-full after:bg-blue 
-                  after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform
-                  ${isActive ? "text-blue after:scale-x-100" : "after:scale-x-0"}`
+                  `relative font-body text-base font-medium px-2 py-1 transition text-white hover:text-blue
+                   after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:rounded-full after:bg-blue
+                   after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform
+                   ${isActive ? "text-blue after:scale-x-100" : "after:scale-x-0"}`
                 }
               >
                 {link.name}
@@ -92,11 +110,14 @@ export default function Header() {
           {menuOpen && (
             <motion.ul
               id="mobile-menu"
+              ref={menuRef}
               initial={{ y: -40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -40, opacity: 0 }}
               transition={{ type: "spring", stiffness: 180, damping: 16 }}
               className="md:hidden absolute top-[4.25rem] left-2 right-2 bg-navy/95 glass shadow-neon-blue rounded-glass flex flex-col items-center py-4 gap-4 border border-blue"
+              tabIndex={-1}
+              role="menu"
             >
               {navLinks.map((link) => (
                 <li key={link.name}>
@@ -108,6 +129,8 @@ export default function Header() {
                         isActive ? "text-blue" : ""
                       }`
                     }
+                    tabIndex={0}
+                    role="menuitem"
                   >
                     {link.name}
                   </NavLink>
