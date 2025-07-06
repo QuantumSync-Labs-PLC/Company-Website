@@ -5,11 +5,11 @@ import {
 import logo from "../../assets/images/logo1.png"; // Adjust path as needed
 
 const socialLinks = [
-  { href: "https://www.facebook.com/yourpage", icon: <FaFacebook />, label: "Facebook" },
+  { href: "https://github.com/QuantumSync-Labs-PLC/", icon: <FaGithub />, label: "GitHub" },
   { href: "https://www.linkedin.com/company/quantumsync-labs", icon: <FaLinkedin />, label: "LinkedIn" },
-  { href: "https://www.instagram.com/yourpage", icon: <FaInstagram />, label: "Instagram" },
-  { href: "https://github.com/your-org", icon: <FaGithub />, label: "GitHub" },
-  { href: "https://www.tiktok.com/@yourpage", icon: <FaTiktok />, label: "TikTok" },
+  { href: "https://www.facebook.com/share/12FQynVu8TR/?mibextid=wwXIfr", icon: <FaFacebook />, label: "Facebook" },
+  { href: "https://www.instagram.com/quantumsync_labs?igsh=NmVjeG04b2R6dXF5&utm_source=qr", icon: <FaInstagram />, label: "Instagram" },
+  { href: "https://www.tiktok.com/@quantumsync.labs?_t=ZS-8xnNboWCY5q&_r=1", icon: <FaTiktok />, label: "TikTok" },
 ];
 
 const quickLinks = [

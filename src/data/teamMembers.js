@@ -20,8 +20,8 @@ const teamMembers = [
     role: "Co-Founder & CTO & Frontend Engineer",
     photoPath: thamash,
     socials: [
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
-      { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
+      { icon: "FaLinkedin", url: "www.linkedin.com/in/thamash-weragoda", label: "LinkedIn" },
+      { icon: "FaGithub", url: "https://github.com/Thamashwerago", label: "GitHub" },
     ]
   },
   {
@@ -29,8 +29,8 @@ const teamMembers = [
     role: "Co-Founder & CMO & QA Engineer",
     photoPath: ravindu,
     socials: [
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
-      { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
+      { icon: "FaLinkedin", url: "https://www.linkedin.com/in/wrswaduwawala/", label: "LinkedIn" },
+      { icon: "FaGithub", url: "https://github.com/RavinduSandaruwan", label: "GitHub" },
     ]
   },
   {
@@ -47,7 +47,7 @@ const teamMembers = [
     role: "Software Security Engineer",
     photoPath: kaveesha,
     socials: [
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
+      { icon: "FaLinkedin", url: "https://www.linkedin.com/in/v-k-nethmini-444642262", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
     ]
   },
