@@ -11,8 +11,8 @@ const teamMembers = [
     role: "Co-Founder & CEO & Backend Engineer",
     photoPath: tharindu,
     socials: [
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
-      { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
+      { icon: "FaLinkedin", url: "https://www.linkedin.com/in/tharindu-danushka/", label: "LinkedIn" },
+      { icon: "FaGithub", url: "https://github.com/DATDSG", label: "GitHub" },
     ]
   },
   {
@@ -38,8 +38,8 @@ const teamMembers = [
     role: "Project Manager",
     photoPath: janani,
     socials: [
-      { icon: "FaLinkedin", url: "https://linkedin.com/in/ayesha", label: "LinkedIn" },
-      { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
+      { icon: "FaLinkedin", url: "https://www.linkedin.com/in/janani-hewawitharana-03a340235/", label: "LinkedIn" },
+      { icon: "FaGithub", url: "https://github.com/JananiCH", label: "GitHub" },
     ]
   },
   {
