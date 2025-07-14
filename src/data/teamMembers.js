@@ -3,6 +3,7 @@ import janani from "../assets/images/janani.jpg";
 import kaveesha from "../assets/images/kaveesha.PNG";
 import thamash from "../assets/images/thamash.png";
 import ravindu from "../assets/images/ravindu.jpg";
+import duvindu from "../assets/images/duvindu.jpg";
 
 const teamMembers = [
   {
@@ -25,7 +26,7 @@ const teamMembers = [
   },
   {
     name: "Ravindu Waduwawala",
-    role: "Co-Founder & CFO & QA Engineer",
+    role: "Co-Founder & CMO & QA Engineer",
     photoPath: ravindu,
     socials: [
       { icon: "FaLinkedin", url: "https://www.linkedin.com/in/wrswaduwawala/", label: "LinkedIn" },
@@ -48,6 +49,15 @@ const teamMembers = [
     socials: [
       { icon: "FaLinkedin", url: "https://www.linkedin.com/in/v-k-nethmini-444642262", label: "LinkedIn" },
       { icon: "FaGithub", url: "https://github.com/dinesh", label: "GitHub" },
+    ]
+  },
+  {
+    name: "Duvindu Nimsara",
+    role: "UI/UX Designer",
+    photoPath: duvindu,
+    socials: [
+      { icon: "FaLinkedin", url: "https://www.linkedin.com/in/duvindu-nimsara/", label: "LinkedIn" },
+      { icon: "FaGithub", url: "https://github.com/duvindunimsara", label: "GitHub" },
     ]
   },
 ];
