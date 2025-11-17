@@ -4,9 +4,9 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import ScrollToTop from "../components/common/ScrollToTop";
 
-const SERVICE_ID = 'service_u9kwu6r';
-const TEMPLATE_ID = 'template_7ynrrvv';
-const USER_ID = 'LrlAWWQTNgpmXwnMq'; // Public key
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const USER_ID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const formRef = useRef();

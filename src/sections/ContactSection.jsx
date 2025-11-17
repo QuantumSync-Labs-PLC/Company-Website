@@ -1,13 +1,12 @@
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
-// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaPaperPlane } from "react-icons/fa";
 
-// Your EmailJS settings
-const SERVICE_ID = 'service_u9kwu6r';
-const TEMPLATE_ID = 'template_7ynrrvv';
-const USER_ID = 'LrlAWWQTNgpmXwnMq'; // Public key
+// EmailJS configuration from environment variables
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const USER_ID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function ContactSection() {
   const formRef = useRef(null);

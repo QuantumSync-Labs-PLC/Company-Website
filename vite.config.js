@@ -1,8 +1,9 @@
 // vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite'; // Remove if using Tailwind with PostCSS config only
+import tailwindcss from '@tailwindcss/vite';
 import svgr from 'vite-plugin-svgr';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -16,6 +17,11 @@ export default defineConfig({
     react(),
     tailwindcss(),
     svgr(),
+    visualizer({
+      filename: './dist/stats.html',
+      title: 'Bundle Analysis',
+      open: false, // Set to true to auto-open in browser after build
+    }),
   ],
   server: {
     port: 3000,
