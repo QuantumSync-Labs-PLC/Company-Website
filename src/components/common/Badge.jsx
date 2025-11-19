@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 /**
  * Badge component for status, tags, feature highlights, etc.
- * @param {string} color       - Tailwind bg color (default: "bg-blue")
+ * @param {string} color       - Tailwind bg color (default: "bg-qs-primary")
  * @param {string} textColor   - Tailwind text color (default: "text-white")
  * @param {boolean} outline    - Show as outline badge
  * @param {boolean} pill       - Fully rounded (pill) badge
@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
  * @param {React.ReactNode} children - Badge text/content
  */
 export default function Badge({
-  color = "bg-blue",
+  color = "bg-qs-primary",
   textColor = "text-white",
   outline = false,
   pill = false,

@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 /**
  * Spinner: A simple animated loader.
  * @param {string} size - Tailwind size class or px/rem (default: "w-7 h-7")
- * @param {string} color - Tailwind text color (default: "text-blue")
+ * @param {string} color - Tailwind text color (default: "text-qs-primary")
  * @param {string} className - Extra classes
  * @param {string} ariaLabel - Accessibility label
  */
 export default function Spinner({
   size = "w-7 h-7",
-  color = "text-blue",
+  color = "text-qs-primary",
   className = "",
   ariaLabel = "Loading...",
   ...props

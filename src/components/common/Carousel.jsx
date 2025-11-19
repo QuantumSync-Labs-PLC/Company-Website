@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import PropTypes from "prop-types";
 
 const variants = {
@@ -23,8 +23,8 @@ export default function Carousel({
   autoPlay = true,
   interval = 6000,
   className = "",
-  dotColor = "bg-blue",
-  arrowColor = "text-blue",
+  dotColor = "bg-qs-primary",
+  arrowColor = "text-qs-primary",
   ...props
 }) {
   const slideCount = slides.length;
@@ -51,7 +51,7 @@ export default function Carousel({
 
   return (
     <div
-      className={`relative w-full max-w-2xl mx-auto glass shadow-neon-blue px-4 py-8 overflow-hidden flex flex-col items-center ${className}`}
+      className={`relative w-full max-w-2xl mx-auto glass shadow-neon px-4 py-8 overflow-hidden flex flex-col items-center ${className}`}
       {...props}
     >
       {/* Slides */}
@@ -75,23 +75,23 @@ export default function Carousel({
       {/* Navigation */}
       <button
         aria-label="Previous"
-        className={`absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-navy/80 hover:bg-blue/70 border border-blue shadow-lg ${arrowColor}`}
+        className={`absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-qs-surface/80 hover:bg-qs-primary/70 border border-qs-primary shadow-lg ${arrowColor}`}
         onClick={() => paginate(-1)}
         tabIndex={0}
         type="button"
         style={{ zIndex: 5 }}
       >
-        <FaChevronLeft size={22} />
+        <ChevronLeft size={22} />
       </button>
       <button
         aria-label="Next"
-        className={`absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-navy/80 hover:bg-blue/70 border border-blue shadow-lg ${arrowColor}`}
+        className={`absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-qs-surface/80 hover:bg-qs-primary/70 border border-qs-primary shadow-lg ${arrowColor}`}
         onClick={() => paginate(1)}
         tabIndex={0}
         type="button"
         style={{ zIndex: 5 }}
       >
-        <FaChevronRight size={22} />
+        <ChevronRight size={22} />
       </button>
 
       {/* Dots */}
@@ -100,8 +100,8 @@ export default function Carousel({
           <button
             key={idx}
             aria-label={`Go to slide ${idx + 1}`}
-            className={`w-3 h-3 rounded-full border border-blue transition-all duration-200 ${
-              idx === page ? `${dotColor}` : "bg-navy"
+            className={`w-3 h-3 rounded-full border border-qs-primary transition-all duration-200 ${
+              idx === page ? `${dotColor}` : "bg-qs-surface"
             }`}
             onClick={() => setPage([idx, idx > page ? 1 : -1])}
             tabIndex={0}

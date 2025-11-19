@@ -10,6 +10,7 @@ const ServiceDetail = lazy(() => import("../pages/ServiceDetail"));
 const Blog = lazy(() => import("../pages/Blog"));
 const BlogPost = lazy(() => import("../pages/BlogPost"));
 const Contact = lazy(() => import("../pages/Contact"));
+const ThemeShowcase = lazy(() => import("../pages/ThemeShowcase"));
 const NotFoundPage = lazy(() => import("../pages/404"));
 
 export default function AppRoutes() {
@@ -23,6 +24,7 @@ export default function AppRoutes() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/theme-showcase" element={<ThemeShowcase />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

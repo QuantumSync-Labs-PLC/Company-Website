@@ -147,7 +147,7 @@ const blogPosts = [
       </p>
       <h2>Winning Strategies</h2>
       <ul>
-        <li><strong>Assessment:</strong> Understand your app portfolio—what to lift-and-shift, refactor, or retire.</li>
+        <li><strong>Assessment:</strong> Understand your app portfolio what to lift-and-shift, refactor, or retire.</li>
         <li><strong>Hybrid/Multicloud:</strong> Leverage best-of-breed across AWS, Azure, GCP, and on-prem for flexibility.</li>
         <li><strong>Data Migration:</strong> Secure, zero-downtime moves—no customer disruption.</li>
         <li><strong>Optimization:</strong> Cost monitoring, autoscaling, and resource tagging post-migration.</li>

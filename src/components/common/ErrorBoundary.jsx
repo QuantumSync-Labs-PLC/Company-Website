@@ -22,22 +22,22 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="relative min-h-screen flex items-center justify-center bg-navy px-4">
-          <div className="glass rounded-glass shadow-neon-blue p-8 w-full max-w-2xl mx-auto text-center">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold text-blue mb-4">
+        <div className="relative min-h-screen flex items-center justify-center bg-qs-bg px-4">
+          <div className="glass rounded-glass shadow-neon p-8 w-full max-w-2xl mx-auto text-center">
+            <h1 className="font-headline text-4xl md:text-5xl font-bold text-qs-primary mb-4">
               Oops! Something Went Wrong
             </h1>
             <p className="font-body text-lg text-section mb-8">
               We're sorry for the inconvenience. An unexpected error occurred while rendering this page.
             </p>
-            <div className="bg-navy/50 rounded-lg p-4 mb-8 text-left overflow-auto max-h-48 border border-blue/30">
+            <div className="bg-qs-surface/70 rounded-lg p-4 mb-8 text-left overflow-auto max-h-48 border border-qs-primary/30">
               <p className="font-mono text-sm text-red-400 whitespace-pre-wrap break-words">
                 {this.state.error?.toString()}
               </p>
             </div>
             <button
               onClick={() => window.location.href = '/'}
-              className="inline-flex items-center justify-center font-headline px-6 py-2.5 rounded-glass text-base font-bold transition shadow-neon-blue bg-gradient-to-r from-blue to-cyan text-white hover:from-cyan hover:to-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+              className="inline-flex items-center justify-center font-headline px-6 py-2.5 rounded-glass text-base font-bold transition shadow-neon bg-qs-gradient-primary text-qs-text hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-qs-accent"
             >
               Go Back Home
             </button>

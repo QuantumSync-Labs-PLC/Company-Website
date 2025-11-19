@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
-import { FaPaperPlane } from "react-icons/fa";
+import { Send } from "lucide-react";
+import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
+import SectionShell from "../components/common/SectionShell";
 
 // EmailJS configuration from environment variables
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -17,7 +19,7 @@ export default function ContactSection() {
   const getButtonContent = () => {
     if (sending) return "Sending...";
     if (sent) return "Sent!";
-    return <>Send Message <FaPaperPlane className="ml-2" /></>;
+    return <>Send Message <Send size={18} className="ml-2" /></>;
   };
 
   const handleSubmit = (e) => {
@@ -39,71 +41,63 @@ export default function ContactSection() {
   };
 
   return (
-    <section
+    <SectionShell
       id="contact"
-      className="relative py-20 px-4 md:px-0 bg-section scroll-mt-24"
-      aria-labelledby="contact-heading"
+      title="Get In Touch"
+      description="Start your next project, ask a question, or just say hello. We'd love to hear from you!"
+      sectionClassName="relative py-20 px-4 md:px-0 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300"
+      containerClassName="relative max-w-3xl mx-auto section-center z-10"
+      titleClassName="font-headline text-3xl md:text-4xl font-bold text-qs-primary text-center mb-4"
+      descriptionClassName="font-body text-qs-text-section text-lg text-center mb-12 max-w-xl mx-auto"
     >
       {/* Decorative BG */}
-      <div className="pointer-events-none absolute top-0 left-0 w-64 h-64 bg-blue blur-3xl opacity-10 z-0" />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-80 h-80 bg-cyan blur-2xl opacity-10 z-0" />
+      <SectionBackgroundBlur />
 
-      <div className="relative max-w-3xl mx-auto section-center z-10">
-        <h2
-          id="contact-heading"
-          className="font-headline text-3xl md:text-4xl font-bold text-blue text-center mb-4"
-        >
-          Get In Touch
-        </h2>
-        <p className="font-body text-section text-lg text-center mb-12 max-w-xl mx-auto">
-          Start your next project, ask a question, or just say hello. We’d love to hear from you!
-        </p>
-
-        <motion.form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="glass rounded-glass shadow-neon-blue p-8 flex flex-col gap-6 max-w-xl mx-auto"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
+      <motion.form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        className="glass rounded-glass shadow-neon-blue p-8 flex flex-col gap-6 max-w-xl mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
           <div className="flex flex-col gap-2">
-            <label htmlFor="user_name" className="font-body text-section text-sm mb-1">
-              Name <span className="text-blue">*</span>
+            <label htmlFor="user_name" className="font-body text-qs-text-muted text-sm mb-1">
+              Name <span className="text-qs-primary">*</span>
             </label>
             <input
               type="text"
               id="user_name"
               name="user_name"
-              className="rounded bg-navy-dk/70 px-4 py-3 font-body text-white border border-blue/30 focus:outline-none focus:ring-2 focus:ring-blue"
+              className="rounded bg-qs-surface/70 px-4 py-3 font-body text-qs-text border border-qs-primary/30 focus:outline-none focus:ring-2 focus:ring-qs-primary"
               required
               disabled={sending || sent}
               placeholder="Your Name"
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="user_email" className="font-body text-section text-sm mb-1">
-              Email <span className="text-blue">*</span>
+            <label htmlFor="user_email" className="font-body text-qs-text-muted text-sm mb-1">
+              Email <span className="text-qs-primary">*</span>
             </label>
             <input
               type="email"
               id="user_email"
               name="user_email"
-              className="rounded bg-navy-dk/70 px-4 py-3 font-body text-white border border-blue/30 focus:outline-none focus:ring-2 focus:ring-blue"
+              className="rounded bg-qs-surface/70 px-4 py-3 font-body text-qs-text border border-qs-primary/30 focus:outline-none focus:ring-2 focus:ring-qs-primary"
               required
               disabled={sending || sent}
               placeholder="you@email.com"
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="message" className="font-body text-section text-sm mb-1">
-              Message <span className="text-blue">*</span>
+            <label htmlFor="message" className="font-body text-qs-text-muted text-sm mb-1">
+              Message <span className="text-qs-primary">*</span>
             </label>
             <textarea
               id="message"
               name="message"
               rows={5}
-              className="rounded bg-navy-dk/70 px-4 py-3 font-body text-white border border-blue/30 focus:outline-none focus:ring-2 focus:ring-blue resize-none"
+              className="rounded bg-qs-surface/70 px-4 py-3 font-body text-qs-text border border-qs-primary/30 focus:outline-none focus:ring-2 focus:ring-qs-primary resize-none"
               required
               disabled={sending || sent}
               placeholder="How can we help you?"
@@ -111,21 +105,20 @@ export default function ContactSection() {
           </div>
           <button
             type="submit"
-            className="flex items-center justify-center bg-blue text-white font-semibold rounded-glass px-7 py-3 shadow-neon-blue hover:bg-cyan transition text-base mt-2 disabled:opacity-60"
+            className="flex items-center justify-center bg-qs-primary text-qs-text font-semibold rounded-glass px-7 py-3 shadow-neon-blue hover:bg-qs-accent transition text-base mt-2 disabled:opacity-60"
             disabled={sending || sent}
           >
             {getButtonContent()}
           </button>
           {error && (
-            <div className="text-red-400 text-sm mt-2 text-center">{error}</div>
+            <div className="text-qs-danger text-sm mt-2 text-center">{error}</div>
           )}
           {sent && (
-            <div className="text-green-400 text-sm mt-2 text-center">
+            <div className="text-qs-success text-sm mt-2 text-center">
               Thank you! Your message has been sent.
             </div>
           )}
         </motion.form>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

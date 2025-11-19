@@ -82,7 +82,7 @@ Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
 ## Project Structure
 
-```
+```text
 src/
 │
 ├── assets/           # Images, icons, logo, etc.
@@ -111,11 +111,32 @@ You can deploy this project on any static hosting provider:
 * **GitHub Pages**
   Use `npm run build` and push the `dist/` folder.
 
-### To build for production:
+### To build for production
 
 ```bash
 npm run build
 ```
+
+### Running tests
+
+Basic unit tests are included for utilities:
+
+```bash
+npm test
+```
+
+### Environment variables
+
+For the contact form powered by EmailJS, create a `.env` file (or configure these in your hosting platform) with:
+
+```bash
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_APP_URL=https://www.quantumsynclabs.com
+```
+
+These are used by the `Contact` page and SEO helpers.
 
 ---
 

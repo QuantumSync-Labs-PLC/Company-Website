@@ -10,15 +10,15 @@ export default function Button({
 }) {
   // You can extend this for more variants in the future
   const baseStyles =
-    "inline-flex items-center justify-center font-headline px-6 py-2.5 rounded-glass text-base font-bold transition shadow-neon-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center font-headline px-6 py-2.5 rounded-glass text-base font-bold transition shadow-neon-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-qs-accent focus-visible:ring-offset-2";
 
   const variantStyles = {
     primary:
-      "bg-gradient-to-r from-blue to-cyan text-white hover:from-cyan hover:to-blue hover:shadow-lg",
+      "bg-qs-gradient-primary text-white hover:opacity-90 hover:shadow-qs-medium",
     glass:
-      "glass text-blue border border-blue hover:bg-blue/10",
+      "glass text-qs-primary border border-qs-primary hover:bg-qs-primary-soft hover:border-qs-primary-hover",
     outline:
-      "bg-transparent border-2 border-blue text-blue hover:bg-blue/10",
+      "bg-transparent border-2 border-qs-primary text-qs-primary hover:bg-qs-primary-soft hover:border-qs-primary-hover",
   };
 
   return (

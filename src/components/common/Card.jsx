@@ -23,17 +23,17 @@ export default function Card({
       aria-label={ariaLabel || title || undefined}
     >
       {icon && (
-        <div className="mb-3 text-5xl text-blue flex justify-center items-center" aria-hidden="true">
+        <div className="mb-3 text-5xl text-qs-primary flex justify-center items-center" aria-hidden="true">
           {icon}
         </div>
       )}
       {title && (
-        <h3 className="font-headline text-xl font-bold text-blue mb-2 text-center">
+        <h3 className="font-headline text-xl font-bold text-qs-primary mb-2 text-center">
           {title}
         </h3>
       )}
       {description && (
-        <p className="font-body text-section text-center mb-3">
+        <p className="font-body text-qs-text-section text-center mb-3">
           {description}
         </p>
       )}

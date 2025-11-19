@@ -1,18 +1,18 @@
 import teamMembers from "../data/teamMembers";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { Linkedin, Github } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 // Map icon string to component
 const ICONS = {
-  FaLinkedin: FaLinkedin,
-  FaGithub: FaGithub,
+  Linkedin: Linkedin,
+  Github: Github,
 };
 
 export default function TeamSection() {
   return (
     <section>
-      <h2 className="font-headline text-2xl md:text-3xl text-blue font-bold mb-10 text-center">
+      <h2 className="font-headline text-2xl md:text-3xl text-qs-primary font-bold mb-10 text-center">
         Meet Our Leadership
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
@@ -25,7 +25,7 @@ export default function TeamSection() {
             transition={{ delay: i * 0.07 }}
             className="glass rounded-glass shadow-neon-blue p-8 flex flex-col items-center text-center"
           >
-            <div className="w-28 h-28 mb-4 flex items-center justify-center rounded-full bg-navy-dk shadow-md overflow-hidden border-2 border-blue">
+            <div className="w-28 h-28 mb-4 flex items-center justify-center rounded-full bg-qs-surface shadow-md overflow-hidden border-2 border-qs-primary">
               <img
                 src={member.photoPath}
                 alt={member.name}
@@ -33,8 +33,8 @@ export default function TeamSection() {
                 loading="lazy"
               />
             </div>
-            <div className="font-headline text-blue text-lg font-semibold mb-1">{member.name}</div>
-            <div className="font-body text-section text-sm mb-2">{member.role}</div>
+            <div className="font-headline text-qs-primary text-lg font-semibold mb-1">{member.name}</div>
+            <div className="font-body text-qs-text-muted text-sm mb-2">{member.role}</div>
             <div className="flex gap-3 mt-2">
               {member.socials?.map((s) => {
                 const Icon = ICONS[s.icon];
@@ -45,7 +45,7 @@ export default function TeamSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="text-blue hover:text-cyan text-xl transition"
+                    className="text-qs-primary hover:text-qs-accent text-xl transition"
                   >
                     {Icon && <Icon />}
                   </a>

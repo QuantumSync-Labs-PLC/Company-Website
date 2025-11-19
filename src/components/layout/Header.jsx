@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/images/logo2.png";
+import ThemeToggle from "../common/ThemeToggle";
 
 const navLinks = [
   { name: "Home", to: "/" },
@@ -16,7 +17,7 @@ const linkVariants = {
   animate: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 220, damping: 18 } },
 };
 
-export default function Header() {
+function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const location = useLocation();
@@ -51,8 +52,8 @@ export default function Header() {
   }, [menuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-navy/70 shadow-neon-blue transition-all duration-300">
-      <nav className="glass flex items-center justify-between px-4 md:px-12 h-16 md:h-20 relative">
+    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-qs-bg/70 shadow-neon transition-all duration-300" role="banner">
+      <nav className="glass flex items-center justify-between px-4 md:px-12 h-16 md:h-20 relative" aria-label="Primary">
         {/* Logo & Title */}
         <div className="flex items-center gap-3">
           <img
@@ -61,7 +62,7 @@ export default function Header() {
             className="h-10 w-10 md:h-12 md:w-12 object-contain drop-shadow"
             draggable={false}
           />
-          <span className="font-headline text-xl md:text-2xl font-extrabold tracking-wide text-blue">
+          <span className="font-headline text-xl md:text-2xl font-extrabold tracking-wide text-qs-primary">
             QuantumSync Labs
           </span>
         </div>
@@ -79,10 +80,10 @@ export default function Header() {
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  `relative font-body text-base font-medium px-2 py-1 transition text-white hover:text-blue
-                   after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:rounded-full after:bg-blue
+                  `relative font-body text-base font-medium px-2 py-1 transition text-qs-text hover:text-qs-primary
+                   after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:rounded-full after:bg-qs-primary
                    after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform
-                   ${isActive ? "text-blue after:scale-x-100" : "after:scale-x-0"}`
+                   ${isActive ? "text-qs-primary after:scale-x-100" : "after:scale-x-0"}`
                 }
               >
                 {link.name}
@@ -91,18 +92,26 @@ export default function Header() {
           ))}
         </ul>
 
+        {/* Desktop Theme Toggle */}
+        <div className="hidden md:flex items-center ml-4">
+          <ThemeToggle />
+        </div>
+
         {/* Hamburger Menu (Mobile) */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-transparent hover:bg-blue/10 transition group"
-          aria-label={menuOpen ? "Close Menu" : "Open Menu"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
-          <span className={`block w-6 h-0.5 rounded-full bg-blue mb-1.5 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-          <span className={`block w-6 h-0.5 rounded-full bg-blue transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}></span>
-          <span className={`block w-6 h-0.5 rounded-full bg-blue mt-1.5 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <button
+            className="flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-transparent hover:bg-qs-primary/10 transition group"
+            aria-label={menuOpen ? "Close Menu" : "Open Menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            <span className={`block w-6 h-0.5 rounded-full bg-qs-text mb-1.5 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
+            <span className={`block w-6 h-0.5 rounded-full bg-qs-text transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}></span>
+            <span className={`block w-6 h-0.5 rounded-full bg-qs-text mt-1.5 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
+          </button>
+        </div>
 
         {/* Mobile Menu Drawer */}
         <AnimatePresence>
@@ -114,7 +123,7 @@ export default function Header() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -40, opacity: 0 }}
               transition={{ type: "spring", stiffness: 180, damping: 16 }}
-              className="md:hidden absolute top-[4.25rem] left-2 right-2 bg-navy/95 glass shadow-neon-blue rounded-glass flex flex-col items-center py-4 gap-4 border border-blue"
+              className="md:hidden absolute top-[4.25rem] left-2 right-2 bg-qs-bg/95 glass shadow-neon rounded-glass flex flex-col items-center py-4 gap-4 border border-qs-primary"
               tabIndex={-1}
               role="menu"
             >
@@ -124,8 +133,8 @@ export default function Header() {
                     to={link.to}
                     onClick={() => setMenuOpen(false)}
                     className={({ isActive }) =>
-                      `block w-full text-lg font-body font-semibold text-white py-2 px-4 rounded transition hover:bg-blue/20 hover:text-blue ${
-                        isActive ? "text-blue" : ""
+                      `block w-full text-lg font-body font-semibold text-qs-text py-2 px-4 rounded transition hover:bg-qs-primary/20 hover:text-qs-primary ${
+                        isActive ? "text-qs-primary" : ""
                       }`
                     }
                     tabIndex={0}
@@ -142,3 +151,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default memo(Header);

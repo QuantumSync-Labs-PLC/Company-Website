@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { FaArrowUp } from "react-icons/fa";
+import { ArrowUp } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import PropTypes from "prop-types";
@@ -43,10 +43,10 @@ export default function ScrollToTop({ showButton = true, offset = 200 }) {
             exit={{ y: 60, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 24 }}
             onClick={handleScrollTop}
-            className="fixed bottom-7 right-7 z-50 p-3 rounded-full glass shadow-neon-blue hover:bg-blue/90 hover:text-white text-blue text-xl transition"
-            style={{ boxShadow: "0 8px 24px #0073FF55" }}
+            className="fixed bottom-7 right-7 z-50 p-3 rounded-full glass shadow-neon hover:bg-qs-primary/90 hover:text-qs-text text-qs-primary text-xl transition"
+            style={{ boxShadow: "0 8px 24px rgb(0, 115, 255, 0.33)" }}
           >
-            <FaArrowUp />
+            <ArrowUp size={24} />
           </motion.button>
         )}
       </AnimatePresence>
