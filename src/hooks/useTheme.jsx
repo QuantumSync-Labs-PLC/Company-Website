@@ -8,6 +8,20 @@ export function useTheme() {
   const [theme, setTheme] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
 
+  const applyTheme = useCallback((themeName) => {
+    const html = document.documentElement;
+    
+    if (themeName === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      html.classList.add('dark');
+    } else {
+      html.removeAttribute('data-theme');
+      html.classList.remove('dark');
+    }
+    
+    localStorage.setItem('qs-theme', themeName);
+  }, []);
+
   useEffect(() => {
     // Only run this effect once on mount
     // Check localStorage for saved theme
@@ -22,21 +36,7 @@ export function useTheme() {
     setTheme(initial);
     applyTheme(initial);
     setIsMounted(true);
-  }, []);
-
-  const applyTheme = useCallback((themeName) => {
-    const html = document.documentElement;
-    
-    if (themeName === 'dark') {
-      html.setAttribute('data-theme', 'dark');
-      html.classList.add('dark');
-    } else {
-      html.removeAttribute('data-theme');
-      html.classList.remove('dark');
-    }
-    
-    localStorage.setItem('qs-theme', themeName);
-  }, []);
+  }, [applyTheme]);
 
   const toggleTheme = useCallback(() => {
     setTheme(prevTheme => {

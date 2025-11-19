@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";

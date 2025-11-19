@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, memo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/images/logo2.png";
 import ThemeToggle from "../common/ThemeToggle";
