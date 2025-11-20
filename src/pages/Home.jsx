@@ -17,8 +17,11 @@ const Footer = lazy(() => import("../components/layout/Footer"));
 // Lightweight fallback
 function SectionFallback() {
   return (
-    <div className="py-20 flex items-center justify-center">
-      <Spinner size="w-8 h-8" color="text-qs-primary" />
+    <div className="py-24 flex items-center justify-center bg-qs-bg">
+      <div className="flex flex-col items-center gap-4">
+        <Spinner size="w-12 h-12" color="text-qs-primary" />
+        <p className="font-body text-sm text-qs-text-muted animate-pulse">Loading section...</p>
+      </div>
     </div>
   );
 }

@@ -57,6 +57,12 @@ export default function Contact() {
 
   return (
     <div className="relative min-h-screen flex flex-col bg-qs-bg">
+      {/* Animated background elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-qs-accent rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+        <div className="absolute bottom-0 left-20 w-80 h-80 bg-qs-primary rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse animation-delay-2000"></div>
+      </div>
+
       <ScrollToTop showButton={true} />
       <Header />
       <PageMeta
@@ -64,21 +70,28 @@ export default function Contact() {
         description="Contact QuantumSync Labs to discuss your next software, cloud, or AI project."
         url="/contact"
       />
-      <main className="flex flex-1 flex-col items-center justify-center py-16 sm:py-20 md:py-28 px-4" role="main">
-        <div className="glass rounded-glass shadow-neon p-6 sm:p-8 w-full max-w-2xl mx-auto">
-          <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-qs-primary text-center mb-2">
+      <main className="flex flex-1 flex-col items-center justify-center py-16 sm:py-20 md:py-28 px-4 relative z-10" role="main">
+        {/* Header section */}
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-4">
             Get in Touch
           </h1>
-          <p className="font-body text-base sm:text-lg text-qs-text-section text-center mb-4 sm:mb-6 max-w-xl mx-auto">
-            Questions, projects, partnership ideas, or just want to say hello? Fill out the form and our team will respond promptly.
+          <p className="font-body text-lg sm:text-xl text-qs-text-section mb-3">
+            Questions, projects, partnership ideas, or just want to say hello? We'd love to hear from you.
           </p>
-          <p className="font-body text-xs sm:text-sm text-qs-text-muted text-center mb-6 sm:mb-8 max-w-xl mx-auto">
+          <p className="font-body text-sm text-qs-text-muted">
             We use EmailJS to securely deliver your message. Please avoid sharing passwords, API keys, or other sensitive secrets in this form.
           </p>
+        </div>
+
+        {/* Form container */}
+        <div className="glass rounded-glass shadow-neon p-8 sm:p-10 md:p-12 w-full max-w-2xl mx-auto relative">
+          {/* Decorative top accent */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-qs-gradient-primary rounded-full opacity-50 -mt-1"></div>
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-6"
             aria-describedby={status ? "contact-status" : undefined}
           >
             {/* Honeypot field for spam bots – users should not see or fill this */}
@@ -92,6 +105,8 @@ export default function Contact() {
                 tabIndex={-1}
               />
             </div>
+
+            {/* Name field */}
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="font-body text-qs-primary font-semibold">Your Name</label>
               <input
@@ -99,23 +114,27 @@ export default function Contact() {
                 name="user_name"
                 type="text"
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-accent font-body"
+                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
                 placeholder="Jane Doe"
                 autoComplete="name"
               />
             </div>
+
+            {/* Email field */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="font-body text-qs-primary font-semibold">Email</label>
+              <label htmlFor="email" className="font-body text-qs-primary font-semibold">Email Address</label>
               <input
                 id="email"
                 name="user_email"
                 type="email"
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-accent font-body"
+                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
                 placeholder="you@email.com"
                 autoComplete="email"
               />
             </div>
+
+            {/* Phone field */}
             <div className="flex flex-col gap-2">
               <label htmlFor="phone" className="font-body text-qs-primary font-semibold">Phone <span className="text-qs-text-muted font-normal text-sm">(optional)</span></label>
               <input
@@ -123,22 +142,31 @@ export default function Contact() {
                 name="user_phone"
                 type="tel"
                 pattern="^[0-9+\-()\s]{7,}$"
-                className="bg-qs-surface text-qs-text border border-qs-primary rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-accent font-body"
+                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
                 placeholder="+1 (234) 111-2222"
                 autoComplete="tel"
               />
             </div>
+
+            {/* Subject field */}
             <div className="flex flex-col gap-2">
               <label htmlFor="subject" className="font-body text-qs-primary font-semibold">Subject</label>
-              <input
+              <select
                 id="subject"
                 name="subject"
-                type="text"
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-accent font-body"
-                placeholder="Project Inquiry, Support, Partnership, etc."
-              />
+                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body cursor-pointer"
+              >
+                <option value="">Select a subject...</option>
+                <option value="Project Inquiry">Project Inquiry</option>
+                <option value="Support">Support</option>
+                <option value="Partnership">Partnership</option>
+                <option value="General Question">General Question</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
+
+            {/* Message field */}
             <div className="flex flex-col gap-2">
               <label htmlFor="message" className="font-body text-qs-primary font-semibold">Message</label>
               <textarea
@@ -146,31 +174,35 @@ export default function Contact() {
                 name="message"
                 rows={6}
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-accent font-body resize-none"
+                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body resize-none"
                 placeholder="Tell us about your project, idea, or question..."
               />
             </div>
+
+            {/* Submit button */}
             <button
               type="submit"
               disabled={status === "pending"}
-              className="bg-qs-primary text-qs-text font-bold rounded-glass shadow-neon px-8 py-3 hover:bg-qs-accent transition text-sm sm:text-base mt-2 focus:outline-none focus:ring-2 focus:ring-qs-accent"
+              className="bg-qs-primary hover:bg-qs-primary-hover text-qs-surface font-bold rounded-glass shadow-neon px-8 py-3 transition text-base mt-4 focus:outline-none focus:ring-2 focus:ring-qs-accent disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-105 duration-300"
             >
               {status === "pending" ? "Sending..." : "Send Message"}
             </button>
+
+            {/* Status messages */}
             <div
               id="contact-status"
               className="mt-3 min-h-[1.5rem] text-center font-body text-sm"
               aria-live="polite"
             >
               {status === "success" && (
-                <span className="text-qs-success">
-                  Message sent! We'll get back to you soon.
-                </span>
+                <div className="text-qs-success font-semibold">
+                  ✓ Message sent! We'll get back to you soon.
+                </div>
               )}
               {status === "error" && (
-                <span className="text-red-400">
+                <div className="text-red-400 font-semibold">
                   {error}
-                </span>
+                </div>
               )}
             </div>
           </form>

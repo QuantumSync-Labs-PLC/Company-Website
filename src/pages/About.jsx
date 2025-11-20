@@ -40,23 +40,29 @@ export default function About() {
 
       <main role="main">
         {/* Hero / About Intro */}
-        <section className="relative py-16 sm:py-20 lg:py-28 px-4 flex flex-col items-center justify-center bg-qs-bg min-h-[55vh] sm:min-h-[60vh]">
+        <section className="relative py-20 sm:py-24 lg:py-32 px-4 flex flex-col items-center justify-center bg-qs-bg min-h-[55vh] sm:min-h-[60vh]">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+            <div className="absolute top-10 left-10 w-96 h-96 bg-qs-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-qs-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, type: "spring" }}
-            className="glass rounded-glass shadow-neon p-6 sm:p-8 flex flex-col items-center w-full max-w-2xl z-10"
+            transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
+            className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 p-8 sm:p-10 md:p-12 flex flex-col items-center w-full max-w-3xl z-10"
           >
-            <img
-              src={logo}
-              alt="QuantumSync Labs Logo"
-              className="h-16 w-16 md:h-20 md:w-20 mb-6 drop-shadow-lg object-contain"
-              draggable={false}
-            />
-            <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-qs-primary text-center mb-3 sm:mb-4">
+            <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-qs-primary/10 border-2 border-qs-primary mb-6 shadow-lg">
+              <img
+                src={logo}
+                alt="QuantumSync Labs Logo"
+                className="h-14 w-14 md:h-16 md:w-16 drop-shadow-lg object-contain"
+                draggable={false}
+              />
+            </div>
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-5 sm:mb-6">
               About QuantumSync Labs
             </h1>
-            <p className="font-body text-base sm:text-lg md:text-xl text-qs-text-section text-center max-w-xl">
+            <p className="font-body text-lg sm:text-xl md:text-2xl text-qs-text-section text-center max-w-2xl leading-relaxed">
               We are a passionate team of engineers, designers, and visionaries committed to helping businesses thrive in the digital era. From startups to global enterprises, we deliver secure, scalable, and innovative technology solutions that drive real-world impact.
             </p>
           </motion.div>
@@ -99,23 +105,24 @@ export default function About() {
 
           {/* Values */}
           <div>
-            <h2 className="font-headline text-2xl text-qs-primary font-bold mb-6 text-center">
+            <h2 className="font-headline text-3xl sm:text-4xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-10 sm:mb-12 text-center">
               Our Core Values
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
               {values.map((val, i) => (
                 <motion.div
                   key={val.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ delay: i * 0.09 }}
-                  className="glass rounded-glass shadow p-5 text-center"
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: i * 0.09, type: "spring", stiffness: 100 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 p-6 sm:p-7 text-center transition-all duration-300 hover:border-qs-primary/30 hover:shadow-xl"
                 >
-                  <div className="font-headline text-qs-primary text-lg font-semibold mb-2">
+                  <div className="font-headline text-qs-primary text-xl font-bold mb-3">
                     {val.title}
                   </div>
-                  <div className="font-body text-qs-text-section text-sm">{val.text}</div>
+                  <div className="font-body text-qs-text-section text-sm sm:text-base leading-relaxed">{val.text}</div>
                 </motion.div>
               ))}
             </div>
@@ -126,7 +133,7 @@ export default function About() {
         <WhyUsSection />
 
         {/* Team/Leadership Section */}
-        <section className="relative py-16 px-4 md:px-0 max-w-6xl mx-auto z-10">
+        <section className="relative py-20 sm:py-24 lg:py-28 px-4 md:px-6 max-w-7xl mx-auto z-10">
           <TeamSection />
         </section>
       </main>

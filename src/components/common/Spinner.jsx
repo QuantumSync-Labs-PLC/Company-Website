@@ -21,9 +21,10 @@ export default function Spinner({
       {...props}
     >
       <svg
-        className={`animate-spin ${size} ${color}`}
+        className={`animate-spin ${size} ${color} drop-shadow-lg`}
         fill="none"
         viewBox="0 0 24 24"
+        style={{ filter: 'drop-shadow(0 0 8px currentColor)' }}
       >
         <circle
           className="opacity-20"
@@ -34,7 +35,7 @@ export default function Spinner({
           strokeWidth="4"
         />
         <path
-          className="opacity-80"
+          className="opacity-90"
           fill="currentColor"
           d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
         />

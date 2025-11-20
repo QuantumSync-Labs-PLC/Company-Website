@@ -51,11 +51,11 @@ export default function Carousel({
 
   return (
     <div
-      className={`relative w-full max-w-2xl mx-auto glass shadow-neon px-4 py-8 overflow-hidden flex flex-col items-center ${className}`}
+      className={`relative w-full max-w-3xl mx-auto glass shadow-neon-blue border border-qs-primary/10 rounded-glass px-6 py-10 overflow-hidden flex flex-col items-center ${className}`}
       {...props}
     >
       {/* Slides */}
-      <div className="relative w-full h-full min-h-[140px] flex items-center justify-center">
+      <div className="relative w-full h-full min-h-[160px] flex items-center justify-center">
         <AnimatePresence custom={direction} initial={false}>
           <motion.div
             key={page}
@@ -75,33 +75,33 @@ export default function Carousel({
       {/* Navigation */}
       <button
         aria-label="Previous"
-        className={`absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-qs-surface/80 hover:bg-qs-primary/70 border border-qs-primary shadow-lg ${arrowColor}`}
+        className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass border-2 border-qs-primary hover:bg-qs-primary hover:text-white shadow-lg transition-all duration-300 hover:scale-110 ${arrowColor}`}
         onClick={() => paginate(-1)}
         tabIndex={0}
         type="button"
         style={{ zIndex: 5 }}
       >
-        <ChevronLeft size={22} />
+        <ChevronLeft size={24} />
       </button>
       <button
         aria-label="Next"
-        className={`absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-qs-surface/80 hover:bg-qs-primary/70 border border-qs-primary shadow-lg ${arrowColor}`}
+        className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass border-2 border-qs-primary hover:bg-qs-primary hover:text-white shadow-lg transition-all duration-300 hover:scale-110 ${arrowColor}`}
         onClick={() => paginate(1)}
         tabIndex={0}
         type="button"
         style={{ zIndex: 5 }}
       >
-        <ChevronRight size={22} />
+        <ChevronRight size={24} />
       </button>
 
       {/* Dots */}
-      <div className="flex gap-2 justify-center mt-5">
+      <div className="flex gap-3 justify-center mt-6">
         {slides.map((_, idx) => (
           <button
             key={idx}
             aria-label={`Go to slide ${idx + 1}`}
-            className={`w-3 h-3 rounded-full border border-qs-primary transition-all duration-200 ${
-              idx === page ? `${dotColor}` : "bg-qs-surface"
+            className={`w-3 h-3 rounded-full border-2 border-qs-primary transition-all duration-300 hover:scale-125 ${
+              idx === page ? `${dotColor} scale-110` : "bg-transparent"
             }`}
             onClick={() => setPage([idx, idx > page ? 1 : -1])}
             tabIndex={0}

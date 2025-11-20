@@ -6,10 +6,10 @@ export default function SectionShell({
   id,
   title,
   description,
-  sectionClassName = "relative py-20 px-4 md:px-0 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300",
+  sectionClassName = "relative py-20 sm:py-24 lg:py-28 px-4 md:px-6 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300",
   containerClassName = "relative max-w-7xl mx-auto section-center z-10",
-  titleClassName = "font-headline text-3xl md:text-4xl font-bold text-qs-primary text-center mb-4",
-  descriptionClassName = "font-body text-qs-text-section text-lg text-center mb-12 max-w-2xl mx-auto",
+  titleClassName = "font-headline text-4xl md:text-5xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-5",
+  descriptionClassName = "font-body text-qs-text-section text-lg sm:text-xl text-center mb-12 sm:mb-16 max-w-3xl mx-auto leading-relaxed",
   ariaLabelledBy,
   children,
 }) {

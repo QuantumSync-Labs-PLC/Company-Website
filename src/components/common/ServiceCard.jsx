@@ -19,8 +19,8 @@ export default function ServiceCard({
   service,
   index = 0,
   variants = defaultVariants,
-  whileHover = { y: -8, boxShadow: "0 6px 32px #0073FF44" },
-  containerClassName = "card-primary-elevated glass flex flex-col items-center p-6 sm:p-7 md:p-8 h-full min-h-[320px] sm:min-h-[370px] max-w-md mx-auto",
+  whileHover = { y: -10, scale: 1.02, boxShadow: "0 12px 48px #0073FF55" },
+  containerClassName = "card-primary-elevated glass shadow-neon-blue border border-qs-primary/10 rounded-glass flex flex-col items-center p-7 sm:p-8 md:p-9 h-full min-h-[340px] sm:min-h-[390px] max-w-md mx-auto transition-all duration-300",
   showFeaturesCount = 3,
   buttonFullWidth = true,
 }) {
@@ -32,29 +32,29 @@ export default function ServiceCard({
       custom={index}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={variants}
       whileHover={whileHover}
-      className="transition-transform"
+      className="transition-all duration-300"
     >
       <div className={containerClassName}>
         {/* Icon */}
-        <div className="mb-5 text-5xl text-qs-primary flex justify-center items-center">
-          {Icon && <Icon className="text-qs-primary text-4xl" />}
+        <div className="w-20 h-20 flex items-center justify-center rounded-full bg-qs-primary/10 border-2 border-qs-primary mb-5 shadow-md">
+          {Icon && <Icon className="text-qs-primary text-4xl sm:text-5xl" />}
         </div>
         {/* Title */}
-        <h3 className="font-headline text-lg sm:text-xl font-bold text-qs-primary mb-2 sm:mb-3 text-center">
+        <h3 className="font-headline text-xl sm:text-2xl font-bold text-qs-primary mb-3 text-center">
           {service.title}
         </h3>
         {/* Excerpt */}
-        <p className="font-body text-sm sm:text-base text-section text-center mb-3 sm:mb-4">
+        <p className="font-body text-sm sm:text-base text-qs-text-section text-center mb-4 leading-relaxed">
           {service.excerpt}
         </p>
         {/* Features */}
         {features.length > 0 && (
-          <ul className="mb-5 sm:mb-6 space-y-1 text-xs sm:text-sm font-body text-section list-disc list-inside text-left">
+          <ul className="mb-6 space-y-2 text-xs sm:text-sm font-body text-qs-text-section list-disc list-inside text-left">
             {features.map((feat) => (
-              <li key={feat}>{feat}</li>
+              <li key={feat} className="leading-relaxed">{feat}</li>
             ))}
           </ul>
         )}

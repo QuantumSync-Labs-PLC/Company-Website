@@ -25,11 +25,11 @@ export default function Badge({
   return (
     <span
       className={`
-        inline-flex items-center gap-1 px-3 py-1
-        text-xs font-semibold uppercase tracking-wide
+        inline-flex items-center gap-1.5 px-3 py-1.5
+        text-xs font-bold uppercase tracking-wide
         ${pill ? "rounded-full" : "rounded-glass"}
-        ${outline ? `border ${color} border-current bg-transparent ${textColor}` : `${color} ${textColor}`}
-        shadow-sm ${className}
+        ${outline ? `border-2 ${color} border-current bg-transparent ${textColor}` : `${color} ${textColor}`}
+        shadow-md transition-all duration-200 hover:scale-105 ${className}
       `}
       aria-label={ariaLabel}
       {...props}

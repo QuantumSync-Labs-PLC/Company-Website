@@ -43,10 +43,10 @@ export default function ScrollToTop({ showButton = true, offset = 200 }) {
             exit={{ y: 60, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 24 }}
             onClick={handleScrollTop}
-            className="fixed bottom-7 right-7 z-50 p-3 rounded-full glass shadow-neon hover:bg-qs-primary/90 hover:text-qs-text text-qs-primary text-xl transition"
-            style={{ boxShadow: "0 8px 24px rgb(0, 115, 255, 0.33)" }}
+            className="fixed bottom-7 right-7 z-50 p-4 rounded-full glass border border-qs-primary/20 shadow-neon-blue hover:bg-qs-primary hover:text-white text-qs-primary text-xl transition-all duration-300 hover:scale-110"
+            style={{ boxShadow: "0 12px 32px rgb(0, 115, 255, 0.4)" }}
           >
-            <ArrowUp size={24} />
+            <ArrowUp size={28} />
           </motion.button>
         )}
       </AnimatePresence>

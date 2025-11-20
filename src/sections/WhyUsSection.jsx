@@ -20,15 +20,15 @@ export default function WhyUsSection() {
       id="why-us"
       title="Why Choose QuantumSync Labs?"
       description="We’re more than tech. We’re your partner for security, innovation, and results here’s why leading teams trust us:"
-      sectionClassName="relative py-16 sm:py-20 lg:py-24 px-4 md:px-0 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300"
+      sectionClassName="relative py-20 sm:py-24 lg:py-28 px-4 md:px-6 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300"
       containerClassName="relative max-w-7xl mx-auto section-center z-10"
-      titleClassName="font-headline text-3xl md:text-4xl font-bold text-qs-primary text-center mb-3 sm:mb-4"
-      descriptionClassName="font-body text-qs-text-section text-base sm:text-lg text-center mb-10 sm:mb-12 max-w-2xl mx-auto"
+      titleClassName="font-headline text-4xl md:text-5xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-4 sm:mb-5"
+      descriptionClassName="font-body text-qs-text-section text-lg sm:text-xl text-center mb-12 sm:mb-16 max-w-3xl mx-auto leading-relaxed"
     >
       {/* Decorative BG Blurs */}
       <SectionBackgroundBlur topLeftClassName="pointer-events-none absolute top-0 left-0 w-60 h-60 bg-qs-primary blur-3xl opacity-10 z-0" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {whyUsData.map((item, i) => {
           const Icon = item.icon;
           return (
@@ -37,16 +37,16 @@ export default function WhyUsSection() {
               custom={i}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              whileHover={{ y: -8, boxShadow: "0 6px 32px #0073FF44" }}
-              className="transition-transform"
+              whileHover={{ y: -10, scale: 1.02, boxShadow: "0 12px 48px #0073FF55" }}
+              className="transition-all duration-300"
             >
               <Card
                 title={item.title}
-                icon={<Icon className="text-qs-primary text-4xl" />}
+                icon={<Icon className="text-qs-primary text-4xl sm:text-5xl" />}
                 description={item.text}
-                className="h-full"
+                className="h-full border border-qs-primary/10 shadow-neon-blue"
               />
             </motion.div>
           );

@@ -17,14 +17,17 @@ export default function ServiceDetail() {
 
   if (!service) {
     return (
-      <div className="flex flex-col min-h-screen items-center justify-center bg-qs-bg">
-        <h2 className="font-headline text-2xl text-qs-primary font-bold mb-6">Service Not Found</h2>
-        <button
-          className="bg-qs-primary text-qs-text font-bold px-8 py-3 rounded-glass shadow-neon hover:bg-qs-accent transition"
-          onClick={() => navigate("/services")}
-        >
-          Back to Services
-        </button>
+      <div className="flex flex-col min-h-screen items-center justify-center bg-qs-bg px-4">
+        <div className="glass rounded-glass shadow-neon-blue border border-qs-primary/20 p-10 sm:p-12 max-w-lg w-full text-center">
+          <h2 className="font-headline text-3xl sm:text-4xl text-qs-primary font-bold mb-4">Service Not Found</h2>
+          <p className="font-body text-qs-text-section mb-8 text-lg">The service you're looking for doesn't exist.</p>
+          <button
+            className="bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/services")}
+          >
+            Back to Services
+          </button>
+        </div>
       </div>
     );
   }
@@ -67,16 +70,16 @@ export default function ServiceDetail() {
           })}
         </script>
       </PageMeta>
-      <main className="flex-1 py-12 sm:py-16 md:py-24 px-4 flex flex-col items-center" role="main">
-        <article className="glass rounded-glass shadow-neon max-w-3xl w-full mx-auto p-6 sm:p-8 md:p-12">
+      <main className="flex-1 py-16 sm:py-20 md:py-28 px-4 flex flex-col items-center" role="main">
+        <article className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 max-w-4xl w-full mx-auto p-8 sm:p-10 md:p-14">
           {/* Service Icon and Title */}
-          <div className="flex flex-col items-center mb-6">
+          <div className="flex flex-col items-center mb-8">
             {Icon && (
-              <div className="text-qs-primary text-4xl sm:text-5xl mb-2">
-                <Icon className="text-qs-primary text-4xl sm:text-5xl" />
+              <div className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-full bg-qs-primary/10 border-2 border-qs-primary mb-6 shadow-lg">
+                <Icon className="text-qs-primary text-5xl sm:text-6xl" />
               </div>
             )}
-            <h1 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold text-qs-primary text-center mb-2">
+            <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-3">
               {service.title}
             </h1>
           </div>
@@ -85,33 +88,36 @@ export default function ServiceDetail() {
             <img
               src={service.cover}
               alt={service.title}
-              className="w-full max-w-full h-52 sm:h-56 md:h-72 object-cover rounded-xl shadow mb-6"
+              className="w-full max-w-full h-64 sm:h-72 md:h-80 object-cover rounded-glass shadow-lg mb-8 border border-qs-primary/20"
               loading="lazy"
             />
           )}
           {/* Description (markdown support) */}
-          <div className="font-body text-base sm:text-lg text-qs-text-section mb-6 text-center prose prose-invert max-w-none">
+          <div className="font-body text-base sm:text-lg text-qs-text-section mb-8 text-center prose prose-invert max-w-none leading-relaxed">
             <ReactMarkdown>{service.description}</ReactMarkdown>
           </div>
           {/* Features List */}
           {service.features && (
-            <ul className="mb-8 space-y-2 text-sm sm:text-base font-body text-qs-text-section list-disc list-inside text-left sm:text-left">
-              {service.features.map((feat) => (
-                <li key={feat}>{feat}</li>
-              ))}
-            </ul>
+            <div className="mb-10">
+              <h3 className="font-headline text-xl sm:text-2xl font-bold text-qs-primary mb-4 text-center">Key Features</h3>
+              <ul className="space-y-3 text-sm sm:text-base font-body text-qs-text-section list-disc list-inside text-left max-w-2xl mx-auto">
+                {service.features.map((feat) => (
+                  <li key={feat} className="leading-relaxed">{feat}</li>
+                ))}
+              </ul>
+            </div>
           )}
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Link
               to="/services"
-              className="inline-block bg-qs-bg text-qs-primary font-bold px-8 py-3 rounded-glass border border-qs-primary shadow hover:bg-qs-primary hover:text-qs-text transition text-base"
+              className="inline-block glass text-qs-primary font-bold px-10 py-4 rounded-glass border-2 border-qs-primary hover:bg-qs-primary hover:text-white transition-all duration-300 transform hover:scale-105 text-base"
             >
               ← Back to All Services
             </Link>
             <Link
               to={contactLink}
-              className="inline-block bg-qs-primary text-qs-text font-bold px-8 py-3 rounded-glass shadow-neon hover:bg-qs-accent transition text-base"
+              className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-base"
             >
               Contact Us About {service.title}
             </Link>
@@ -120,11 +126,11 @@ export default function ServiceDetail() {
 
         {/* Related Services Section */}
         {related.length > 0 && (
-          <section className="w-full max-w-5xl mx-auto mt-16 sm:mt-20">
-            <h2 className="font-headline text-2xl sm:text-3xl text-qs-primary font-bold mb-6 sm:mb-8 text-center">
+          <section className="w-full max-w-6xl mx-auto mt-20 sm:mt-24">
+            <h2 className="font-headline text-3xl sm:text-4xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-10 sm:mb-14 text-center">
               Related Services
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
               {related.map((rel, i) => {
                 const RelIcon = rel.icon;
                 return (
@@ -132,18 +138,19 @@ export default function ServiceDetail() {
                     key={rel.id}
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.18 }}
-                    transition={{ delay: i * 0.07 }}
-                    className="glass shadow-neon p-6 sm:p-7 flex flex-col items-center rounded-glass min-h-[280px] sm:min-h-[310px]"
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ delay: i * 0.07, type: "spring", stiffness: 100 }}
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    className="glass shadow-neon-blue border border-qs-primary/10 p-7 sm:p-8 flex flex-col items-center rounded-glass min-h-[300px] sm:min-h-[330px] transition-all duration-300 hover:border-qs-primary/30"
                   >
-                    <div className="text-qs-primary text-3xl sm:text-4xl mb-3">
+                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-qs-primary/10 border-2 border-qs-primary mb-4 shadow-md">
                       {RelIcon && <RelIcon className="text-qs-primary text-3xl sm:text-4xl" />}
                     </div>
-                    <div className="font-headline text-base sm:text-lg font-semibold text-qs-primary mb-2 text-center">{rel.title}</div>
-                    <div className="font-body text-qs-text-section text-sm sm:text-base text-center mb-4">{rel.excerpt}</div>
+                    <div className="font-headline text-lg sm:text-xl font-bold text-qs-primary mb-3 text-center">{rel.title}</div>
+                    <div className="font-body text-qs-text-section text-sm sm:text-base text-center mb-5 line-clamp-3 leading-relaxed">{rel.excerpt}</div>
                     <Link
                       to={rel.link}
-                      className="inline-block bg-qs-primary text-qs-text font-semibold px-6 py-2 rounded-glass shadow hover:bg-qs-accent transition text-sm mt-auto"
+                      className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-8 py-3 rounded-glass shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm mt-auto"
                     >
                       Learn More
                     </Link>

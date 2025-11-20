@@ -19,21 +19,21 @@ export default function Card({
 }) {
   return (
     <section
-      className={`glass shadow-neon-blue flex flex-col items-center p-7 min-w-[230px] max-w-sm mx-auto ${className}`}
+      className={`glass shadow-neon-blue border border-qs-primary/10 rounded-glass flex flex-col items-center p-7 sm:p-8 min-w-[230px] max-w-sm mx-auto transition-all duration-300 hover:border-qs-primary/30 ${className}`}
       aria-label={ariaLabel || title || undefined}
     >
       {icon && (
-        <div className="mb-3 text-5xl text-qs-primary flex justify-center items-center" aria-hidden="true">
-          {icon}
+        <div className="w-20 h-20 flex items-center justify-center rounded-full bg-qs-primary/10 border-2 border-qs-primary mb-4 shadow-md" aria-hidden="true">
+          <div className="text-4xl sm:text-5xl text-qs-primary">{icon}</div>
         </div>
       )}
       {title && (
-        <h3 className="font-headline text-xl font-bold text-qs-primary mb-2 text-center">
+        <h3 className="font-headline text-xl sm:text-2xl font-bold text-qs-primary mb-3 text-center">
           {title}
         </h3>
       )}
       {description && (
-        <p className="font-body text-qs-text-section text-center mb-3">
+        <p className="font-body text-qs-text-section text-base sm:text-lg text-center mb-4 leading-relaxed">
           {description}
         </p>
       )}

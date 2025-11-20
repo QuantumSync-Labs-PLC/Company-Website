@@ -29,16 +29,16 @@ export default function ServicesSection() {
       id="services"
       title="Our Services"
       description="Explore our full suite of modern IT solutions designed for security, performance, and innovation."
-      sectionClassName="relative py-16 sm:py-20 lg:py-24 px-4 md:px-0 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300"
+      sectionClassName="relative py-20 sm:py-24 lg:py-28 px-4 md:px-6 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300"
       containerClassName="relative max-w-7xl mx-auto section-center z-10"
-      titleClassName="font-headline text-3xl md:text-4xl font-bold text-qs-primary text-center mb-3 sm:mb-4"
-      descriptionClassName="font-body text-qs-text-section text-base sm:text-lg text-center mb-10 sm:mb-12 max-w-2xl mx-auto"
+      titleClassName="font-headline text-4xl md:text-5xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-4 sm:mb-5"
+      descriptionClassName="font-body text-qs-text-section text-lg sm:text-xl text-center mb-12 sm:mb-16 max-w-3xl mx-auto leading-relaxed"
     >
       {/* Decorative BG Blurs */}
       <SectionBackgroundBlur />
 
       {/* Service Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {visibleServices.length === 0
           ? Array.from({ length: SERVICE_PREVIEW_COUNT }).map((_, idx) => (
               <SkeletonCard key={idx} />
@@ -49,8 +49,8 @@ export default function ServicesSection() {
                 service={service}
                 index={i}
                 variants={cardVariants}
-                whileHover={{ y: -8, boxShadow: "0 6px 32px #0073FF55" }}
-                containerClassName="glass shadow-neon-blue flex flex-col items-center p-7 rounded-glass min-h-[370px] max-w-sm mx-auto h-full"
+                whileHover={{ y: -10, scale: 1.02, boxShadow: "0 12px 48px #0073FF65" }}
+                containerClassName="glass shadow-neon-blue border border-qs-primary/10 flex flex-col items-center p-7 sm:p-8 rounded-glass min-h-[380px] max-w-sm mx-auto h-full transition-all duration-300"
               />
             ))}
       </div>

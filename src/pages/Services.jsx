@@ -44,29 +44,38 @@ export default function Services() {
       </PageMeta>
       <main role="main">
         {/* Hero Section */}
-        <section className="relative py-16 sm:py-20 lg:py-24 flex flex-col items-center justify-center bg-qs-bg min-h-[40vh] sm:min-h-[45vh] px-4">
-          <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-qs-primary text-center mb-3 sm:mb-4">
-            Our Services
-          </h1>
-          <p className="font-body text-qs-text-section text-base sm:text-lg text-center max-w-2xl mb-6">
-            Explore our full suite of modern IT solutions—from cloud, AI, and app development to security, support, and user experience. We accelerate your business with technology.
-          </p>
+        <section className="relative py-20 sm:py-24 lg:py-32 flex flex-col items-center justify-center bg-qs-bg min-h-[45vh] sm:min-h-[50vh] px-4">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+            <div className="absolute top-10 left-10 w-96 h-96 bg-qs-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-qs-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+          </div>
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-4 sm:mb-6">
+              Our Services
+            </h1>
+            <p className="font-body text-qs-text-section text-lg sm:text-xl text-center max-w-3xl mx-auto leading-relaxed">
+              Explore our full suite of modern IT solutions from cloud, AI, and app development to security, support, and user experience. We accelerate your business with technology.
+            </p>
+          </div>
         </section>
 
         {/* Services Grid */}
-        <section className="relative py-14 sm:py-16 lg:py-20 px-4 md:px-0 bg-qs-bg">
+        <section className="relative py-16 sm:py-20 lg:py-24 px-4 md:px-6 bg-qs-bg">
           {/* Decorative BG Blurs */}
-          <SectionBackgroundBlur bottomRightClassName="pointer-events-none absolute bottom-0 right-0 w-80 h-80 bg-cyan blur-2xl opacity-15 z-0" />
+          <SectionBackgroundBlur 
+            topLeftClassName="pointer-events-none absolute top-0 left-0 w-80 h-80 bg-qs-primary blur-3xl opacity-10 z-0"
+            bottomRightClassName="pointer-events-none absolute bottom-0 right-0 w-80 h-80 bg-qs-accent blur-3xl opacity-10 z-0" 
+          />
 
           <div className="relative max-w-7xl mx-auto z-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
               {services.map((service, i) => (
                 <ServiceCard
                   key={service.id}
                   service={service}
                   index={i}
                   variants={cardVariants}
-                  whileHover={{ y: -10, boxShadow: "0 8px 32px #0073FF45" }}
+                  whileHover={{ y: -12, scale: 1.02, boxShadow: "0 12px 40px #0073FF55" }}
                 />
               ))}
             </div>

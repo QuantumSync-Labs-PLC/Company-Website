@@ -1,4 +1,6 @@
 import { memo } from "react";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 import {
   Facebook, Linkedin, Instagram, Github, Music, Mail, Phone,
 } from "lucide-react";
@@ -32,52 +34,105 @@ const contactDetails = [
 function Footer() {
   return (
     <footer className="bg-transparent mt-24 relative z-10" role="contentinfo">
-      <div className="glass max-w-7xl mx-auto px-6 py-10 md:py-14 rounded-t-glass shadow-neon flex flex-col md:flex-row md:items-start items-center justify-between gap-12 md:gap-20">
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-qs-primary/5 via-transparent to-qs-accent/5 pointer-events-none" />
+      
+      <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-20 rounded-3xl shadow-qs-neon flex flex-col md:flex-row md:items-start items-center justify-between gap-12 md:gap-16 border border-qs-primary/30 backdrop-blur-2xl" style={{background: 'linear-gradient(135deg, var(--qs-glass-bg) 0%, rgba(0,115,255,0.05) 50%, rgba(0,163,237,0.05) 100%)'}}>
         {/* Left: Logo & About */}
-        <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
-          <img src={logo} alt="QuantumSync Labs Logo" className="h-12 mb-1" draggable={false} />
-          <h2 className="font-headline text-2xl text-qs-primary font-bold tracking-wide">QuantumSync Labs</h2>
-          <p className="text-qs-text-section text-base max-w-xs">
+        <motion.div
+          className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-4"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative p-4 bg-gradient-to-br from-qs-primary/25 via-qs-accent/20 to-qs-primary/15 rounded-2xl border border-qs-primary/40 shadow-qs-medium">
+            <div className="absolute inset-0 bg-gradient-to-br from-qs-primary/10 to-qs-accent/10 rounded-2xl blur-sm" />
+            <img src={logo} alt="QuantumSync Labs Logo" className="relative h-12 drop-shadow-lg" draggable={false} />
+          </div>
+          <h2 className="font-headline text-2xl font-bold tracking-wider text-qs-text filter drop-shadow-sm">QuantumSync Labs</h2>
+          <p className="text-qs-text-section text-base max-w-xs leading-relaxed">
             Empowering your digital transformation with modern, secure, and scalable IT solutions.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Right: Contact */}
-        <div className="flex-1 flex flex-col items-center md:items-end space-y-3">
-          <span className="font-headline text-lg font-semibold text-qs-primary mb-2">Contact Us</span>
-          <ul className="flex flex-col gap-3 items-center md:items-end text-qs-text-section w-full">
-            {contactDetails.map((item) => (
-              <li key={item.label} className="flex items-center gap-3">
-                {item.icon}
+        {/* Middle: Quick Links */}
+        <motion.div
+          className="flex-1 flex flex-col items-center md:items-center space-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <h3 className="font-headline text-lg font-semibold text-qs-text">Quick Links</h3>
+          <ul className="flex flex-col gap-3 text-qs-text text-sm">
+            {[
+              { name: "Home", href: "/" },
+              { name: "Services", href: "/services" },
+              { name: "About", href: "/about" },
+              { name: "Blog", href: "/blog" },
+              { name: "Contact", href: "/contact" },
+            ].map((item) => (
+              <li key={item.name}>
                 <a
                   href={item.href}
-                  className="hover:text-qs-primary transition break-all"
-                  aria-label={item.label}
+                  className="hover:text-qs-primary transition-all duration-300 flex items-center gap-2 group py-1 px-2 rounded-lg hover:bg-qs-primary/10 hover:shadow-qs-soft"
                 >
-                  {item.text}
+                  <span className="inline-block w-1.5 h-1.5 bg-gradient-to-r from-qs-primary to-qs-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:shadow-qs-soft" />
+                  {item.name}
                 </a>
               </li>
             ))}
-            <div className="flex gap-4 mt-2 flex-wrap justify-center md:justify-start">
+          </ul>
+        </motion.div>
+
+        {/* Right: Contact */}
+        <motion.div
+          className="flex-1 flex flex-col items-center md:items-end space-y-4"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <h3 className="font-headline text-lg font-semibold text-qs-text">Contact Us</h3>
+          <ul className="flex flex-col gap-4 text-qs-text w-full md:items-end items-center">
+            {contactDetails.map((item) => (
+              <li key={item.label} className="flex items-center gap-3 group">
+                <a
+                  href={item.href}
+                  className="flex items-center gap-3 hover:text-qs-primary transition-all duration-300 py-2 px-3 rounded-lg hover:bg-qs-primary/10 hover:shadow-qs-soft backdrop-blur-sm"
+                  aria-label={item.label}
+                >
+                  {item.icon}
+                  <span className="text-sm">{item.text}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          
+          {/* Social Links */}
+          <div className="flex gap-3 mt-6 pt-6 border-t border-gradient-to-r from-qs-primary/30 to-qs-accent/30 w-full md:justify-end justify-center" style={{borderImage: 'linear-gradient(90deg, var(--qs-primary), var(--qs-accent)) 1'}}>
             {socialLinks.map((item) => (
-              <a
+              <motion.a
                 key={item.label}
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
-                className="text-qs-primary hover:text-qs-accent transition text-2xl"
+                className="text-qs-primary hover:text-qs-accent transition-all duration-300 p-3 rounded-xl hover:bg-gradient-to-r hover:from-qs-primary/15 hover:to-qs-accent/10 hover:shadow-qs-soft border border-transparent hover:border-qs-primary/30 backdrop-blur-sm"
+                whileHover={{ y: -6, scale: 1.15, rotateZ: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 {item.icon}
-              </a>
+              </motion.a>
             ))}
           </div>
-          </ul>
-        </div>
+        </motion.div>
       </div>
       {/* Copyright */}
-      <div className="bg-qs-bg text-center text-qs-text-muted py-4 text-sm font-body">
-        &copy; {new Date().getFullYear()} QuantumSync Labs. All rights reserved.
+      <div className="relative text-center text-qs-text-muted py-6 text-sm font-body border-t mt-8" style={{borderImage: 'linear-gradient(90deg, transparent, var(--qs-primary), var(--qs-accent), transparent) 1', background: 'linear-gradient(135deg, var(--qs-glass-bg) 0%, rgba(0,115,255,0.02) 100%)', backdropFilter: 'blur(10px)'}}>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-qs-primary/5 to-transparent" />
+        <p className="relative">&copy; {new Date().getFullYear()} QuantumSync Labs. All rights reserved.</p>
       </div>
     </footer>
   );
