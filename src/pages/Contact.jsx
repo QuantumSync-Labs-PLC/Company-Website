@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import ScrollToTop from "../components/common/ScrollToTop";

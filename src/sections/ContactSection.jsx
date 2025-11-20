@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
