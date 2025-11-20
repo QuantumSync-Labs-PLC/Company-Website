@@ -51,7 +51,7 @@ const services = [
     icon: FaCloud,
     excerpt: "Design, deployment, and management of secure cloud infrastructure.",
     description:
-      "Modernize with the cloud. We architect, migrate, and manage on AWS, Azure, or GCP for speed, reliability, and cost savings—using IaC, containers, and serverless best practices.",
+      "Modernize with the cloud. We architect, migrate, and manage on AWS, Azure, or GCP for speed, reliability, and cost savings using IaC, containers, and serverless best practices.",
     features: [
       "Cloud migration & DevOps",
       "CI/CD pipelines",

@@ -38,8 +38,8 @@ const blogPosts = [
         We work closely with compliance teams to ensure full auditability (GDPR, PCI DSS, ISO 27001), and our AI adapts as threats evolve.
       </p>
       <blockquote>
-        “AI-driven security isn’t a luxury for banks—it’s a necessity.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Ravindu Waduwawala, Security Lead</span>
+        “AI-driven security isn’t a luxury for banks, it’s a necessity.”<br>
+        <span style="font-size: 0.95em; color: #72d3f8;">Ravindu Waduwawala, Security Lead</span>
       </blockquote>
       <h2 class="mt-6">Learn More</h2>
       <p>
@@ -73,7 +73,7 @@ const blogPosts = [
           <strong>DevOps Automation:</strong> CI/CD, containerization, and monitoring for zero-downtime releases.
         </li>
         <li>
-          <strong>Performance by Design:</strong> Caching, CDN, and async patterns—blazing-fast user experiences.
+          <strong>Performance by Design:</strong> Caching, CDN, and async patterns blazing-fast user experiences.
         </li>
       </ol>
       <h2>Case Study: Scaling from 100 to 1 Million Users</h2>
@@ -81,8 +81,8 @@ const blogPosts = [
         One client grew from MVP to a global platform with <strong>99.99% uptime</strong> and sub-second load times—even under heavy traffic spikes.
       </p>
       <blockquote>
-        “Our architecture lets you dream big, then deliver—even as your user base explodes.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Thamash Weragoda, CTO</span>
+        “Our architecture lets you dream big, then deliver even as your user base explodes.”<br>
+        <span style="font-size: 0.95em; color: #72d3f8;">Thamash Weragoda, CTO</span>
       </blockquote>
       <h2>Ready for Growth?</h2>
       <p>
@@ -127,7 +127,7 @@ const blogPosts = [
       </p>
       <blockquote>
         “Quantum isn’t science fiction anymore—it’s your future competitive edge.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Tharindu Gunarathna, AI & Quantum Researcher</span>
+        <span style="font-size: 0.95em; color: #72d3f8;">Tharindu Gunarathna, AI & Quantum Researcher</span>
       </blockquote>
     `,
     author: "Tharindu Gunarathna",
@@ -140,16 +140,16 @@ const blogPosts = [
     id: "cloud-migration-strategies",
     title: "Cloud Migration Strategies for Modern Enterprises",
     excerpt:
-      "A practical guide to seamless cloud migration—covering strategy, pitfalls, and cost optimization for business growth.",
+      "A practical guide to seamless cloud migration covering strategy, pitfalls, and cost optimization for business growth.",
     content: `
       <p>
-        <strong>Migrating to the cloud</strong> unlocks agility, cost savings, and innovation—but only with the right plan. At QuantumSync Labs, we help clients de-risk cloud journeys and maximize business value.
+        <strong>Migrating to the cloud</strong> unlocks agility, cost savings, and innovation but only with the right plan. At QuantumSync Labs, we help clients de-risk cloud journeys and maximize business value.
       </p>
       <h2>Winning Strategies</h2>
       <ul>
         <li><strong>Assessment:</strong> Understand your app portfolio what to lift-and-shift, refactor, or retire.</li>
         <li><strong>Hybrid/Multicloud:</strong> Leverage best-of-breed across AWS, Azure, GCP, and on-prem for flexibility.</li>
-        <li><strong>Data Migration:</strong> Secure, zero-downtime moves—no customer disruption.</li>
+        <li><strong>Data Migration:</strong> Secure, zero-downtime moves no customer disruption.</li>
         <li><strong>Optimization:</strong> Cost monitoring, autoscaling, and resource tagging post-migration.</li>
       </ul>
       <h2>Success Story</h2>
@@ -158,7 +158,7 @@ const blogPosts = [
       </p>
       <blockquote>
         “Cloud migration is a journey, not a sprint. Our method gets you there safely.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Janani Hewawitharana, Project Manager</span>
+        <span style="font-size: 0.95em; color: #72d3f8;">Janani Hewawitharana, Project Manager</span>
       </blockquote>
     `,
     author: "Janani Hewawitharana",
@@ -171,7 +171,7 @@ const blogPosts = [
     id: "modern-ui-ux-design",
     title: "Modern UI/UX Design Trends for 2024",
     excerpt:
-      "Explore what’s shaping user experiences this year—from neobrutalism to voice-driven design and inclusive interfaces.",
+      "Explore what’s shaping user experiences this year from neobrutalism to voice-driven design and inclusive interfaces.",
     content: `
       <p>
         2024 brings a new wave of design trends—balancing creativity, accessibility, and data-driven insights. Here’s what’s shaping tomorrow’s user experiences at QuantumSync Labs.
@@ -185,7 +185,7 @@ const blogPosts = [
       </ul>
       <blockquote>
         “Design is empathy in action. Let’s make every experience delightful and fair.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Ravindu Waduwawala, CFO</span>
+        <span style="font-size: 0.95em; color: #72d3f8;">Ravindu Waduwawala, CFO</span>
       </blockquote>
       <h2>See More</h2>
       <p>
@@ -216,7 +216,7 @@ const blogPosts = [
       </ul>
       <blockquote>
         “2024’s winners are those who master both technology and ethics.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Tharindu Gunarathna, AI & Quantum Researcher</span>
+        <span style="font-size: 0.95em; color: #72d3f8;">Tharindu Gunarathna, AI & Quantum Researcher</span>
       </blockquote>
     `,
     author: "Tharindu Gunarathna",
@@ -236,7 +236,7 @@ const blogPosts = [
       </p>
       <h2>What Works Best</h2>
       <ul>
-        <li><strong>CI/CD Automation:</strong> Reliable pipelines for every push, every branch—no manual steps.</li>
+        <li><strong>CI/CD Automation:</strong> Reliable pipelines for every push, every branch no manual steps.</li>
         <li><strong>Infrastructure as Code:</strong> Reproducible, versioned, and testable environments.</li>
         <li><strong>Observability:</strong> Logs, metrics, and tracing give clarity on every deploy.</li>
         <li><strong>Team Culture:</strong> Blameless postmortems, shared ownership, and relentless improvement.</li>
@@ -246,7 +246,7 @@ const blogPosts = [
       </p>
       <blockquote>
         “DevOps is how good teams become great.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Thamash Weragoda, CTO</span>
+        <span style="font-size: 0.95em; color: #72d3f8;">Thamash Weragoda, CTO</span>
       </blockquote>
     `,
     author: "Thamash Weragoda",
@@ -278,7 +278,7 @@ const blogPosts = [
       </ul>
       <blockquote>
         “Quantum will be the backbone of future healthcare breakthroughs.”<br>
-        <span style="font-size: 0.95em; color: #72d3f8;">— Tharindu Gunarathna, AI & Quantum Researcher</span>
+        <span style="font-size: 0.95em; color: #72d3f8;">Tharindu Gunarathna, AI & Quantum Researcher</span>
       </blockquote>
     `,
     author: "Tharindu Gunarathna",
@@ -294,7 +294,7 @@ const blogPosts = [
     "Discover actionable steps to protect your digital assets from emerging threats—QuantumSync Labs’ blueprint for enterprise-grade security.",
   content: `
     <p>
-      In today's hyperconnected world, <strong>cybersecurity</strong> isn’t just an IT problem—it's a business imperative. At QuantumSync Labs, we blend human expertise with advanced tools to help organizations stay ahead of cybercriminals.
+      In today's hyperconnected world, <strong>cybersecurity</strong> isn’t just an IT problem it's a business imperative. At QuantumSync Labs, we blend human expertise with advanced tools to help organizations stay ahead of cybercriminals.
     </p>
     <h2>2024’s Threat Landscape</h2>
     <ul>
@@ -336,7 +336,7 @@ const blogPosts = [
     <blockquote>
       “Security is a journey, not a destination. Continuous improvement keeps you ahead of the curve.”
       <br>
-      <span style="font-size: 0.95em; color: #72d3f8;">— Kaveesha Nethmini, Software Security Engineer</span>
+      <span style="font-size: 0.95em; color: #72d3f8;">Kaveesha Nethmini, Software Security Engineer</span>
     </blockquote>
     <h2>Case Study: Stopping a Ransomware Attack</h2>
     <p>

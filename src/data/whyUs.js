@@ -23,7 +23,7 @@ const whyUs = [
     id: "quality",
     title: "Quality Commitment",
     icon: FaAward,
-    text: "We hold ourselves to the highest engineering and service standards—no compromises.",
+    text: "We hold ourselves to the highest engineering and service standards no compromises.",
   },
   {
     id: "continuous",
