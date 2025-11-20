@@ -1,5 +1,13 @@
 // src/data/techStack.js
 
+/**
+ * Technology stack - Tools and frameworks used by QuantumSync Labs
+ * @typedef {Object} TechItem
+ * @property {string} id - Unique identifier
+ * @property {string} name - Technology name
+ * @property {string} logoPath - Path to technology logo
+ */
+
 import reactLogo from "../assets/icons/react.svg";
 import tailwindLogo from "../assets/icons/tailwindcss.svg";
 import awsLogo from "../assets/icons/aws.svg";

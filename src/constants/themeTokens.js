@@ -1,5 +1,15 @@
 // src/constants/themeTokens.js
 
+/**
+ * QuantumSync Labs Theme Tokens
+ * Core color constants used throughout the application
+ * These values should match the CSS variables in tailwind.css
+ */
+
+/**
+ * Primary color palette
+ * Navy-based colors for professional tech aesthetic
+ */
 export const COLORS = {
   navyDark: "#080E3F",
   blue: "#0073FF",
@@ -22,10 +32,22 @@ export const COLORS = {
 
   // Backgrounds
   background: "#080E3F", // main background
-  sectionBg: "#000033",  // section/box backgrounds
+  sectionBg: "#000033", // section/box backgrounds
   glassBg: "rgba(0, 18, 61, 0.65)", // for glassmorphism
   border: "#0073FF",
 
   // Gradients
   gradientMain: "linear-gradient(90deg, #0073FF 0%, #00A3ED 100%)",
+};
+
+/**
+ * Semantic color aliases for specific use cases
+ */
+export const SEMANTIC_COLORS = {
+  primary: COLORS.blue,
+  secondary: COLORS.cyan,
+  background: COLORS.navyDark,
+  surface: COLORS.sectionBg,
+  border: COLORS.border,
+  text: COLORS.white,
 };

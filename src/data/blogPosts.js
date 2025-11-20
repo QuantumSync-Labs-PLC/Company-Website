@@ -1,10 +1,29 @@
 // src/data/blogPosts.js
 
+/**
+ * Blog posts and articles
+ * @typedef {Object} BlogPost
+ * @property {string} id - Unique identifier (URL-friendly slug)
+ * @property {string} title - Post title
+ * @property {string} excerpt - Short summary for listing pages
+ * @property {string} content - Full HTML content
+ * @property {string} author - Author name
+ * @property {string} authorAvatar - Path to author photo
+ * @property {string} date - Publication date (YYYY-MM-DD format)
+ * @property {Array<string>} tags - Content tags for categorization
+ * @property {string} cover - Cover image path
+ * @property {number} [readTime] - Estimated reading time in minutes
+ * @property {boolean} [featured] - Whether post is featured
+ */
+
+// Author avatars
 import tharindu from "../assets/images/tharindu.jpg";
 import thamash from "../assets/images/thamash.png";
 import ravindu from "../assets/images/ravindu.jpg";
 import janani from "../assets/images/janani.jpg";
 import kaveesha from "../assets/images/kaveesha.PNG";
+
+// Blog post cover images
 import aiBanking from "../assets/images/secure-online-banking.jpg";
 import scalableApps from "../assets/images/building-scalable-apps.jpg";
 import ibmQuantum from "../assets/images/IBM-Quantum-Lab.jpg";
@@ -51,6 +70,8 @@ const blogPosts = [
     date: "2025-07-02",
     tags: ["AI", "Security", "Banking", "Fintech"],
     cover: aiBanking,
+    readTime: 5,
+    featured: true,
   },
   {
     id: "building-scalable-apps",
@@ -94,6 +115,8 @@ const blogPosts = [
     date: "2025-06-19",
     tags: ["Apps", "Scalability", "Cloud", "DevOps"],
     cover: scalableApps,
+    readTime: 6,
+    featured: true,
   },
   {
     id: "quantum-machine-learning",
@@ -288,11 +311,11 @@ const blogPosts = [
     cover: quantumHealthcare,
   },
   {
-  id: "cybersecurity-strategies-2024",
-  title: "Top Cybersecurity Strategies for Modern Businesses in 2024",
-  excerpt:
-    "Discover actionable steps to protect your digital assets from emerging threats—QuantumSync Labs’ blueprint for enterprise-grade security.",
-  content: `
+    id: "cybersecurity-strategies-2024",
+    title: "Top Cybersecurity Strategies for Modern Businesses in 2024",
+    excerpt:
+      "Discover actionable steps to protect your digital assets from emerging threats—QuantumSync Labs’ blueprint for enterprise-grade security.",
+    content: `
     <p>
       In today's hyperconnected world, <strong>cybersecurity</strong> isn’t just an IT problem it's a business imperative. At QuantumSync Labs, we blend human expertise with advanced tools to help organizations stay ahead of cybercriminals.
     </p>
@@ -347,13 +370,12 @@ const blogPosts = [
       Are your systems resilient against today’s threats? <a href="/contact" class="text-blue underline hover:text-cyan">Request a free security assessment</a> with QuantumSync Labs.
     </p>
   `,
-  author: "Kaveesha Nethmini",
-  authorAvatar: kaveesha,
-  date: "2024-09-06",
-  tags: ["Cybersecurity", "Threats", "Zero Trust", "Incident Response"],
-  cover: security,
-}
-
+    author: "Kaveesha Nethmini",
+    authorAvatar: kaveesha,
+    date: "2024-09-06",
+    tags: ["Cybersecurity", "Threats", "Zero Trust", "Incident Response"],
+    cover: security,
+  },
 ];
 
 export default blogPosts;

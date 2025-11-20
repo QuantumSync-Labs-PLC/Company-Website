@@ -1,4 +1,20 @@
-import { FaShieldAlt, FaRocket, FaUserCheck, FaAward, FaSync, FaHandsHelping } from "react-icons/fa";
+import {
+  FaShieldAlt,
+  FaRocket,
+  FaUserCheck,
+  FaAward,
+  FaSync,
+  FaHandsHelping,
+} from "react-icons/fa";
+
+/**
+ * Why choose QuantumSync Labs - Key value propositions
+ * @typedef {Object} WhyUsItem
+ * @property {string} id - Unique identifier
+ * @property {string} title - Feature title
+ * @property {React.ComponentType} icon - Icon component from react-icons
+ * @property {string} text - Feature description
+ */
 
 const whyUs = [
   {

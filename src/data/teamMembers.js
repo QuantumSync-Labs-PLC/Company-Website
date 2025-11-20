@@ -1,9 +1,26 @@
+// Team member images
 import tharindu from "../assets/images/tharindu.jpg";
 import janani from "../assets/images/janani.jpg";
 import kaveesha from "../assets/images/kaveesha.PNG";
 import thamash from "../assets/images/thamash.png";
 import ravindu from "../assets/images/ravindu.jpg";
 import duvindu from "../assets/images/duvindu.jpg";
+
+/**
+ * Team members and leadership information
+ * @typedef {Object} TeamMember
+ * @property {string} name - Full name
+ * @property {string} role - Job title and responsibilities
+ * @property {string} photoPath - Path to profile photo
+ * @property {Array<Social>} socials - Social media links
+ */
+
+/**
+ * @typedef {Object} Social
+ * @property {string} icon - Icon name (Linkedin, Github, etc.)
+ * @property {string} url - Profile URL
+ * @property {string} label - Accessibility label
+ */
 
 const teamMembers = [
   {
