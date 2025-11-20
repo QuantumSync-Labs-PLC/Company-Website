@@ -25,6 +25,7 @@ A modern, production-ready website for QuantumSync Labs built with React, Vite, 
 - [Environment Variables](#environment-variables)
 - [Building for Production](#building-for-production)
 - [Deployment](#deployment)
+- [Security](#security)
 - [Code Quality](#code-quality)
 - [Contributing](#contributing)
 - [License](#license)
@@ -270,6 +271,19 @@ Company-Website/
 ├── PROJECT_STRUCTURE.md       # Detailed structure reference
 └── README.md                  # This file
 ```
+
+---
+
+## Security
+
+- Do not commit real `.env` files or secrets to the repository.
+- Only expose non-sensitive values in the frontend using the `VITE_` prefix (for example, `VITE_EMAILJS_PUBLIC_KEY`).
+- Configure all environment variables in Vercel under **Project → Settings → Environment Variables**:
+ 	- Add `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY` with the values from your EmailJS dashboard.
+ 	- Use the same variable names locally in a `.env` file (not committed) for development.
+ 	- On deploy, Vercel will inject these values at build time for the frontend.
+- Never store private API keys, database passwords, or tokens in `VITE_` variables or client-side code.
+- Rotate EmailJS and other keys if you suspect they may have been exposed.
 
 ### Statistics
 

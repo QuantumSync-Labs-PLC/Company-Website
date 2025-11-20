@@ -13,15 +13,40 @@ export default function Contact() {
   const formRef = useRef();
   const [status, setStatus] = useState(null);
   const [error, setError] = useState("");
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
+
+  const RATE_LIMIT_MS = 15000; // 15 seconds between submissions
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+
+    const now = Date.now();
+
+    // Basic client-side rate limiting to reduce spam/bots
+    if (now - lastSubmitTime < RATE_LIMIT_MS) {
+      setStatus("error");
+      setError("Please wait a few seconds before sending another message.");
+      return;
+    }
+
+    // Honeypot field check – if filled, silently ignore submission
+    const formData = new FormData(e.target);
+    if (formData.get("company_website")) {
+      // Treat as success to avoid giving bots feedback
+      setStatus("success");
+      e.target.reset();
+      return;
+    }
+
     setStatus("pending");
     emailjs
       .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, USER_ID)
       .then(
-        () => setStatus("success"),
+        () => {
+          setStatus("success");
+          setLastSubmitTime(now);
+        },
         () => {
           setStatus("error");
           setError("Something went wrong while sending your message. Please try again.");
@@ -44,8 +69,11 @@ export default function Contact() {
           <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-qs-primary text-center mb-2">
             Get in Touch
           </h1>
-          <p className="font-body text-base sm:text-lg text-qs-text-section text-center mb-8 sm:mb-10 max-w-xl mx-auto">
+          <p className="font-body text-base sm:text-lg text-qs-text-section text-center mb-4 sm:mb-6 max-w-xl mx-auto">
             Questions, projects, partnership ideas, or just want to say hello? Fill out the form and our team will respond promptly.
+          </p>
+          <p className="font-body text-xs sm:text-sm text-qs-text-muted text-center mb-6 sm:mb-8 max-w-xl mx-auto">
+            We use EmailJS to securely deliver your message. Please avoid sharing passwords, API keys, or other sensitive secrets in this form.
           </p>
           <form
             ref={formRef}
@@ -53,6 +81,17 @@ export default function Contact() {
             className="flex flex-col gap-5"
             aria-describedby={status ? "contact-status" : undefined}
           >
+            {/* Honeypot field for spam bots – users should not see or fill this */}
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="company_website">Company Website</label>
+              <input
+                id="company_website"
+                name="company_website"
+                type="text"
+                autoComplete="off"
+                tabIndex={-1}
+              />
+            </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="font-body text-qs-primary font-semibold">Your Name</label>
               <input
