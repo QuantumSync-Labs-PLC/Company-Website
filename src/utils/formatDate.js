@@ -22,7 +22,7 @@ export default function formatDate(
     if (isNaN(d.getTime())) return "";
 
     switch (style) {
-      case "relative":
+      case "relative": {
         const now = new Date();
         const diff = now - d;
         const seconds = Math.floor(diff / 1000);
@@ -39,6 +39,7 @@ export default function formatDate(
         if (minutes > 0)
           return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
         return "Just now";
+      }
       case "short":
         return d.toLocaleDateString(locale, {
           year: "2-digit",

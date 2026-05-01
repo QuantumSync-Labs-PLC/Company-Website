@@ -1,10 +1,8 @@
 // Team member images
-import tharindu from "../assets/images/tharindu.jpg";
-import janani from "../assets/images/janani.jpg";
-import kaveesha from "../assets/images/kaveesha.PNG";
-import thamash from "../assets/images/thamash.png";
-import ravindu from "../assets/images/ravindu.jpg";
-import duvindu from "../assets/images/duvindu.jpg";
+import tharindu from "../assets/images/tharindu.webp";
+import kaveesha from "../assets/images/kaveesha.webp";
+import thamash from "../assets/images/thamash.webp";
+import ravindu from "../assets/images/ravindu.webp";
 
 /**
  * Team members and leadership information
@@ -71,19 +69,6 @@ const teamMembers = [
     ],
   },
   {
-    name: "Janani Hewawitharana",
-    role: "Project Manager",
-    photoPath: janani,
-    socials: [
-      {
-        icon: "Linkedin",
-        url: "https://www.linkedin.com/in/janani-hewawitharana-03a340235/",
-        label: "LinkedIn",
-      },
-      { icon: "Github", url: "https://github.com/JananiCH", label: "GitHub" },
-    ],
-  },
-  {
     name: "Kaveesha Nethmini",
     role: "Software Security Engineer",
     photoPath: kaveesha,
@@ -94,23 +79,6 @@ const teamMembers = [
         label: "LinkedIn",
       },
       { icon: "Github", url: "https://github.com/dinesh", label: "GitHub" },
-    ],
-  },
-  {
-    name: "Duvindu Nimsara",
-    role: "UI/UX Designer",
-    photoPath: duvindu,
-    socials: [
-      {
-        icon: "Linkedin",
-        url: "https://www.linkedin.com/in/duvindu-nimsara/",
-        label: "LinkedIn",
-      },
-      {
-        icon: "Github",
-        url: "https://github.com/duvindunimsara",
-        label: "GitHub",
-      },
     ],
   },
 ];

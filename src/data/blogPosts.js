@@ -17,22 +17,21 @@
  */
 
 // Author avatars
-import tharindu from "../assets/images/tharindu.jpg";
-import thamash from "../assets/images/thamash.png";
-import ravindu from "../assets/images/ravindu.jpg";
-import janani from "../assets/images/janani.jpg";
-import kaveesha from "../assets/images/kaveesha.PNG";
+import tharindu from "../assets/images/tharindu.webp";
+import thamash from "../assets/images/thamash.webp";
+import ravindu from "../assets/images/ravindu.webp";
+import kaveesha from "../assets/images/kaveesha.webp";
 
 // Blog post cover images
-import aiBanking from "../assets/images/secure-online-banking.jpg";
-import scalableApps from "../assets/images/building-scalable-apps.jpg";
-import ibmQuantum from "../assets/images/IBM-Quantum-Lab.jpg";
-import cloudMigration from "../assets/images/cloud-migration.jpg";
-import uxDesign from "../assets/images/ui-ux-design.jpg";
-import aiTrends from "../assets/images/ai-trends.jpg";
-import devops from "../assets/images/devops.jpg";
-import quantumHealthcare from "../assets/images/quantum-healthcare.jpg";
-import security from "../assets/images/cybersecurity-strategies-2024.jpg";
+import aiBanking from "../assets/images/secure-online-banking.webp";
+import scalableApps from "../assets/images/building-scalable-apps.webp";
+import ibmQuantum from "../assets/images/IBM-Quantum-Lab.webp";
+import cloudMigration from "../assets/images/cloud-migration.webp";
+import uxDesign from "../assets/images/ui-ux-design.webp";
+import aiTrends from "../assets/images/ai-trends.webp";
+import devops from "../assets/images/devops.webp";
+import quantumHealthcare from "../assets/images/quantum-healthcare.webp";
+import security from "../assets/images/cybersecurity-strategies-2024.webp";
 
 const blogPosts = [
   {
@@ -184,8 +183,8 @@ const blogPosts = [
         <span style="font-size: 0.95em; color: #72d3f8;">Janani Hewawitharana, Project Manager</span>
       </blockquote>
     `,
-    author: "Janani Hewawitharana",
-    authorAvatar: janani,
+    author: "Ravindu Waduwawala",
+    authorAvatar: ravindu,
     date: "2025-05-26",
     tags: ["Cloud", "Migration", "Strategy", "Business"],
     cover: cloudMigration,

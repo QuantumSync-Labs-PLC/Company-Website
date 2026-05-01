@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, memo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/images/logo2.png";
+import logo from "../../assets/images/logo-ui.webp";
 import ThemeToggle from "../common/ThemeToggle";
 import { useTheme } from "../../hooks/useTheme";
 
@@ -10,6 +10,7 @@ const navLinks = [
   { name: "Home", to: "/" },
   { name: "Services", to: "/services" },
   { name: "About", to: "/about" },
+  { name: "Careers", to: "/careers" },
   { name: "Blog", to: "/blog" },
   { name: "Contact", to: "/contact" },
 ];
@@ -57,8 +58,8 @@ function Header() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl transition-all duration-300" role="banner">
       {/* Background with gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-qs-bg via-qs-surface to-qs-bg opacity-95" />
-      <div className="absolute inset-0 bg-gradient-to-b from-qs-primary/5 via-transparent to-qs-accent/5" />
+      <div className="absolute inset-0 bg-linear-to-r from-qs-bg via-qs-surface to-qs-bg opacity-95" />
+      <div className="absolute inset-0 bg-linear-to-b from-qs-primary/5 via-transparent to-qs-accent/5" />
       
       <nav className="relative flex items-center justify-between px-4 md:px-12 h-16 md:h-20 max-w-[1400px] mx-auto w-full border-b border-qs-primary/20 shadow-qs-neon" aria-label="Primary" style={{background: 'var(--qs-glass-bg)', backdropFilter: 'blur(20px)'}}>
         {/* Logo & Title */}
@@ -67,8 +68,8 @@ function Header() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
         >
-          <div className="relative p-3 bg-gradient-to-br from-qs-primary/25 via-qs-accent/20 to-qs-primary/15 rounded-xl border border-qs-primary/30 shadow-qs-soft">
-            <div className="absolute inset-0 bg-gradient-to-br from-qs-primary/10 to-qs-accent/10 rounded-xl blur-sm" />
+          <div className="relative p-3 bg-linear-to-br from-qs-primary/25 via-qs-accent/20 to-qs-primary/15 rounded-xl border border-qs-primary/30 shadow-qs-soft">
+            <div className="absolute inset-0 bg-linear-to-br from-qs-primary/10 to-qs-accent/10 rounded-xl blur-sm" />
             <img
               src={logo}
               alt="QuantumSync Labs Logo"
@@ -97,8 +98,8 @@ function Header() {
                 className={({ isActive }) =>
                   `relative font-body text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-300 border border-transparent
                    ${isActive 
-                     ? "bg-gradient-to-r from-qs-primary/20 to-qs-accent/15 text-qs-primary border-qs-primary/40 shadow-qs-soft backdrop-blur-sm" 
-                     : "text-qs-text hover:bg-gradient-to-r hover:from-qs-primary/10 hover:to-qs-accent/8 hover:text-qs-primary hover:border-qs-primary/20 hover:shadow-qs-soft hover:backdrop-blur-sm"}`
+                     ? "bg-linear-to-r from-qs-primary/20 to-qs-accent/15 text-qs-primary border-qs-primary/40 shadow-qs-soft backdrop-blur-sm" 
+                     : "text-qs-text hover:bg-linear-to-r hover:from-qs-primary/10 hover:to-qs-accent/8 hover:text-qs-primary hover:border-qs-primary/20 hover:shadow-qs-soft hover:backdrop-blur-sm"}`
                 }
               >
                 {link.name}
@@ -157,7 +158,7 @@ function Header() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                className="md:hidden absolute top-[4.25rem] left-3 right-3 flex flex-col py-4 gap-2 border border-qs-primary/40 z-50 rounded-2xl shadow-qs-neon"
+                className="md:hidden absolute top-17 left-3 right-3 flex flex-col py-4 gap-2 border border-qs-primary/40 z-50 rounded-2xl shadow-qs-neon"
                 style={{
                   background: 'linear-gradient(135deg, var(--qs-glass-bg) 0%, rgba(255,255,255,0.1) 100%)',
                   backdropFilter: 'blur(24px)',
@@ -180,8 +181,8 @@ function Header() {
                         onClick={() => setMenuOpen(false)}
                         className={`block w-full text-base font-body font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 border border-transparent ${
                           isActive 
-                            ? "bg-gradient-to-r from-qs-primary/25 to-qs-accent/20 text-qs-primary border-qs-primary/30 shadow-qs-soft" 
-                            : "text-qs-text hover:bg-gradient-to-r hover:from-qs-primary/15 hover:to-qs-accent/10 hover:text-qs-primary hover:border-qs-primary/20 hover:shadow-qs-soft"
+                            ? "bg-linear-to-r from-qs-primary/25 to-qs-accent/20 text-qs-primary border-qs-primary/30 shadow-qs-soft" 
+                            : "text-qs-text hover:bg-linear-to-r hover:from-qs-primary/15 hover:to-qs-accent/10 hover:text-qs-primary hover:border-qs-primary/20 hover:shadow-qs-soft"
                         }`}
                         tabIndex={0}
                         role="menuitem"

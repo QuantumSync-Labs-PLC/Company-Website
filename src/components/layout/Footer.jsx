@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {
   Facebook, Linkedin, Instagram, Github, Music, Mail, Phone,
 } from "lucide-react";
-import logo from "../../assets/images/logo1.png";
+import logo from "../../assets/images/logo-wordmark-ui.webp";
 
 // Social Media Links
 const socialLinks = [
@@ -35,7 +35,7 @@ function Footer() {
   return (
     <footer className="bg-transparent mt-24 relative z-10" role="contentinfo">
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-qs-primary/5 via-transparent to-qs-accent/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-qs-primary/5 via-transparent to-qs-accent/5 pointer-events-none" />
       
       <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-20 rounded-3xl shadow-qs-neon flex flex-col md:flex-row md:items-start items-center justify-between gap-12 md:gap-16 border border-qs-primary/30 backdrop-blur-2xl" style={{background: 'linear-gradient(135deg, var(--qs-glass-bg) 0%, rgba(0,115,255,0.05) 50%, rgba(0,163,237,0.05) 100%)'}}>
         {/* Left: Logo & About */}
@@ -46,8 +46,8 @@ function Footer() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative p-4 bg-gradient-to-br from-qs-primary/25 via-qs-accent/20 to-qs-primary/15 rounded-2xl border border-qs-primary/40 shadow-qs-medium">
-            <div className="absolute inset-0 bg-gradient-to-br from-qs-primary/10 to-qs-accent/10 rounded-2xl blur-sm" />
+          <div className="relative p-4 bg-linear-to-br from-qs-primary/25 via-qs-accent/20 to-qs-primary/15 rounded-2xl border border-qs-primary/40 shadow-qs-medium">
+            <div className="absolute inset-0 bg-linear-to-br from-qs-primary/10 to-qs-accent/10 rounded-2xl blur-sm" />
             <img src={logo} alt="QuantumSync Labs Logo" className="relative h-12 drop-shadow-lg" draggable={false} />
           </div>
           <h2 className="font-headline text-2xl font-bold tracking-wider text-qs-text filter drop-shadow-sm">QuantumSync Labs</h2>
@@ -78,7 +78,7 @@ function Footer() {
                   href={item.href}
                   className="hover:text-qs-primary transition-all duration-300 flex items-center gap-2 group py-1 px-2 rounded-lg hover:bg-qs-primary/10 hover:shadow-qs-soft"
                 >
-                  <span className="inline-block w-1.5 h-1.5 bg-gradient-to-r from-qs-primary to-qs-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:shadow-qs-soft" />
+                  <span className="inline-block w-1.5 h-1.5 bg-linear-to-r from-qs-primary to-qs-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:shadow-qs-soft" />
                   {item.name}
                 </a>
               </li>
@@ -119,7 +119,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
-                className="text-qs-primary hover:text-qs-accent transition-all duration-300 p-3 rounded-xl hover:bg-gradient-to-r hover:from-qs-primary/15 hover:to-qs-accent/10 hover:shadow-qs-soft border border-transparent hover:border-qs-primary/30 backdrop-blur-sm"
+                className="text-qs-primary hover:text-qs-accent transition-all duration-300 p-3 rounded-xl hover:bg-linear-to-r hover:from-qs-primary/15 hover:to-qs-accent/10 hover:shadow-qs-soft border border-transparent hover:border-qs-primary/30 backdrop-blur-sm"
                 whileHover={{ y: -6, scale: 1.15, rotateZ: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -131,7 +131,7 @@ function Footer() {
       </div>
       {/* Copyright */}
       <div className="relative text-center text-qs-text-muted py-6 text-sm font-body border-t mt-8" style={{borderImage: 'linear-gradient(90deg, transparent, var(--qs-primary), var(--qs-accent), transparent) 1', background: 'linear-gradient(135deg, var(--qs-glass-bg) 0%, rgba(0,115,255,0.02) 100%)', backdropFilter: 'blur(10px)'}}>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-qs-primary/5 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-qs-primary/5 to-transparent" />
         <p className="relative">&copy; {new Date().getFullYear()} QuantumSync Labs. All rights reserved.</p>
       </div>
     </footer>

@@ -6,7 +6,7 @@ import PageMeta from "../components/common/PageMeta";
 import TeamSection from "../sections/TeamSection";
 import WhyUsSection from "../sections/WhyUsSection";
 import { motion } from "framer-motion";
-import logo from "../assets/images/logo2.png";
+import logo from "../assets/images/logo-ui.webp";
 
 const values = [
   {

@@ -5,6 +5,7 @@ import SuspenseFallback from "../components/common/SuspenseFallback";
 // Lazy load page components for optimal code splitting and performance
 const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
+const Careers = lazy(() => import("../pages/Careers"));
 const Services = lazy(() => import("../pages/Services"));
 const ServiceDetail = lazy(() => import("../pages/ServiceDetail"));
 const Blog = lazy(() => import("../pages/Blog"));
@@ -24,6 +25,7 @@ export default function AppRoutes() {
         {/* Main pages */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/careers" element={<Careers />} />
         
         {/* Services */}
         <Route path="/services" element={<Services />} />

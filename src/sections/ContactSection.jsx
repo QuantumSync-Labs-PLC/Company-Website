@@ -17,12 +17,6 @@ export default function ContactSection() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(null);
 
-  const getButtonContent = () => {
-    if (sending) return "Sending...";
-    if (sent) return "Sent!";
-    return <>Send Message <Send size={18} className="ml-2" /></>;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setSending(true);
