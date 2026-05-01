@@ -1,6 +1,7 @@
 import { memo } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Facebook, Linkedin, Instagram, Github, Music, Mail, Phone,
 } from "lucide-react";
@@ -29,6 +30,15 @@ const contactDetails = [
     href: "tel:+94741240337",
     label: "Phone"
   },
+];
+
+const quickLinks = [
+  { name: "Home", to: "/" },
+  { name: "Services", to: "/services" },
+  { name: "About", to: "/about" },
+  { name: "Careers", to: "/careers" },
+  { name: "Blog", to: "/blog" },
+  { name: "Contact", to: "/contact" },
 ];
 
 function Footer() {
@@ -66,21 +76,15 @@ function Footer() {
         >
           <h3 className="font-headline text-lg font-semibold text-qs-text">Quick Links</h3>
           <ul className="flex flex-col gap-3 text-qs-text text-sm">
-            {[
-              { name: "Home", href: "/" },
-              { name: "Services", href: "/services" },
-              { name: "About", href: "/about" },
-              { name: "Blog", href: "/blog" },
-              { name: "Contact", href: "/contact" },
-            ].map((item) => (
+            {quickLinks.map((item) => (
               <li key={item.name}>
-                <a
-                  href={item.href}
+                <Link
+                  to={item.to}
                   className="hover:text-qs-primary transition-all duration-300 flex items-center gap-2 group py-1 px-2 rounded-lg hover:bg-qs-primary/10 hover:shadow-qs-soft"
                 >
                   <span className="inline-block w-1.5 h-1.5 bg-linear-to-r from-qs-primary to-qs-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:shadow-qs-soft" />
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
