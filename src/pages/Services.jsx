@@ -49,8 +49,9 @@ export default function Services() {
             <div className="absolute top-10 left-10 w-96 h-96 bg-qs-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-qs-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
           </div>
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-4 sm:mb-6">
+          <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+            <span className="eyebrow mb-4">What We Do</span>
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold holo-text text-center mb-4 sm:mb-6">
               Our Services
             </h1>
             <p className="font-body text-qs-text-section text-lg sm:text-xl text-center max-w-3xl mx-auto leading-relaxed">
@@ -68,16 +69,23 @@ export default function Services() {
           />
 
           <div className="relative max-w-7xl mx-auto z-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-              {services.map((service, i) => (
-                <ServiceCard
-                  key={service.id}
-                  service={service}
-                  index={i}
-                  variants={cardVariants}
-                  whileHover={{ y: -12, scale: 1.02, boxShadow: "0 12px 40px #0073FF55" }}
-                />
-              ))}
+            {/* Bento Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 sm:gap-8">
+              {services.map((service, i) => {
+                const isFeatured = i === 0 || i === 1;
+                const colSpan = isFeatured ? "sm:col-span-2 lg:col-span-3" : "sm:col-span-1 lg:col-span-2";
+                return (
+                  <div key={service.id} className={colSpan}>
+                    <ServiceCard
+                      service={service}
+                      index={i}
+                      variants={cardVariants}
+                      whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 60px #22d3ee40" }}
+                      size={isFeatured ? "lg" : "md"}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

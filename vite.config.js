@@ -68,7 +68,7 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 1000,
     sourcemap: false,
     reportCompressedSize: false,
   },
@@ -76,8 +76,6 @@ export default defineConfig({
     include: [
       "framer-motion",
       "react-router-dom",
-      "react-scroll",
-      "react-helmet-async",
       "classnames",
     ],
     exclude: ["fsevents"],

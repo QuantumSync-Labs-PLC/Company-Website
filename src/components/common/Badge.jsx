@@ -28,7 +28,7 @@ export default function Badge({
         inline-flex items-center gap-1.5 px-3 py-1.5
         text-xs font-bold uppercase tracking-wide
         ${pill ? "rounded-full" : "rounded-glass"}
-        ${outline ? `border-2 ${color} border-current bg-transparent ${textColor}` : `${color} ${textColor}`}
+        ${outline ? `border ${color} border-current bg-transparent ${textColor}` : `${color} ${textColor}`}
         shadow-md transition-all duration-200 hover:scale-105 ${className}
       `}
       aria-label={ariaLabel}

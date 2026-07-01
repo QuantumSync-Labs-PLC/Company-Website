@@ -3,32 +3,21 @@
 /**
  * QuantumSync Labs Design System
  * Core theme tokens for consistent branding across the application
+ * "Deep-Space Holographic" identity
  */
 
 /**
  * Brand color palette
- * Based on navy and blue tones for tech/trust aesthetic
  */
 export const colors = {
-  // Primary palette
-  navy: "#080E3F",
-  blue: "#0073FF",
-  teal: "#00A3E0",
+  bg: "#060810",
+  bgAlt: "#0a0d18",
+  cyan: "#22d3ee",
+  violet: "#8b5cf6",
+  lime: "#c5ff4a",
   white: "#FFFFFF",
-
-  // Dark shades
-  "navy-900": "#000022",
-  "navy-800": "#000033",
-  "navy-700": "#000044",
-  "navy-600": "#000066",
-  "navy-500": "#000080",
-
-  // Mid tones
-  "navy-400": "#003366",
-  "navy-300": "#1A4D80",
-  "navy-200": "#336699",
-  "navy-100": "#6699CC",
-  "navy-050": "#B0C4DE",
+  text: "#e7ecf5",
+  textMuted: "#7e8aa3",
 };
 
 /**
@@ -36,8 +25,9 @@ export const colors = {
  * Font families used throughout the application
  */
 export const fontFamily = {
-  sans: ["Inter", "system-ui", "sans-serif"],
-  mono: ["Menlo", "monospace"],
+  headline: ["Space Grotesk", "Orbitron", "sans-serif"],
+  sans: ["Inter", "DM Sans", "system-ui", "sans-serif"],
+  mono: ["JetBrains Mono", "Space Mono", "monospace"],
 };
 
 /**

@@ -23,7 +23,7 @@ export const getMetaData = (title, description, ogImage, url) => {
     og: {
       title: `${title} | QuantumSync Labs`,
       description: description?.slice(0, 160) || defaultDescription,
-      image: ogImage || `${baseUrl}/og-image.png`,
+      image: ogImage || `${baseUrl}/og-image.webp`,
       url: url || baseUrl,
       type: "website",
     },
@@ -31,7 +31,7 @@ export const getMetaData = (title, description, ogImage, url) => {
       card: "summary_large_image",
       title: `${title} | QuantumSync Labs`,
       description: description?.slice(0, 160) || defaultDescription,
-      image: ogImage || `${baseUrl}/og-image.png`,
+      image: ogImage || `${baseUrl}/og-image.webp`,
     },
     canonical: url || baseUrl,
   };
@@ -42,5 +42,5 @@ export const defaultMeta = {
   description:
     "Empowering digital transformation through innovative, secure, and scalable IT solutions.",
   url: import.meta.env.VITE_APP_URL || "https://www.quantumsynclabs.com",
-  ogImage: `${import.meta.env.VITE_APP_URL}/og-image.png`,
+  ogImage: `${import.meta.env.VITE_APP_URL}/og-image.webp`,
 };

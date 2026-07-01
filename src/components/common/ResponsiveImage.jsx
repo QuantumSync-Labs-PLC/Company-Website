@@ -6,7 +6,7 @@ export default function ResponsiveImage({
   sources = [],
   imgSrcSet,
   className = "",
-  loading = "lazy",
+  loading = "eager",
   sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
   decoding = "async",
   fetchPriority,

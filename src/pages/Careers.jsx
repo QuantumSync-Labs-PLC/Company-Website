@@ -59,7 +59,7 @@ export default function Careers() {
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <Badge pill className="mb-6">Careers</Badge>
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-5">
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold holo-text mb-5">
               Build the Future With Us
             </h1>
             <p className="font-body text-qs-text-section text-lg sm:text-xl leading-relaxed">

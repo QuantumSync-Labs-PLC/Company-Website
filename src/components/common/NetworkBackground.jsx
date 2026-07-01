@@ -25,10 +25,10 @@ export default function NetworkBackground() {
     const particles = [];
     const particleCount = 50;
 
-    // Colors based on theme
+    // Colors based on theme (cyan/violet holographic palette)
     const isDark = theme === 'dark';
-    const lineColor = isDark ? 'rgba(0, 163, 237, 0.15)' : 'rgba(0, 115, 255, 0.08)';
-    const particleColor = isDark ? 'rgba(0, 163, 237, 0.4)' : 'rgba(0, 115, 255, 0.3)';
+    const lineColor = isDark ? 'rgba(34, 211, 238, 0.12)' : 'rgba(8, 145, 168, 0.08)';
+    const particleColor = isDark ? 'rgba(34, 211, 238, 0.35)' : 'rgba(8, 145, 168, 0.25)';
 
     class Particle {
       constructor() {
@@ -60,7 +60,7 @@ export default function NetworkBackground() {
 
         // Glow effect for dark theme
         if (isDark) {
-          ctx.strokeStyle = `rgba(0, 163, 237, 0.3)`;
+          ctx.strokeStyle = `rgba(34, 211, 238, 0.25)`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -77,7 +77,7 @@ export default function NetworkBackground() {
     const animate = () => {
       // Clear canvas with slight trail effect
       ctx.fillStyle = isDark
-        ? 'rgba(8, 14, 63, 0.05)'
+        ? 'rgba(6, 8, 16, 0.05)'
         : 'rgba(245, 247, 252, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 

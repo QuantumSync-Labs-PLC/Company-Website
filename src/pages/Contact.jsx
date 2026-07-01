@@ -73,7 +73,8 @@ export default function Contact() {
       <main className="flex flex-1 flex-col items-center justify-center py-16 sm:py-20 md:py-28 px-4 relative z-10" role="main">
         {/* Header section */}
         <div className="text-center mb-12 max-w-2xl mx-auto">
-          <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-4">
+          <span className="eyebrow mb-4">Let's Talk</span>
+          <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold holo-text mb-4">
             Get in Touch
           </h1>
           <p className="font-body text-lg sm:text-xl text-qs-text-section mb-3">
@@ -114,7 +115,7 @@ export default function Contact() {
                 name="user_name"
                 type="text"
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
+                className="bg-qs-surface text-qs-text border border-qs-hairline rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
                 placeholder="Jane Doe"
                 autoComplete="name"
               />
@@ -128,7 +129,7 @@ export default function Contact() {
                 name="user_email"
                 type="email"
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
+                className="bg-qs-surface text-qs-text border border-qs-hairline rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
                 placeholder="you@email.com"
                 autoComplete="email"
               />
@@ -142,7 +143,7 @@ export default function Contact() {
                 name="user_phone"
                 type="tel"
                 pattern="^[0-9+\-()\s]{7,}$"
-                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
+                className="bg-qs-surface text-qs-text border border-qs-hairline rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body"
                 placeholder="+1 (234) 111-2222"
                 autoComplete="tel"
               />
@@ -155,7 +156,7 @@ export default function Contact() {
                 id="subject"
                 name="subject"
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body cursor-pointer"
+                className="bg-qs-surface text-qs-text border border-qs-hairline rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body cursor-pointer"
               >
                 <option value="">Select a subject...</option>
                 <option value="Project Inquiry">Project Inquiry</option>
@@ -174,7 +175,7 @@ export default function Contact() {
                 name="message"
                 rows={6}
                 required
-                className="bg-qs-surface text-qs-text border border-qs-primary/30 rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body resize-none"
+                className="bg-qs-surface text-qs-text border border-qs-hairline rounded-glass px-4 py-3 focus:outline-none focus:ring-2 focus:ring-qs-primary transition font-body resize-none"
                 placeholder="Tell us about your project, idea, or question..."
               />
             </div>
@@ -183,7 +184,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === "pending"}
-              className="bg-qs-primary hover:bg-qs-primary-hover text-qs-surface font-bold rounded-glass shadow-neon px-8 py-3 transition text-base mt-4 focus:outline-none focus:ring-2 focus:ring-qs-accent disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-105 duration-300"
+              className="bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold rounded-glass shadow-qs-neon px-8 py-3 transition text-base mt-4 focus:outline-none focus:ring-2 focus:ring-qs-primary disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-105 duration-300"
             >
               {status === "pending" ? "Sending..." : "Send Message"}
             </button>

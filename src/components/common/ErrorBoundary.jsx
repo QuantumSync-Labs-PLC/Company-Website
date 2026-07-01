@@ -24,7 +24,7 @@ class ErrorBoundary extends Component {
       return (
         <div className="relative min-h-screen flex items-center justify-center bg-qs-bg px-4">
           <div className="glass rounded-glass shadow-neon-blue border border-qs-primary/20 p-10 sm:p-12 w-full max-w-3xl mx-auto text-center">
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-6">
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold holo-text mb-6">
               Oops! Something Went Wrong
             </h1>
             <p className="font-body text-lg sm:text-xl text-qs-text-section mb-8 leading-relaxed">
@@ -37,7 +37,7 @@ class ErrorBoundary extends Component {
             </div>
             <button
               onClick={() => window.location.href = '/'}
-              className="inline-flex items-center justify-center font-headline px-10 py-4 rounded-glass text-base font-bold transition-all duration-300 shadow-neon-blue bg-qs-primary text-white hover:bg-qs-primary-hover hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-qs-primary"
+              className="inline-flex items-center justify-center font-headline px-10 py-4 rounded-glass text-base font-bold transition-all duration-300 shadow-neon-blue bg-qs-primary text-qs-bg hover:bg-qs-primary-hover hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-qs-primary"
             >
               Go Back Home
             </button>

@@ -8,6 +8,8 @@ const About = lazy(() => import("../pages/About"));
 const Careers = lazy(() => import("../pages/Careers"));
 const Services = lazy(() => import("../pages/Services"));
 const ServiceDetail = lazy(() => import("../pages/ServiceDetail"));
+const Work = lazy(() => import("../pages/Work"));
+const WorkDetail = lazy(() => import("../pages/WorkDetail"));
 const Blog = lazy(() => import("../pages/Blog"));
 const BlogPost = lazy(() => import("../pages/BlogPost"));
 const Contact = lazy(() => import("../pages/Contact"));
@@ -30,7 +32,11 @@ export default function AppRoutes() {
         {/* Services */}
         <Route path="/services" element={<Services />} />
         <Route path="/services/:id" element={<ServiceDetail />} />
-        
+
+        {/* Work / Case Studies */}
+        <Route path="/work" element={<Work />} />
+        <Route path="/work/:id" element={<WorkDetail />} />
+
         {/* Blog */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />

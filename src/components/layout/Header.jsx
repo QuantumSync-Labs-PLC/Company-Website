@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, memo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/images/logo-ui.webp";
+import logo from "../../assets/images/Logo 3.1.webp";
 import ThemeToggle from "../common/ThemeToggle";
 import { useTheme } from "../../hooks/useTheme";
 
@@ -10,8 +10,9 @@ const navLinks = [
   { name: "Home", to: "/" },
   { name: "Services", to: "/services" },
   { name: "About", to: "/about" },
-  { name: "Careers", to: "/careers" },
+  { name: "Work", to: "/work" },
   { name: "Blog", to: "/blog" },
+  { name: "Careers", to: "/careers" },
   { name: "Contact", to: "/contact" },
 ];
 
@@ -57,33 +58,31 @@ function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl transition-all duration-300" role="banner">
-      {/* Background with gradient overlay */}
+      {/* Background */}
       <div className="absolute inset-0 bg-linear-to-r from-qs-bg via-qs-surface to-qs-bg opacity-95" />
-      <div className="absolute inset-0 bg-linear-to-b from-qs-primary/5 via-transparent to-qs-accent/5" />
-      
-      <nav className="relative flex items-center justify-between px-4 md:px-12 h-16 md:h-20 max-w-[1400px] mx-auto w-full border-b border-qs-primary/20 shadow-qs-neon" aria-label="Primary" style={{background: 'var(--qs-glass-bg)', backdropFilter: 'blur(20px)'}}>
+
+      <nav className="relative flex items-center justify-between px-4 md:px-12 h-16 md:h-20 max-w-[1400px] mx-auto w-full border-b border-qs-hairline" aria-label="Primary" style={{background: 'var(--qs-glass-bg)', backdropFilter: 'blur(20px)'}}>
         {/* Logo & Title */}
-        <motion.div 
+        <motion.div
           className="flex items-center gap-3 cursor-pointer"
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
         >
-          <div className="relative p-3 bg-linear-to-br from-qs-primary/25 via-qs-accent/20 to-qs-primary/15 rounded-xl border border-qs-primary/30 shadow-qs-soft">
-            <div className="absolute inset-0 bg-linear-to-br from-qs-primary/10 to-qs-accent/10 rounded-xl blur-sm" />
+          <div className="relative">
             <img
               src={logo}
               alt="QuantumSync Labs Logo"
-              className="relative h-8 w-8 md:h-10 md:w-10 object-contain drop-shadow-lg"
+              className="relative h-7 w-7 md:h-9 md:w-9 object-contain"
               draggable={false}
             />
           </div>
-          <span className="font-headline text-lg md:text-xl font-extrabold tracking-wider text-qs-text hidden sm:inline filter drop-shadow-sm">
-            QuantumSync Labs
+          <span className="font-headline text-lg md:text-xl font-extrabold tracking-wide text-qs-text hidden sm:inline">
+            QuantumSync<span className="text-qs-primary">Labs</span>
           </span>
         </motion.div>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-2">
+        <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((link, i) => (
             <motion.li
               key={link.name}
@@ -91,18 +90,26 @@ function Header() {
               initial="initial"
               animate="animate"
               transition={{ delay: i * 0.04 }}
-              whileHover={{ scale: 1.05 }}
             >
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  `relative font-body text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-300 border border-transparent
-                   ${isActive 
-                     ? "bg-linear-to-r from-qs-primary/20 to-qs-accent/15 text-qs-primary border-qs-primary/40 shadow-qs-soft backdrop-blur-sm" 
-                     : "text-qs-text hover:bg-linear-to-r hover:from-qs-primary/10 hover:to-qs-accent/8 hover:text-qs-primary hover:border-qs-primary/20 hover:shadow-qs-soft hover:backdrop-blur-sm"}`
+                  `relative font-mono text-xs font-semibold uppercase tracking-widest px-4 py-2.5 transition-all duration-300
+                   ${isActive
+                     ? "text-qs-primary"
+                     : "text-qs-text-muted hover:text-qs-primary"}`
                 }
               >
-                {link.name}
+                {({ isActive }) => (
+                  <>
+                    {link.name}
+                    <span
+                      className={`absolute left-4 right-4 -bottom-0.5 h-px bg-qs-gradient-primary transition-opacity duration-300 ${
+                        isActive ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  </>
+                )}
               </NavLink>
             </motion.li>
           ))}
@@ -158,11 +165,10 @@ function Header() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                className="md:hidden absolute top-17 left-3 right-3 flex flex-col py-4 gap-2 border border-qs-primary/40 z-50 rounded-2xl shadow-qs-neon"
+                className="md:hidden absolute top-17 left-3 right-3 flex flex-col py-4 gap-1 border border-qs-hairline z-50 rounded-lg shadow-qs-medium"
                 style={{
-                  background: 'linear-gradient(135deg, var(--qs-glass-bg) 0%, rgba(255,255,255,0.1) 100%)',
+                  background: 'var(--qs-glass-bg)',
                   backdropFilter: 'blur(24px)',
-                  borderImage: 'linear-gradient(135deg, var(--qs-primary), var(--qs-accent)) 1'
                 }}
                 tabIndex={-1}
                 role="menu"
@@ -179,10 +185,10 @@ function Header() {
                       <NavLink
                         to={link.to}
                         onClick={() => setMenuOpen(false)}
-                        className={`block w-full text-base font-body font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 border border-transparent ${
-                          isActive 
-                            ? "bg-linear-to-r from-qs-primary/25 to-qs-accent/20 text-qs-primary border-qs-primary/30 shadow-qs-soft" 
-                            : "text-qs-text hover:bg-linear-to-r hover:from-qs-primary/15 hover:to-qs-accent/10 hover:text-qs-primary hover:border-qs-primary/20 hover:shadow-qs-soft"
+                        className={`block w-full font-mono text-sm font-semibold uppercase tracking-widest py-3.5 px-6 transition-all duration-300 border-l-2 ${
+                          isActive
+                            ? "text-qs-primary border-qs-primary bg-qs-primary-soft"
+                            : "text-qs-text-muted border-transparent hover:text-qs-primary hover:border-qs-primary/40"
                         }`}
                         tabIndex={0}
                         role="menuitem"

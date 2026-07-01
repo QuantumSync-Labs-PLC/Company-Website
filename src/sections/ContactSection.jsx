@@ -42,11 +42,11 @@ export default function ContactSection() {
   return (
     <SectionShell
       id="contact"
+      eyebrow="05 — Contact"
       title="Get In Touch"
       description="Start your next project, ask a question, or just say hello. We'd love to hear from you!"
-      sectionClassName="relative py-20 px-4 md:px-0 bg-qs-bg text-qs-text scroll-mt-24 transition-colors duration-300"
       containerClassName="relative max-w-3xl mx-auto section-center z-10"
-      titleClassName="font-headline text-3xl md:text-4xl font-bold text-qs-primary text-center mb-4"
+      titleClassName="font-headline text-3xl md:text-4xl font-bold holo-text text-center mb-4"
       descriptionClassName="font-body text-qs-text-section text-lg text-center mb-12 max-w-xl mx-auto"
     >
       {/* Decorative BG */}
@@ -55,7 +55,7 @@ export default function ContactSection() {
       <motion.form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="glass rounded-glass shadow-neon p-8 md:p-10 flex flex-col gap-6 max-w-xl mx-auto relative"
+        className="glass rounded-qs-lg shadow-neon p-8 md:p-10 flex flex-col gap-6 max-w-xl mx-auto relative"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -72,7 +72,7 @@ export default function ContactSection() {
             type="text"
             id="user_name"
             name="user_name"
-            className="rounded-glass bg-qs-surface border border-qs-primary/30 px-4 py-3 font-body text-qs-text placeholder-qs-text-muted focus:outline-none focus:ring-2 focus:ring-qs-primary transition"
+            className="rounded-qs-lg bg-qs-surface border border-qs-hairline px-4 py-3 font-body text-qs-text placeholder-qs-text-muted focus:outline-none focus:ring-2 focus:ring-qs-primary transition"
             required
             disabled={sending || sent}
             placeholder="Your Name"
@@ -88,7 +88,7 @@ export default function ContactSection() {
             type="email"
             id="user_email"
             name="user_email"
-            className="rounded-glass bg-qs-surface border border-qs-primary/30 px-4 py-3 font-body text-qs-text placeholder-qs-text-muted focus:outline-none focus:ring-2 focus:ring-qs-primary transition"
+            className="rounded-qs-lg bg-qs-surface border border-qs-hairline px-4 py-3 font-body text-qs-text placeholder-qs-text-muted focus:outline-none focus:ring-2 focus:ring-qs-primary transition"
             required
             disabled={sending || sent}
             placeholder="you@email.com"
@@ -103,7 +103,7 @@ export default function ContactSection() {
           <select
             id="subject"
             name="subject"
-            className="rounded-glass bg-qs-surface border border-qs-primary/30 px-4 py-3 font-body text-qs-text focus:outline-none focus:ring-2 focus:ring-qs-primary transition cursor-pointer"
+            className="rounded-qs-lg bg-qs-surface border border-qs-hairline px-4 py-3 font-body text-qs-text focus:outline-none focus:ring-2 focus:ring-qs-primary transition cursor-pointer"
             required
             disabled={sending || sent}
           >
@@ -125,7 +125,7 @@ export default function ContactSection() {
             id="message"
             name="message"
             rows={5}
-            className="rounded-glass bg-qs-surface border border-qs-primary/30 px-4 py-3 font-body text-qs-text placeholder-qs-text-muted focus:outline-none focus:ring-2 focus:ring-qs-primary resize-none transition"
+            className="rounded-qs-lg bg-qs-surface border border-qs-hairline px-4 py-3 font-body text-qs-text placeholder-qs-text-muted focus:outline-none focus:ring-2 focus:ring-qs-primary resize-none transition"
             required
             disabled={sending || sent}
             placeholder="How can we help you?"
@@ -135,7 +135,7 @@ export default function ContactSection() {
         {/* Submit button */}
         <button
           type="submit"
-          className="flex items-center justify-center bg-qs-primary hover:bg-qs-primary-hover text-qs-surface font-bold rounded-glass px-7 py-3 shadow-neon transition text-base mt-2 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-105 duration-300 focus:outline-none focus:ring-2 focus:ring-qs-accent"
+          className="flex items-center justify-center bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold rounded-qs-lg px-7 py-3 shadow-qs-neon transition text-base mt-2 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-105 duration-300 focus:outline-none focus:ring-2 focus:ring-qs-primary"
           disabled={sending || sent}
         >
           {sending && "Sending..."}

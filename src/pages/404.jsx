@@ -22,7 +22,7 @@ export default function NotFoundPage() {
 
         {/* 404 Number with enhanced styling */}
         <div className="relative mb-8">
-          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] leading-none font-headline font-black bg-qs-gradient-primary bg-clip-text text-transparent drop-shadow-2xl select-none">
+          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] leading-none font-headline font-black holo-text drop-shadow-2xl select-none">
             404
           </h1>
           <div className="absolute inset-0 text-[7rem] sm:text-[9rem] md:text-[11rem] font-headline font-black text-qs-primary blur-xl opacity-20 -z-10">
@@ -49,13 +49,13 @@ export default function NotFoundPage() {
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
           <Link
             to="/"
-            className="bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base font-body text-center"
+            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base font-body text-center"
           >
             Go Home
           </Link>
           <Link
             to="/services"
-            className="glass border-2 border-qs-primary text-qs-primary hover:bg-qs-primary hover:text-white font-bold px-10 py-4 rounded-glass transition-all duration-300 transform hover:scale-105 text-base font-body text-center"
+            className="glass border border-qs-primary text-qs-primary hover:bg-qs-primary hover:text-qs-bg font-bold px-10 py-4 rounded-glass transition-all duration-300 transform hover:scale-105 text-base font-body text-center"
           >
             Explore Services
           </Link>

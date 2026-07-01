@@ -1,14 +1,14 @@
 // src/data/services.js
 
 import {
-  FaCogs,
-  FaMobileAlt,
-  FaCloud,
-  FaPalette,
-  FaChartLine,
-  FaLock,
-  FaSyncAlt,
-} from "react-icons/fa";
+  Cog,
+  Smartphone,
+  Cloud,
+  Palette,
+  BarChart3,
+  ShieldCheck,
+  RefreshCw,
+} from "lucide-react";
 
 /**
  * Services offered by QuantumSync Labs
@@ -37,7 +37,7 @@ const services = [
   {
     id: "custom-software-development",
     title: "Custom Software Development",
-    icon: FaCogs,
+    icon: Cog,
     excerpt: "End-to-end engineering tailored to your business domain.",
     description:
       "From idea to launch, we build secure, scalable, and future-ready software solutions for your unique needs. Our team specializes in web, mobile, and enterprise platforms using modern frameworks and robust engineering practices.",
@@ -54,7 +54,7 @@ const services = [
   {
     id: "mobile-and-web-apps",
     title: "Mobile & Web Apps",
-    icon: FaMobileAlt,
+    icon: Smartphone,
     excerpt:
       "Cross-platform mobile and responsive web applications that scale.",
     description:
@@ -71,7 +71,7 @@ const services = [
   {
     id: "cloud-architecture",
     title: "Cloud Architecture",
-    icon: FaCloud,
+    icon: Cloud,
     excerpt:
       "Design, deployment, and management of secure cloud infrastructure.",
     description:
@@ -88,7 +88,7 @@ const services = [
   {
     id: "ui-ux-design",
     title: "UI/UX Design",
-    icon: FaPalette,
+    icon: Palette,
     excerpt:
       "User-centric interfaces and experiences that delight your customers.",
     description:
@@ -105,7 +105,7 @@ const services = [
   {
     id: "data-analytics-ai",
     title: "Data Analytics & AI",
-    icon: FaChartLine,
+    icon: BarChart3,
     excerpt: "Actionable insights and AI-driven solutions from your data.",
     description:
       "Unleash your data’s potential. We deliver dashboards, analytics, and ML/AI-powered predictions for smarter decisions and automation.",
@@ -121,7 +121,7 @@ const services = [
   {
     id: "cybersecurity",
     title: "Cybersecurity Solutions",
-    icon: FaLock,
+    icon: ShieldCheck,
     excerpt: "Enterprise-grade protection for your data and operations.",
     description:
       "Proactive defense for your systems and users. We assess, monitor, and protect your assets—enabling compliance and peace of mind.",
@@ -137,7 +137,7 @@ const services = [
   {
     id: "maintenance-support",
     title: "Maintenance & Support",
-    icon: FaSyncAlt,
+    icon: RefreshCw,
     excerpt: "Continuous improvement and care for your digital products.",
     description:
       "From bug fixes to new features, our team provides prompt, proactive support and maintenance for lasting value.",

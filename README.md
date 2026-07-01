@@ -1,6 +1,6 @@
 # QuantumSync Labs - Official Website
 
-![QuantumSync Labs Logo](./src/assets/images/logo2.png)
+![QuantumSync Labs Logo](./src/assets/images/logo2.webp)
 
 > **Empowering digital transformation through innovative, secure, and scalable IT solutions.**
 

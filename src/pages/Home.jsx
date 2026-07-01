@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import ScrollToTop from "../components/common/ScrollToTop";
 import Header from "../components/layout/Header";
 import PageMeta from "../components/common/PageMeta";
+import JsonLd, { createOrganizationSchema } from "../components/common/JsonLd";
 import HeroSection from "../sections/HeroSection";
 import Spinner from "../components/common/Spinner";
 import CtaBar from "../components/common/CtaBar";
@@ -29,11 +30,13 @@ function SectionFallback() {
 export default function Home() {
   return (
     <div className="relative min-h-screen flex flex-col bg-qs-bg transition-colors duration-300">
-      <PageMeta 
+      <PageMeta
         title="QuantumSync Labs"
         description="Empowering digital transformation through innovative, secure, and scalable IT solutions. Cloud, AI, and software engineering services."
         url="/"
-      />
+      >
+        <JsonLd schema={createOrganizationSchema()} />
+      </PageMeta>
       <ScrollToTop showButton={true} />
       <Header />
       <main className="flex-grow flex flex-col">

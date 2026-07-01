@@ -4,6 +4,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import ScrollToTop from "../components/common/ScrollToTop";
 import PageMeta from "../components/common/PageMeta";
+import JsonLd, { createArticleSchema } from "../components/common/JsonLd";
 import ResponsiveImage from "../components/common/ResponsiveImage";
 
 export default function BlogPost() {
@@ -29,7 +30,7 @@ export default function BlogPost() {
           <h2 className="font-headline text-3xl sm:text-4xl text-qs-primary font-bold mb-4">Post Not Found</h2>
           <p className="font-body text-qs-text-section mb-8 text-lg">The blog post you're looking for doesn't exist.</p>
           <button
-            className="bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
+            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
             onClick={() => navigate("/blog")}
           >
             Back to Blog
@@ -52,21 +53,7 @@ export default function BlogPost() {
         url={postUrl}
         ogImage={post.cover}
       >
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.title,
-            description: post.excerpt,
-            image: post.cover,
-            datePublished: post.date,
-            author: {
-              '@type': 'Person',
-              name: post.author,
-            },
-            mainEntityOfPage: postUrl,
-          })}
-        </script>
+        <JsonLd schema={createArticleSchema(post)} />
       </PageMeta>
       <main className="flex-1 py-16 sm:py-20 md:py-28 px-4 flex flex-col items-center" role="main">
         <article className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 max-w-4xl w-full mx-auto p-6 sm:p-8 md:p-12 lg:p-14">
@@ -81,7 +68,7 @@ export default function BlogPost() {
             <ResponsiveImage
               src={post.authorAvatar}
               alt={post.author}
-              className="w-12 h-12 rounded-full object-cover border-2 border-qs-primary shadow-md"
+              className="w-12 h-12 rounded-full object-cover border border-qs-primary shadow-md"
               sizes="48px"
             />
             <div className="flex flex-col">
@@ -90,7 +77,7 @@ export default function BlogPost() {
             </div>
           </div>
           {/* Title */}
-          <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-6 sm:mb-8 leading-tight">{post.title}</h1>
+          <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold holo-text mb-6 sm:mb-8 leading-tight">{post.title}</h1>
           {/* Content (HTML string, safe if sanitized before) */}
           <div
             className="font-body text-qs-text-section text-base sm:text-lg leading-relaxed prose prose-invert max-w-none mb-8"
@@ -110,7 +97,7 @@ export default function BlogPost() {
           {/* Back button */}
           <Link
             to="/blog"
-            className="inline-block mt-10 bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+            className="inline-block mt-10 bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
           >
             ← Back to Blog
           </Link>
@@ -119,7 +106,7 @@ export default function BlogPost() {
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
           <section className="max-w-4xl w-full mx-auto mt-20 sm:mt-24">
-            <h2 className="font-headline text-2xl sm:text-3xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-8 sm:mb-10">Related Posts</h2>
+            <h2 className="font-headline text-2xl sm:text-3xl font-bold holo-text mb-8 sm:mb-10">Related Posts</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {relatedPosts.map((rel) => (
                 <Link

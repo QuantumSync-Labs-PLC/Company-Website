@@ -23,7 +23,7 @@ import ravindu from "../assets/images/ravindu.webp";
 const teamMembers = [
   {
     name: "Tharindu Gunarathna",
-    role: "Co-Founder & CEO & AI Engineer",
+    role: "Co-Founder & Chief Executive Officer",
     photoPath: tharindu,
     socials: [
       {
@@ -36,7 +36,7 @@ const teamMembers = [
   },
   {
     name: "Thamash Weragoda",
-    role: "Co-Founder & CTO & Fullstack Engineer",
+    role: "Co-Founder & Chief Technology Officer",
     photoPath: thamash,
     socials: [
       {
@@ -53,7 +53,7 @@ const teamMembers = [
   },
   {
     name: "Ravindu Waduwawala",
-    role: "Co-Founder & CMO & QA Engineer",
+    role: "Co-Founder & Chief Marketing Officer",
     photoPath: ravindu,
     socials: [
       {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import blogPosts from "../data/blogPosts";
 import { Link } from "react-router-dom";
 import Header from "../components/layout/Header";
@@ -5,8 +6,11 @@ import Footer from "../components/layout/Footer";
 import ScrollToTop from "../components/common/ScrollToTop";
 import PageMeta from "../components/common/PageMeta";
 import ResponsiveImage from "../components/common/ResponsiveImage";
+import BlogFilterBar from "../components/common/BlogFilterBar";
 
 export default function Blog() {
+  const [filteredPosts, setFilteredPosts] = useState(blogPosts);
+
   return (
     <div className="relative min-h-screen flex flex-col bg-qs-bg">
       <ScrollToTop showButton={true} />
@@ -19,20 +23,25 @@ export default function Blog() {
       <main className="flex flex-1 flex-col items-center py-20 sm:py-24 md:py-32 px-4" role="main">
         <div className="w-full max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-4">
+            <span className="eyebrow mb-4">Insights</span>
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold holo-text mb-4">
               QuantumSync Labs Blog
             </h1>
             <p className="font-body text-qs-text-section text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
               Insights on software engineering, cloud, AI, and digital transformation
             </p>
           </div>
-          {blogPosts.length > 0 ? (
+
+          {/* Blog Filter Bar */}
+          <BlogFilterBar posts={blogPosts} onFilterChange={setFilteredPosts} />
+
+          {filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
-              {blogPosts.map((post) => (
+              {filteredPosts.map((post) => (
                 <Link
                   to={`/blog/${post.id}`}
                   key={post.id}
-                  className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 overflow-hidden flex flex-col hover:scale-[1.02] hover:-translate-y-2 hover:shadow-xl hover:border-qs-primary/30 transition-all duration-300"
+                  className="glass rounded-qs-lg shadow-neon border border-qs-primary/10 overflow-hidden flex flex-col hover:scale-[1.02] hover:-translate-y-2 hover:border-qs-primary/30 transition-all duration-300"
                   aria-label={`Read blog post: ${post.title}`}
                 >
                   {/* Blog Cover */}
@@ -49,7 +58,7 @@ export default function Blog() {
                       <ResponsiveImage
                         src={post.authorAvatar}
                         alt={post.author}
-                        className="w-10 h-10 rounded-full object-cover border-2 border-qs-primary shadow-md"
+                        className="w-10 h-10 rounded-full object-cover border border-qs-primary shadow-md"
                         sizes="40px"
                       />
                       <div className="flex flex-col">

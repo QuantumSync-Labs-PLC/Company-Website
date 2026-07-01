@@ -3,51 +3,38 @@
 /**
  * QuantumSync Labs Theme Tokens
  * Core color constants used throughout the application
- * These values should match the CSS variables in tailwind.css
+ * These values should match the CSS variables in tailwind.css ("Deep-Space Holographic")
  */
 
 /**
  * Primary color palette
- * Navy-based colors for professional tech aesthetic
  */
 export const COLORS = {
-  navyDark: "#080E3F",
-  blue: "#0073FF",
-  cyan: "#00A3ED",
+  bg: "#060810",
+  bgAlt: "#0a0d18",
+  cyan: "#22d3ee",
+  violet: "#8b5cf6",
+  lime: "#c5ff4a",
   white: "#FFFFFF",
 
-  // Deep Navy Tints
-  navy1: "#000022",
-  navy2: "#000033",
-  navy3: "#000044",
-  navy4: "#000066",
-  navy5: "#000080",
-
-  // Blue Tints
-  blue1: "#003366",
-  blue2: "#1A4D80",
-  blue3: "#336699",
-  blue4: "#6699CC",
-  blue5: "#B0C4DE",
-
   // Backgrounds
-  background: "#080E3F", // main background
-  sectionBg: "#000033", // section/box backgrounds
-  glassBg: "rgba(0, 18, 61, 0.65)", // for glassmorphism
-  border: "#0073FF",
+  background: "#060810",
+  sectionBg: "#0a0d18",
+  glassBg: "rgba(13, 17, 31, 0.5)",
+  hairline: "rgba(255, 255, 255, 0.08)",
 
   // Gradients
-  gradientMain: "linear-gradient(90deg, #0073FF 0%, #00A3ED 100%)",
+  gradientMain: "linear-gradient(120deg, #22d3ee 0%, #8b5cf6 55%, #f65fb5 100%)",
 };
 
 /**
  * Semantic color aliases for specific use cases
  */
 export const SEMANTIC_COLORS = {
-  primary: COLORS.blue,
-  secondary: COLORS.cyan,
-  background: COLORS.navyDark,
+  primary: COLORS.cyan,
+  secondary: COLORS.violet,
+  background: COLORS.bg,
   surface: COLORS.sectionBg,
-  border: COLORS.border,
-  text: COLORS.white,
+  border: COLORS.hairline,
+  text: "#e7ecf5",
 };

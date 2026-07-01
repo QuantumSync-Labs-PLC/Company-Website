@@ -6,6 +6,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import ScrollToTop from "../components/common/ScrollToTop";
 import PageMeta from "../components/common/PageMeta";
+import JsonLd, { createServiceSchema } from "../components/common/JsonLd";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -22,7 +23,7 @@ export default function ServiceDetail() {
           <h2 className="font-headline text-3xl sm:text-4xl text-qs-primary font-bold mb-4">Service Not Found</h2>
           <p className="font-body text-qs-text-section mb-8 text-lg">The service you're looking for doesn't exist.</p>
           <button
-            className="bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
+            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
             onClick={() => navigate("/services")}
           >
             Back to Services
@@ -56,30 +57,18 @@ export default function ServiceDetail() {
         url={serviceUrl}
         ogImage={service.cover}
       >
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: service.title,
-            description: service.excerpt || service.description,
-            url: serviceUrl,
-            provider: {
-              '@type': 'Organization',
-              name: 'QuantumSync Labs',
-            },
-          })}
-        </script>
+        <JsonLd schema={createServiceSchema(service)} />
       </PageMeta>
       <main className="flex-1 py-16 sm:py-20 md:py-28 px-4 flex flex-col items-center" role="main">
         <article className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 max-w-4xl w-full mx-auto p-8 sm:p-10 md:p-14">
           {/* Service Icon and Title */}
           <div className="flex flex-col items-center mb-8">
             {Icon && (
-              <div className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-full bg-qs-primary/10 border-2 border-qs-primary mb-6 shadow-lg">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-full bg-qs-primary/10 border border-qs-primary mb-6 shadow-lg">
                 <Icon className="text-qs-primary text-5xl sm:text-6xl" />
               </div>
             )}
-            <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent text-center mb-3">
+            <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold holo-text text-center mb-3">
               {service.title}
             </h1>
           </div>
@@ -111,13 +100,13 @@ export default function ServiceDetail() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Link
               to="/services"
-              className="inline-block glass text-qs-primary font-bold px-10 py-4 rounded-glass border-2 border-qs-primary hover:bg-qs-primary hover:text-white transition-all duration-300 transform hover:scale-105 text-base"
+              className="inline-block glass text-qs-primary font-bold px-10 py-4 rounded-glass border border-qs-primary hover:bg-qs-primary hover:text-qs-bg transition-all duration-300 transform hover:scale-105 text-base"
             >
               ← Back to All Services
             </Link>
             <Link
               to={contactLink}
-              className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-base"
+              className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-base"
             >
               Contact Us About {service.title}
             </Link>
@@ -127,7 +116,10 @@ export default function ServiceDetail() {
         {/* Related Services Section */}
         {related.length > 0 && (
           <section className="w-full max-w-6xl mx-auto mt-20 sm:mt-24">
-            <h2 className="font-headline text-3xl sm:text-4xl font-bold bg-qs-gradient-primary bg-clip-text text-transparent mb-10 sm:mb-14 text-center">
+            <div className="flex justify-center mb-4">
+              <span className="eyebrow">Keep Exploring</span>
+            </div>
+            <h2 className="font-headline text-3xl sm:text-4xl font-bold holo-text mb-10 sm:mb-14 text-center">
               Related Services
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
@@ -143,14 +135,14 @@ export default function ServiceDetail() {
                     whileHover={{ y: -10, scale: 1.02 }}
                     className="glass shadow-neon-blue border border-qs-primary/10 p-7 sm:p-8 flex flex-col items-center rounded-glass min-h-[300px] sm:min-h-[330px] transition-all duration-300 hover:border-qs-primary/30"
                   >
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-qs-primary/10 border-2 border-qs-primary mb-4 shadow-md">
+                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-qs-primary/10 border border-qs-primary mb-4 shadow-md">
                       {RelIcon && <RelIcon className="text-qs-primary text-3xl sm:text-4xl" />}
                     </div>
                     <div className="font-headline text-lg sm:text-xl font-bold text-qs-primary mb-3 text-center">{rel.title}</div>
                     <div className="font-body text-qs-text-section text-sm sm:text-base text-center mb-5 line-clamp-3 leading-relaxed">{rel.excerpt}</div>
                     <Link
                       to={rel.link}
-                      className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-white font-bold px-8 py-3 rounded-glass shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm mt-auto"
+                      className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-8 py-3 rounded-glass shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm mt-auto"
                     >
                       Learn More
                     </Link>

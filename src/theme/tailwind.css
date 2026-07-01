@@ -1,100 +1,122 @@
 @import "tailwindcss";
+@config "../../tailwind.config.js";
 
 /* ============================================
    CSS Variables - Theme System (Light & Dark)
+   "Deep-Space Holographic" palette
 ============================================ */
 
 :root {
   /* ----- Light Theme (Default) ----- */
-  /* Base backgrounds */
-  --qs-bg: #f5f7fc; /* --bg-primary - softer, slightly cooler */
-  --qs-surface: #ffffff; /* surface-1 / elevated cards */
-  --qs-surface-elevated: #f0f4ff; /* surface-3 - better contrast */
-  --qs-border: #cbd5e1; /* border-light - more visible */
+  --qs-bg: #f5f7fc;
+  --qs-bg-alt: #eef1f9;
+  --qs-surface: rgba(11, 20, 38, 0.03);
+  --qs-surface-elevated: #ffffff;
+  --qs-hairline: rgba(11, 20, 38, 0.1);
+  --qs-border: var(--qs-hairline);
 
   /* Text */
-  --qs-text: #0f172a; /* text-primary - darker, better contrast */
-  --qs-text-muted: #64748b; /* text-muted - improved contrast */
-  --qs-text-section: #1e293b; /* slightly stronger body/section text */
+  --qs-text: #0b1426;
+  --qs-text-muted: #57617a;
+  --qs-text-section: #131f38;
 
   /* Brand / Accent */
-  --qs-primary: #0073ff; /* accent-primary */
-  --qs-primary-hover: #005fcc; /* accent-hover */
-  --qs-primary-soft: #d4e5ff; /* soft tint - more visible */
-  --qs-accent: #00a3ed; /* accent-secondary */
-  --qs-accent-hover: #0088d6;
-  --qs-accent-soft: #c0e9ff; /* more visible */
+  --qs-primary: #0891a8;
+  --qs-primary-hover: #067288;
+  --qs-primary-soft: rgba(8, 145, 168, 0.12);
+  --qs-violet: #6d3fd6;
+  --qs-violet-hover: #5a2fc2;
+  --qs-violet-soft: rgba(109, 63, 214, 0.12);
+  --qs-accent: var(--qs-violet);
+  --qs-accent-hover: var(--qs-violet-hover);
+  --qs-accent-soft: var(--qs-violet-soft);
+
+  /* Signal accent (lime) */
+  --qs-signal: #6f9200;
+  --qs-signal-soft: rgba(111, 146, 0, 0.14);
 
   /* Semantic */
-  --qs-danger: #dc2626; /* Error (light) */
-  --qs-success: #15a678; /* Success (light) */
-  --qs-warning: #f59e0b; /* Warning (light) */
-  --qs-info: #00a3ed; /* Info */
+  --qs-danger: #dc2626;
+  --qs-success: #0f9d64;
+  --qs-warning: #b3790a;
+  --qs-info: var(--qs-primary);
 
   /* Gradients & effects */
-  --qs-gradient-primary: linear-gradient(135deg, #0073ff 0%, #00a3ed 100%);
-  --qs-gradient-accent: linear-gradient(135deg, #00a3ed 0%, #00b6ff 100%);
-  --qs-glass-bg: rgba(255, 255, 255, 0.8); /* surface-glass - more opaque */
+  --qs-gradient-primary: linear-gradient(120deg, #0891a8 0%, #6d3fd6 55%, #c6389a 100%);
+  --qs-gradient-signal: linear-gradient(120deg, #0891a8 0%, #6f9200 100%);
+  --qs-glass-bg: rgba(255, 255, 255, 0.7);
 
   /* Shadows */
-  --qs-shadow-soft: 0 2px 12px rgba(0, 32, 80, 0.18);
-  --qs-shadow-medium: 0 8px 24px rgba(0, 32, 80, 0.24);
-  --qs-shadow-neon: 0 0 18px 2px #0073ff88, 0 2px 8px #00004466;
+  --qs-shadow-soft: 0 2px 14px rgba(11, 20, 38, 0.08);
+  --qs-shadow-medium: 0 10px 30px rgba(11, 20, 38, 0.12);
+  --qs-shadow-neon: 0 0 20px 2px rgba(8, 145, 168, 0.28), 0 2px 12px rgba(11, 20, 38, 0.1);
+  --qs-shadow-neon-accent: 0 0 20px 2px rgba(109, 63, 214, 0.28), 0 2px 12px rgba(11, 20, 38, 0.1);
 
-  /* Radii */
-  --qs-radius-lg: 1.25rem;
+  /* Radii - sharper, more engineered */
+  --qs-radius-sm: 0.375rem;
+  --qs-radius-md: 0.5rem;
+  --qs-radius-lg: 0.75rem;
+  --qs-radius-xl: 1rem;
+  --qs-radius-2xl: 1.25rem;
 }
 
-/* ----- Dark Theme ----- */
+/* ----- Dark Theme (primary experience) ----- */
 [data-theme="dark"] {
-  /* Deep navy tech background stack */
-  --qs-bg: #080e3f; /* --bg-primary */
-  --qs-surface: rgba(0, 18, 61, 0.55); /* surface-1 / glass */
-  --qs-surface-elevated: #1a255f; /* surface-3 */
-  --qs-border: #1e2a70; /* border-light */
+  /* Void-black base */
+  --qs-bg: #060810;
+  --qs-bg-alt: #0a0d18;
+  --qs-surface: rgba(255, 255, 255, 0.03);
+  --qs-surface-elevated: #0d111f;
+  --qs-hairline: rgba(255, 255, 255, 0.08);
+  --qs-border: var(--qs-hairline);
 
   /* Text */
-  --qs-text: #ffffff; /* text-primary */
-  --qs-text-muted: #9aa3c5; /* text-muted */
-  --qs-text-section: #c9d3ff; /* slightly softer than pure white */
+  --qs-text: #e7ecf5;
+  --qs-text-muted: #7e8aa3;
+  --qs-text-section: #c7d0e3;
 
   /* Brand / Accent */
-  --qs-primary: #0073ff; /* accent-primary, kept consistent */
-  --qs-primary-hover: #00a3ed; /* accent-secondary as hover */
-  --qs-primary-soft: rgba(0, 115, 255, 0.18);
-  --qs-accent: #00a3ed; /* accent-secondary */
-  --qs-accent-hover: #3ab8ff; /* accent-glow-ish */
-  --qs-accent-soft: rgba(0, 163, 237, 0.18);
+  --qs-primary: #22d3ee;
+  --qs-primary-hover: #5ddfef;
+  --qs-primary-soft: rgba(34, 211, 238, 0.14);
+  --qs-violet: #8b5cf6;
+  --qs-violet-hover: #a689ff;
+  --qs-violet-soft: rgba(139, 92, 246, 0.16);
+  --qs-accent: var(--qs-violet);
+  --qs-accent-hover: var(--qs-violet-hover);
+  --qs-accent-soft: var(--qs-violet-soft);
+
+  /* Signal accent (lime) */
+  --qs-signal: #c5ff4a;
+  --qs-signal-soft: rgba(197, 255, 74, 0.16);
 
   /* Semantic */
-  --qs-danger: #ff4d67; /* Error (dark) */
-  --qs-success: #1cc08e; /* Success (dark) */
-  --qs-warning: #ffb441; /* Warning (dark) */
-  --qs-info: #00a3ed; /* Info */
+  --qs-danger: #ff5d72;
+  --qs-success: #34e6a8;
+  --qs-warning: #ffb84d;
+  --qs-info: var(--qs-primary);
 
   /* Gradients & effects */
-  --qs-gradient-primary: linear-gradient(
-    180deg,
-    #000022,
-    #000033,
-    #000044,
-    #000066,
-    #000080
-  );
-  --qs-gradient-accent: linear-gradient(90deg, #0073ff 0%, #00a3ed 100%);
-  --qs-glass-bg: rgba(8, 14, 63, 0.45); /* surface-glass dark */
+  --qs-gradient-primary: linear-gradient(120deg, #22d3ee 0%, #8b5cf6 55%, #f65fb5 100%);
+  --qs-gradient-signal: linear-gradient(120deg, #22d3ee 0%, #c5ff4a 100%);
+  --qs-glass-bg: rgba(13, 17, 31, 0.5);
 
   /* Shadows */
-  --qs-shadow-soft: 0 6px 24px rgba(0, 0, 40, 0.45);
-  --qs-shadow-medium: 0 10px 36px rgba(0, 0, 40, 0.6);
-  --qs-shadow-neon: 0 0 18px 2px #0073ff88, 0 2px 8px #000044aa;
+  --qs-shadow-soft: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --qs-shadow-medium: 0 10px 36px rgba(0, 0, 0, 0.55);
+  --qs-shadow-neon: 0 0 24px 3px rgba(34, 211, 238, 0.35), 0 2px 12px rgba(0, 0, 0, 0.5);
+  --qs-shadow-neon-accent: 0 0 24px 3px rgba(139, 92, 246, 0.35), 0 2px 12px rgba(0, 0, 0, 0.5);
 
   /* Radii */
-  --qs-radius-lg: 1.25rem;
+  --qs-radius-sm: 0.375rem;
+  --qs-radius-md: 0.5rem;
+  --qs-radius-lg: 0.75rem;
+  --qs-radius-xl: 1rem;
+  --qs-radius-2xl: 1.25rem;
 }
 
 /* ============================================
-   Fonts: Space Grotesk (headline), Inter (body)
+   Fonts: Space Grotesk (headline), Inter (body), JetBrains Mono (labels)
 ============================================ */
 
 html {
@@ -119,7 +141,7 @@ h5,
 h6,
 .font-headline {
   font-family: "Space Grotesk", "Orbitron", system-ui, sans-serif;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 .font-body {
@@ -127,60 +149,113 @@ h6,
     sans-serif;
 }
 
+.font-mono,
+.eyebrow {
+  font-family: "JetBrains Mono", "Space Mono", monospace;
+}
+
 /* ============================================
-   Glassmorphism Utility (Theme-aware)
+   Panel / hairline surface (replaces heavy glassmorphism)
+   Kept as `.glass` so every existing component/page
+   inherits the new look without a rewrite.
 ============================================ */
 .glass {
   background: var(--qs-glass-bg);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--qs-border);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--qs-hairline);
   border-radius: var(--qs-radius-lg);
   box-shadow: var(--qs-shadow-soft);
 }
 
-/* Light mode enhancements for better contrast */
-@media (prefers-color-scheme: light) {
-  .glass {
-    border: 1.5px solid var(--qs-border);
-    background: var(--qs-glass-bg);
-  }
+.glass:hover {
+  border-color: rgba(34, 211, 238, 0.25);
+}
+
+html:not([data-theme="dark"]) .glass:hover {
+  border-color: rgba(8, 145, 168, 0.3);
 }
 
 /* ============================================
-   Legacy Utility Classes (For Backwards Compatibility)
+   Holographic text (gradient clip on headings)
 ============================================ */
-.bg-navy {
-  background-color: var(--qs-bg);
-}
-.bg-navy-dk {
-  background-color: var(--qs-bg);
-}
-.bg-blue {
-  background-color: var(--qs-primary);
-}
-.bg-cyan {
-  background-color: var(--qs-accent);
-}
-.bg-section {
-  background-color: var(--qs-surface-elevated);
+.holo-text {
+  background-image: var(--qs-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
-.text-navy {
-  color: var(--qs-text);
-}
-.text-blue {
+/* ============================================
+   Eyebrow label — mono, tracked-out section labels
+   e.g. "// 01 — SERVICES"
+============================================ */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--qs-primary);
 }
-.text-cyan {
-  color: var(--qs-accent);
-}
-.text-section {
-  color: var(--qs-text-section);
+
+.eyebrow::before {
+  content: "//";
+  color: var(--qs-text-muted);
+  opacity: 0.6;
 }
 
-.border-blue {
-  border-color: var(--qs-primary);
+/* ============================================
+   Grid backdrop — faint engineering-grid texture
+============================================ */
+.grid-backdrop {
+  position: relative;
+}
+
+.grid-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--qs-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--qs-hairline) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* ============================================
+   Scanlines — subtle CRT/holographic overlay
+============================================ */
+.scanlines {
+  position: relative;
+}
+
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+html:not([data-theme="dark"]) .scanlines::after {
+  opacity: 0.15;
 }
 
 /* ============================================
@@ -192,10 +267,8 @@ h6,
 }
 
 /* ============================================
-   Network Background Pattern - Both Themes
+   Network Background Pattern (cheap 2D backdrop layer)
 ============================================ */
-
-/* Base network background for light and dark modes */
 .bg-network-pattern {
   position: relative;
   overflow: hidden;
@@ -208,12 +281,7 @@ h6,
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
-    /* Network nodes - dots */ radial-gradient(
-      circle,
-      currentColor 1px,
-      transparent 1px
-    ),
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px),
     radial-gradient(circle, currentColor 0.5px, transparent 0.5px);
   background-size: 80px 80px, 200px 200px;
   background-position: 0 0, 40px 60px;
@@ -222,73 +290,22 @@ h6,
   z-index: 0;
 }
 
-/* Light theme network pattern - subtle blue tones */
-:not([data-theme="dark"]) .bg-network-pattern::before {
-  background-image: radial-gradient(circle, #0073ff 1px, transparent 1px),
-    radial-gradient(circle, #0073ff 0.5px, transparent 0.5px),
-    linear-gradient(
-      45deg,
-      transparent 24%,
-      rgba(0, 115, 255, 0.05) 25%,
-      rgba(0, 115, 255, 0.05) 26%,
-      transparent 27%,
-      transparent 74%,
-      rgba(0, 115, 255, 0.05) 75%,
-      rgba(0, 115, 255, 0.05) 76%,
-      transparent 77%,
-      transparent
-    ),
-    linear-gradient(
-      -45deg,
-      transparent 24%,
-      rgba(0, 163, 237, 0.05) 25%,
-      rgba(0, 163, 237, 0.05) 26%,
-      transparent 27%,
-      transparent 74%,
-      rgba(0, 163, 237, 0.05) 75%,
-      rgba(0, 163, 237, 0.05) 76%,
-      transparent 77%,
-      transparent
-    );
-  background-size: 80px 80px, 200px 200px, 100px 100px, 100px 100px;
-  background-position: 0 0, 40px 60px, 0 0, 50px 50px;
+html:not([data-theme="dark"]) .bg-network-pattern::before {
+  background-image: radial-gradient(circle, #0891a8 1px, transparent 1px),
+    radial-gradient(circle, #6d3fd6 0.5px, transparent 0.5px);
+  background-size: 80px 80px, 200px 200px;
+  background-position: 0 0, 40px 60px;
   opacity: 0.08;
 }
 
-/* Dark theme network pattern - glowing cyan/blue */
 [data-theme="dark"] .bg-network-pattern::before {
-  background-image: radial-gradient(circle, #00a3ed 1.5px, transparent 1.5px),
-    radial-gradient(circle, #0073ff 0.5px, transparent 0.5px),
-    linear-gradient(
-      45deg,
-      transparent 24%,
-      rgba(0, 115, 255, 0.05) 25%,
-      rgba(0, 115, 255, 0.05) 26%,
-      transparent 27%,
-      transparent 74%,
-      rgba(0, 115, 255, 0.05) 75%,
-      rgba(0, 115, 255, 0.05) 76%,
-      transparent 77%,
-      transparent
-    ),
-    linear-gradient(
-      -45deg,
-      transparent 24%,
-      rgba(0, 163, 237, 0.06) 25%,
-      rgba(0, 163, 237, 0.06) 26%,
-      transparent 27%,
-      transparent 74%,
-      rgba(0, 163, 237, 0.06) 75%,
-      rgba(0, 163, 237, 0.06) 76%,
-      transparent 77%,
-      transparent
-    );
-  background-size: 80px 80px, 200px 200px, 100px 100px, 100px 100px;
-  background-position: 0 0, 40px 60px, 0 0, 50px 50px;
-  opacity: 0.08;
+  background-image: radial-gradient(circle, #22d3ee 1.5px, transparent 1.5px),
+    radial-gradient(circle, #8b5cf6 0.5px, transparent 0.5px);
+  background-size: 80px 80px, 200px 200px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.1;
 }
 
-/* Animated glowing effect for dark theme nodes */
 [data-theme="dark"] .bg-network-pattern::after {
   content: "";
   position: absolute;
@@ -296,11 +313,7 @@ h6,
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: radial-gradient(
-    circle,
-    rgba(0, 163, 237, 0.4),
-    transparent 2px
-  );
+  background-image: radial-gradient(circle, rgba(34, 211, 238, 0.4), transparent 2px);
   background-size: 150px 150px;
   background-position: 0 0;
   opacity: 0;
@@ -309,19 +322,14 @@ h6,
   z-index: 1;
 }
 
-/* Light theme subtle glow */
-:not([data-theme="dark"]) .bg-network-pattern::after {
+html:not([data-theme="dark"]) .bg-network-pattern::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: radial-gradient(
-    circle,
-    rgba(0, 115, 255, 0.2),
-    transparent 2px
-  );
+  background-image: radial-gradient(circle, rgba(8, 145, 168, 0.25), transparent 2px);
   background-size: 150px 150px;
   background-position: 0 0;
   opacity: 0;
@@ -340,31 +348,17 @@ h6,
   }
 }
 
-/* Optional: Decorative BG (Circuit) */
-.bg-circuit {
-  /* To use: uncomment and supply your SVG path */
-  /* background-image: url('../assets/images/circuit-bg.svg'); */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.13;
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* ============================================
    Buttons/Glow/Shadow
 ============================================ */
 .shadow-neon-blue {
-  box-shadow: 0 0 18px 2px #0073ff88, 0 2px 8px #00004466;
+  box-shadow: 0 0 18px 2px rgba(34, 211, 238, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Light Mode specific shadow adjustment */
-:not([data-theme="dark"]) .shadow-neon-blue {
-  box-shadow: 0 0 16px 1px #0073ff66, 0 2px 8px #00004433;
+html:not([data-theme="dark"]) .shadow-neon-blue {
+  box-shadow: 0 0 16px 1px rgba(8, 145, 168, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Theme-aware section + card helpers */
 .bg-main-gradient {
   background-image: var(--qs-gradient-primary);
   background-size: cover;
@@ -375,238 +369,58 @@ h6,
 .card-primary {
   background: var(--qs-surface);
   border-radius: var(--qs-radius-lg);
-  border: 1px solid var(--qs-border);
+  border: 1px solid var(--qs-hairline);
   box-shadow: var(--qs-shadow-soft);
-}
-
-/* Light mode: enhance card borders */
-:not([data-theme="dark"]) .card-primary {
-  border-width: 1.5px;
 }
 
 .card-primary-elevated {
   background: var(--qs-surface-elevated);
   border-radius: var(--qs-radius-lg);
-  border: 1px solid var(--qs-border);
+  border: 1px solid var(--qs-hairline);
   box-shadow: var(--qs-shadow-medium);
-}
-
-/* Light mode: enhance elevated card borders */
-:not([data-theme="dark"]) .card-primary-elevated {
-  border-width: 1.5px;
 }
 
 /* ============================================
    Accessibility Improvements
 ============================================ */
 :focus-visible {
-  outline: 2px solid #00a3ed;
+  outline: 2px solid var(--qs-primary);
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ============================================
    Light Mode Form & Input Enhancements
 ============================================ */
-:not([data-theme="dark"]) input,
-:not([data-theme="dark"]) textarea,
-:not([data-theme="dark"]) select {
+html:not([data-theme="dark"]) input,
+html:not([data-theme="dark"]) textarea,
+html:not([data-theme="dark"]) select {
   background-color: #ffffff;
   color: var(--qs-text);
-  border-color: var(--qs-border);
+  border-color: var(--qs-hairline);
 }
 
-:not([data-theme="dark"]) input::placeholder,
-:not([data-theme="dark"]) textarea::placeholder {
+html:not([data-theme="dark"]) input::placeholder,
+html:not([data-theme="dark"]) textarea::placeholder {
   color: var(--qs-text-muted);
 }
 
-/* Light mode: enhanced badge styles */
-:not([data-theme="dark"]) .bg-qs-primary {
-  filter: brightness(1);
-}
-
-/* Light mode: better button contrast */
-:not([data-theme="dark"]) button {
+html:not([data-theme="dark"]) button {
   transition: all 0.2s ease;
 }
 
-/* Light mode: enhance text visibility in cards */
-:not([data-theme="dark"]) .glass p,
-:not([data-theme="dark"]) .glass span,
-:not([data-theme="dark"]) .glass li {
+html:not([data-theme="dark"]) .glass p,
+html:not([data-theme="dark"]) .glass span,
+html:not([data-theme="dark"]) .glass li {
   color: inherit;
-}
-
-/* Light mode: better hover states */
-:not([data-theme="dark"]) .glass:hover {
-  border-color: var(--qs-border);
-  box-shadow: var(--qs-shadow-medium);
-}
-
-/* ============================================
-   Light Mode Text Visibility - Critical Fix
-============================================ */
-:not([data-theme="dark"]) body,
-:not([data-theme="dark"]) html {
-  color: var(--qs-text) !important;
-  background-color: var(--qs-bg) !important;
-}
-
-/* Ensure section titles and descriptions are always visible */
-:not([data-theme="dark"]) h1,
-:not([data-theme="dark"]) h2,
-:not([data-theme="dark"]) h3,
-:not([data-theme="dark"]) h4,
-:not([data-theme="dark"]) h5,
-:not([data-theme="dark"]) h6 {
-  color: var(--qs-text) !important;
-}
-
-/* Ensure section description text is visible */
-:not([data-theme="dark"]) p {
-  color: var(--qs-text) !important;
-}
-
-/* Ensure all text colors are visible in light mode */
-:not([data-theme="dark"]) span,
-:not([data-theme="dark"]) div {
-  --tw-text-opacity: 1;
-}
-
-/* Force visible text colors for specific classes */
-:not([data-theme="dark"]) .text-qs-text {
-  color: var(--qs-text) !important;
-}
-
-:not([data-theme="dark"]) .text-qs-text-section {
-  color: var(--qs-text-section) !important;
-}
-
-:not([data-theme="dark"]) .text-qs-text-muted {
-  color: var(--qs-text-muted) !important;
-}
-
-:not([data-theme="dark"]) .text-qs-primary {
-  color: var(--qs-primary) !important;
-}
-
-/* Light mode header/nav text visibility - Critical */
-:not([data-theme="dark"]) header,
-:not([data-theme="dark"]) nav {
-  color: #000033 !important;
-}
-
-/* Force all header text to be dark navy/visible */
-:not([data-theme="dark"]) header * {
-  color: #000033 !important;
-  opacity: 1 !important;
-}
-
-:not([data-theme="dark"]) header a,
-:not([data-theme="dark"]) nav a,
-:not([data-theme="dark"]) header button,
-:not([data-theme="dark"]) nav button {
-  color: #000033 !important;
-  opacity: 1 !important;
-  text-opacity: 1 !important;
-  --tw-text-opacity: 1 !important;
-}
-
-:not([data-theme="dark"]) header li {
-  color: #000033 !important;
-}
-
-:not([data-theme="dark"]) header span {
-  color: #000033 !important;
-}
-
-:not([data-theme="dark"]) header a:hover,
-:not([data-theme="dark"]) nav a:hover,
-:not([data-theme="dark"]) header button:hover,
-:not([data-theme="dark"]) nav button:hover {
-  color: #0073ff !important;
-}
-
-/* Legacy text-section class needs to be visible */
-:not([data-theme="dark"]) .text-section {
-  color: var(--qs-text-section) !important;
-}
-
-/* ============================================
-   Light Mode Badge & Button Visibility Fix
-============================================ */
-
-/* Badge with gradient background - ensure white text is always visible */
-:not([data-theme="dark"]) .bg-qs-gradient-primary {
-  background: linear-gradient(135deg, #0073ff 0%, #00a3ed 100%) !important;
-  color: #ffffff !important;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
-  fill: #ffffff !important;
-}
-
-:not([data-theme="dark"]) [class*="bg-qs-gradient"] {
-  color: #ffffff !important;
-}
-
-/* Force white text on all gradient badges in light mode */
-:not([data-theme="dark"]) .bg-qs-gradient-primary,
-:not([data-theme="dark"]) [class*="bg-qs-gradient"] {
-  --tw-text-opacity: 1;
-}
-
-:not([data-theme="dark"]) .bg-qs-gradient-primary * {
-  color: #ffffff !important;
-}
-
-/* Button text visibility in light mode */
-:not([data-theme="dark"]) button {
-  color: var(--qs-primary) !important;
-}
-
-:not([data-theme="dark"]) button:not([class*="bg-qs-gradient"]) {
-  border: 2px solid var(--qs-primary) !important;
-  background-color: var(--qs-surface) !important;
-  color: var(--qs-primary) !important;
-  font-weight: 700 !important;
-}
-
-:not([data-theme="dark"]) button:hover:not([class*="bg-qs-gradient"]) {
-  background-color: var(--qs-primary-soft) !important;
-}
-
-/* ============================================
-   Tech Stack Badge & Icon Visibility
-============================================ */
-
-/* Badge text visibility in light mode */
-:not([data-theme="dark"]) .bg-qs-primary {
-  background-color: var(--qs-primary) !important;
-  color: #ffffff !important;
-}
-
-:not([data-theme="dark"]) .bg-qs-primary\/90 {
-  background-color: rgba(0, 115, 255, 0.9) !important;
-  color: #ffffff !important;
-}
-
-/* Tech stack badge styling */
-:not([data-theme="dark"]) [class*="bg-qs-primary"] {
-  color: #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Icon container visibility in light mode */
-:not([data-theme="dark"]) .bg-qs-surface {
-  background-color: var(--qs-surface) !important;
-  border: 1px solid var(--qs-primary) !important;
-}
-
-:not([data-theme="dark"]) [class*="ring-qs-primary"] {
-  --tw-ring-color: var(--qs-primary) !important;
-}
-
-/* Ensure glass containers show badges properly in light mode */
-:not([data-theme="dark"]) .glass {
-  background-color: var(--qs-glass-bg) !important;
-  border: 1px solid var(--qs-border) !important;
 }
