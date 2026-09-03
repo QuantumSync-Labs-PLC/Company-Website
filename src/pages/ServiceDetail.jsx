@@ -1,12 +1,19 @@
 // src/pages/ServiceDetail.jsx
 
+import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import services from "../data/services";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import JsonLd, { createServiceSchema } from "../components/common/JsonLd";
+import services from "@/data/services";
+import ServiceCta from "@/components/marketing/ServiceCta";
+import { trackServiceView } from "@/utils/analytics";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import JsonLd, {
+  createServiceSchema,
+  createBreadcrumbSchema,
+  createGraph,
+} from "@/components/seo/JsonLd";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -16,6 +23,10 @@ export default function ServiceDetail() {
   const service = services.find((s) => s.id === id);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (service) trackServiceView(service.id, service.title);
+  }, [service]);
+
   if (!service) {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-qs-bg px-4">
@@ -23,7 +34,7 @@ export default function ServiceDetail() {
           <h2 className="font-headline text-3xl sm:text-4xl text-qs-primary font-bold mb-4">Service Not Found</h2>
           <p className="font-body text-qs-text-section mb-8 text-lg">The service you're looking for doesn't exist.</p>
           <button
-            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
+            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-on-primary font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
             onClick={() => navigate("/services")}
           >
             Back to Services
@@ -35,14 +46,13 @@ export default function ServiceDetail() {
 
   const Icon = service.icon;
 
-  // Related services: all except this one, limit to 3 random
-  const related = services
-    .filter((s) => s.id !== id)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3);
-
-  // Prepare contact link (prefill subject)
-  const contactLink = `/contact?subject=${encodeURIComponent(service.title)}`;
+  // Related services: the next three in the catalogue, wrapping around. Stable
+  // order matters — a randomised list rewrites the internal link graph on every
+  // render, which tells search engines nothing about which pages matter.
+  const startIndex = services.findIndex((s) => s.id === id);
+  const related = [1, 2, 3].map(
+    (offset) => services[(startIndex + offset) % services.length]
+  );
 
   const appUrl = import.meta.env.VITE_APP_URL || "https://www.quantumsynclabs.com";
   const serviceUrl = `${appUrl}/services/${service.id}`;
@@ -57,7 +67,16 @@ export default function ServiceDetail() {
         url={serviceUrl}
         ogImage={service.cover}
       >
-        <JsonLd schema={createServiceSchema(service)} />
+        <JsonLd
+          schema={createGraph(
+            createServiceSchema(service),
+            createBreadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Services", path: "/services" },
+              { name: service.title, path: `/services/${service.id}` },
+            ])
+          )}
+        />
       </PageMeta>
       <main className="flex-1 py-16 sm:py-20 md:py-28 px-4 flex flex-col items-center" role="main">
         <article className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 max-w-4xl w-full mx-auto p-8 sm:p-10 md:p-14">
@@ -82,7 +101,7 @@ export default function ServiceDetail() {
             />
           )}
           {/* Description (markdown support) */}
-          <div className="font-body text-base sm:text-lg text-qs-text-section mb-8 text-center prose prose-invert max-w-none leading-relaxed">
+          <div className="font-body text-base sm:text-lg text-qs-text-section mb-8 text-center leading-relaxed">
             <ReactMarkdown>{service.description}</ReactMarkdown>
           </div>
           {/* Features List */}
@@ -97,21 +116,18 @@ export default function ServiceDetail() {
             </div>
           )}
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+          <div className="flex justify-center pt-4">
             <Link
               to="/services"
-              className="inline-block glass text-qs-primary font-bold px-10 py-4 rounded-glass border border-qs-primary hover:bg-qs-primary hover:text-qs-bg transition-all duration-300 transform hover:scale-105 text-base"
+              className="inline-block glass text-qs-primary font-bold px-10 py-4 rounded-glass border border-qs-primary hover:bg-qs-primary hover:text-qs-on-primary transition-all duration-300 transform hover:scale-105 text-base"
             >
               ← Back to All Services
             </Link>
-            <Link
-              to={contactLink}
-              className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-base"
-            >
-              Contact Us About {service.title}
-            </Link>
           </div>
         </article>
+
+        {/* Booking, scoped brief, and the case studies that prove this service */}
+        <ServiceCta service={service} />
 
         {/* Related Services Section */}
         {related.length > 0 && (
@@ -142,7 +158,7 @@ export default function ServiceDetail() {
                     <div className="font-body text-qs-text-section text-sm sm:text-base text-center mb-5 line-clamp-3 leading-relaxed">{rel.excerpt}</div>
                     <Link
                       to={rel.link}
-                      className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-8 py-3 rounded-glass shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm mt-auto"
+                      className="inline-block bg-qs-primary hover:bg-qs-primary-hover text-qs-on-primary font-bold px-8 py-3 rounded-glass shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm mt-auto"
                     >
                       Learn More
                     </Link>

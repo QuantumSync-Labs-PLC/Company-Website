@@ -1,9 +1,9 @@
-import teamMembers from "../data/teamMembers";
+import teamMembers from "@/data/teamMembers";
 import { Linkedin, Github } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import SectionShell from "../components/common/SectionShell";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
+import SectionShell from "@/components/layout/SectionShell";
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
 
 // Map icon string to component
 const ICONS = {
@@ -39,7 +39,7 @@ export default function TeamSection() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={cardVariants}
-            whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 60px #22d3ee40" }}
+            whileHover={{ y: -8, scale: 1.02, boxShadow: "var(--qs-shadow-neon)" }}
             className="glass rounded-qs-lg shadow-neon border border-qs-primary/10 p-8 flex flex-col items-center text-center transition-all duration-300 hover:border-qs-primary/30"
           >
             <div className="w-32 h-32 mb-5 flex items-center justify-center rounded-full bg-qs-surface shadow-lg overflow-hidden border-3 border-qs-primary ring-2 ring-qs-primary/20">

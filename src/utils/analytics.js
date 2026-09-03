@@ -3,14 +3,33 @@
  * Wraps gtag functions for easier tracking throughout the app
  */
 
+/**
+ * Resolve the GA4 measurement ID.
+ * Both names are read so an ID already set under either key keeps working.
+ * VITE_GA_ID is the canonical name (see .env.example).
+ */
+function getGaId() {
+  return (
+    import.meta.env.VITE_GA_ID ||
+    import.meta.env.VITE_GOOGLE_ANALYTICS_ID ||
+    ""
+  );
+}
+
 export function initAnalytics() {
-  const gaId = import.meta.env.VITE_GA_ID;
+  const gaId = getGaId();
 
   if (!gaId) {
     // GA not configured, skip initialization
     console.debug("GA4 tracking ID not configured");
     return;
   }
+
+  // Don't inject twice (StrictMode double-invokes effects in development)
+  if (window.__qsGaLoaded) {
+    return;
+  }
+  window.__qsGaLoaded = true;
 
   // Inject GA script
   const script = document.createElement("script");
@@ -20,16 +39,18 @@ export function initAnalytics() {
 
   // Configure gtag
   window.dataLayer = window.dataLayer || [];
+  // gtag must push the raw `arguments` object — Google's endpoint reads it by
+  // shape, so rest parameters would change the payload.
   function gtag() {
-    // eslint-disable-next-line prefer-rest-params
     window.dataLayer.push(arguments);
   }
   window.gtag = gtag;
 
   gtag("js", new Date());
   gtag("config", gaId, {
-    // Optional: Send page view on init (page view is usually sent separately)
-    // send_page_view: true
+    // Route changes are tracked by <RouteAnalytics />, which also fires the
+    // first page view. Letting gtag send its own would double-count it.
+    send_page_view: false,
   });
 }
 
@@ -46,7 +67,8 @@ export function trackPageView(path, title) {
 
   window.gtag("event", "page_view", {
     page_path: path,
-    page_title: title,
+    page_title: title || document.title,
+    page_location: window.location.href,
   });
 }
 

@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import techStack from "../data/techStack"; // [{ id, name, logoPath }]
-import Badge from "../components/common/Badge";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
-import SectionShell from "../components/common/SectionShell";
-import Scene3D from "../components/three/Scene3D";
+import techStack from "@/data/techStack"; // [{ id, name, logoPath }]
+import Badge from "@/components/ui/Badge";
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
+import SectionShell from "@/components/layout/SectionShell";
+import Scene3DDeferred from "@/components/three/Scene3DDeferred";
 
-const FloatingObjects = lazy(() => import("../components/three/FloatingObjects"));
+const FloatingObjects = lazy(() => import("@/components/three/FloatingObjects"));
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -19,8 +19,10 @@ const cardVariants = {
 };
 
 function handleImgError(e) {
-  e.target.src = "https://via.placeholder.com/56x56?text=?";
-  e.target.style.background = "#e0e7ef"; // fallback bg
+  // Was a hardcoded light-grey swatch plus a request to via.placeholder.com,
+  // a third-party service that no longer resolves. Hide the broken image and
+  // let the themed tile behind it show through instead.
+  e.target.style.visibility = "hidden";
 }
 
 export default function TechStackSection() {
@@ -35,11 +37,11 @@ export default function TechStackSection() {
       <SectionBackgroundBlur topLeftClassName="pointer-events-none absolute top-0 left-0 w-56 h-56 bg-qs-primary blur-3xl opacity-10 z-0" />
 
       {/* Ambient 3D accent */}
-      <Scene3D className="absolute inset-0 z-0 opacity-60" camera={{ position: [0, 0, 5], fov: 50 }}>
+      <Scene3DDeferred className="absolute inset-0 z-0 opacity-60" camera={{ position: [0, 0, 5], fov: 50 }}>
         <Suspense fallback={null}>
           <FloatingObjects count={4} />
         </Suspense>
-      </Scene3D>
+      </Scene3DDeferred>
 
       <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 sm:gap-8">
         {techStack.map((tech, i) => (
@@ -65,7 +67,7 @@ export default function TechStackSection() {
                 />
               </div>
               <Badge
-                textColor="text-qs-bg"
+                textColor="text-qs-on-primary"
                 className="border border-qs-primary/20 text-xs font-bold px-4 py-1.5 rounded-full"
               >
                 {tech.name}

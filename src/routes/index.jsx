@@ -1,19 +1,21 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import SuspenseFallback from "../components/common/SuspenseFallback";
+import SuspenseFallback from "@/components/ui/SuspenseFallback";
 
 // Lazy load page components for optimal code splitting and performance
-const Home = lazy(() => import("../pages/Home"));
-const About = lazy(() => import("../pages/About"));
-const Careers = lazy(() => import("../pages/Careers"));
-const Services = lazy(() => import("../pages/Services"));
-const ServiceDetail = lazy(() => import("../pages/ServiceDetail"));
-const Work = lazy(() => import("../pages/Work"));
-const WorkDetail = lazy(() => import("../pages/WorkDetail"));
-const Blog = lazy(() => import("../pages/Blog"));
-const BlogPost = lazy(() => import("../pages/BlogPost"));
-const Contact = lazy(() => import("../pages/Contact"));
-const NotFoundPage = lazy(() => import("../pages/404"));
+const Home = lazy(() => import("@/pages/Home"));
+const About = lazy(() => import("@/pages/About"));
+const Careers = lazy(() => import("@/pages/Careers"));
+const Services = lazy(() => import("@/pages/Services"));
+const Process = lazy(() => import("@/pages/Process"));
+const Pricing = lazy(() => import("@/pages/Pricing"));
+const ServiceDetail = lazy(() => import("@/pages/ServiceDetail"));
+const Work = lazy(() => import("@/pages/Work"));
+const WorkDetail = lazy(() => import("@/pages/WorkDetail"));
+const Blog = lazy(() => import("@/pages/Blog"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const NotFoundPage = lazy(() => import("@/pages/404"));
 
 /**
  * Application routing configuration
@@ -32,6 +34,10 @@ export default function AppRoutes() {
         {/* Services */}
         <Route path="/services" element={<Services />} />
         <Route path="/services/:id" element={<ServiceDetail />} />
+
+        {/* How we work & commercials */}
+        <Route path="/process" element={<Process />} />
+        <Route path="/pricing" element={<Pricing />} />
 
         {/* Work / Case Studies */}
         <Route path="/work" element={<Work />} />

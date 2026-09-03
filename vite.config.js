@@ -1,12 +1,12 @@
 // vite.config.js
-import { defineConfig, splitVendorChunkPlugin } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import svgr from "vite-plugin-svgr";
 import { visualizer } from "rollup-plugin-visualizer";
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import { dirname, join, resolve } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,9 +14,15 @@ const packageJson = JSON.parse(
   readFileSync(join(__dirname, "package.json"), "utf-8")
 );
 
+// Bundle analysis is opt-in: `ANALYZE=1 npm run build`, or `npm run analyze`.
+// It used to run on every build and write dist/stats.html, which meant a full
+// map of the bundle was deployed to production alongside the site.
+const analyze = process.env.ANALYZE === "1";
+
 export default defineConfig({
   plugins: [
-    splitVendorChunkPlugin(),
+    // splitVendorChunkPlugin was removed here: it is deprecated in Vite 5+,
+    // and manualChunks below does the same job explicitly.
     react({
       babel: {
         compact: true,
@@ -24,12 +30,21 @@ export default defineConfig({
     }),
     tailwindcss(),
     svgr(),
-    visualizer({
-      filename: "./dist/stats.html",
-      title: "Bundle Analysis",
-      open: false,
-    }),
-  ],
+    analyze &&
+      visualizer({
+        filename: "./.analysis/stats.html",
+        title: "Bundle Analysis",
+        gzipSize: true,
+        open: true,
+      }),
+  ].filter(Boolean),
+
+  resolve: {
+    // "@/x" beats "../../../x" and survives files being moved between folders.
+    alias: {
+      "@": resolve(__dirname, "src"),
+    },
+  },
   server: {
     port: 3000,
     open: true,
@@ -56,6 +71,22 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
+        // Replaces splitVendorChunkPlugin. Keeping React and the router in one
+        // long-lived chunk means a content change doesn't invalidate them.
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          // The trailing separator matters: without it this also matched
+          // react-markdown, dragging a route-only dependency into the chunk
+          // every visitor downloads first.
+          if (
+            /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|scheduler)[\\/]/.test(
+              id
+            )
+          ) {
+            return "vendor";
+          }
+          return undefined;
+        },
         chunkFileNames: "js/[name]-[hash].js",
         entryFileNames: "js/[name]-[hash].js",
         assetFileNames: (assetInfo) => {
@@ -73,11 +104,6 @@ export default defineConfig({
     reportCompressedSize: false,
   },
   optimizeDeps: {
-    include: [
-      "framer-motion",
-      "react-router-dom",
-      "classnames",
-    ],
-    exclude: ["fsevents"],
+    include: ["framer-motion", "react-router-dom"],
   },
 });

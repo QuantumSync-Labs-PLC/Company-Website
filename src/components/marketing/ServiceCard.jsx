@@ -4,7 +4,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import Button from "@/components/ui/Button";
 
 const defaultVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -19,7 +19,7 @@ export default function ServiceCard({
   service,
   index = 0,
   variants = defaultVariants,
-  whileHover = { y: -10, scale: 1.02, boxShadow: "0 12px 48px #22d3ee55" },
+  whileHover = { y: -10, scale: 1.02, boxShadow: "var(--qs-shadow-neon)" },
   containerClassName = "",
   showFeaturesCount = 3,
   buttonFullWidth = true,

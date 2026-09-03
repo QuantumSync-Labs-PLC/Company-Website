@@ -1,12 +1,12 @@
 import { useState } from "react";
-import blogPosts from "../data/blogPosts";
+import blogPosts from "@/data/blogPosts";
 import { Link } from "react-router-dom";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import ResponsiveImage from "../components/common/ResponsiveImage";
-import BlogFilterBar from "../components/common/BlogFilterBar";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import ResponsiveImage from "@/components/ui/ResponsiveImage";
+import BlogFilterBar from "@/components/marketing/BlogFilterBar";
 
 export default function Blog() {
   const [filteredPosts, setFilteredPosts] = useState(blogPosts);

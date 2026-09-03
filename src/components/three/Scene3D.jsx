@@ -3,31 +3,22 @@ import PropTypes from "prop-types";
 import { Canvas } from "@react-three/fiber";
 
 /**
- * Shared <Canvas> wrapper for all 3D accents on the site.
- * - Skips WebGL entirely for prefers-reduced-motion / narrow (mobile) viewports,
- *   rendering `fallback` (a cheap CSS gradient) instead.
- * - Pauses the render loop while the canvas is scrolled offscreen or the tab is hidden.
+ * The WebGL <Canvas> itself. Do not import this directly — import
+ * Scene3DDeferred, which decides whether this module is loaded at all.
+ * By the time this renders, the visitor has already been cleared for 3D.
+ *
+ * - Pauses the render loop while the canvas is scrolled offscreen.
  * - Caps devicePixelRatio so GPU cost stays bounded on high-DPI displays.
  */
 export default function Scene3D({
   children,
   className = "",
   camera = { position: [0, 0, 5], fov: 45 },
-  fallback = null,
-  mobileBreakpoint = 640,
 }) {
   const containerRef = useRef(null);
   const [inView, setInView] = useState(false);
-  const [canRender3D, setCanRender3D] = useState(false);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isNarrow = window.innerWidth < mobileBreakpoint;
-    setCanRender3D(!reducedMotion && !isNarrow);
-  }, [mobileBreakpoint]);
-
-  useEffect(() => {
-    if (!canRender3D) return undefined;
     const node = containerRef.current;
     if (!node || typeof IntersectionObserver === "undefined") {
       setInView(true);
@@ -39,15 +30,7 @@ export default function Scene3D({
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [canRender3D]);
-
-  if (!canRender3D) {
-    return (
-      <div ref={containerRef} className={className} aria-hidden="true">
-        {fallback}
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div ref={containerRef} className={className} aria-hidden="true">
@@ -67,6 +50,4 @@ Scene3D.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   camera: PropTypes.object,
-  fallback: PropTypes.node,
-  mobileBreakpoint: PropTypes.number,
 };

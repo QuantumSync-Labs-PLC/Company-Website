@@ -27,6 +27,8 @@
       name="description"
       content="QuantumSync Labs - Modern IT solutions, cloud, AI, and software engineering. Empowering digital transformation for your business."
     />
+    <!-- Colours the browser chrome on Chrome and iOS Safari. Firefox and Opera
+         ignore it, which is why compat linters flag it; see .hintrc. -->
     <meta name="theme-color" content="#060810" />
 
     <!-- Open Graph / Social -->
@@ -35,19 +37,40 @@
       property="og:description"
       content="Modern IT solutions, cloud, AI, and software engineering."
     />
-    <meta property="og:image" content="/assets/images/og-logo.webp" />
+    <meta property="og:image" content="https://www.quantumsynclabs.com/og-image.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://quantumsynclabs.com/" />
+    <meta property="og:site_name" content="QuantumSync Labs" />
+    <meta property="og:url" content="https://www.quantumsynclabs.com/" />
+    <link rel="canonical" href="https://www.quantumsynclabs.com/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="QuantumSync Labs" />
     <meta
       name="twitter:description"
       content="Modern IT solutions, cloud, AI, and software engineering."
     />
-    <meta name="twitter:image" content="/assets/images/og-logo.webp" />
+    <meta name="twitter:image" content="https://www.quantumsynclabs.com/og-image.webp" />
 
     <!-- Robots for SEO -->
     <meta name="robots" content="index, follow" />
+
+    <!-- Sets the theme before first paint. See src/hooks/useTheme.jsx. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("qs-theme");
+          var theme =
+            stored ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          var html = document.documentElement;
+          html.setAttribute("data-theme", theme);
+          html.classList.toggle("dark", theme === "dark");
+        } catch (e) {
+          /* blocked storage: the prefers-color-scheme block in CSS covers it */
+        }
+      })();
+    </script>
   </head>
   <body class="antialiased font-body">
     <div id="root"></div>

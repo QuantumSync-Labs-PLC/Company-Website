@@ -17,21 +17,21 @@
  */
 
 // Author avatars
-import tharindu from "../assets/images/tharindu.webp";
-import thamash from "../assets/images/thamash.webp";
-import ravindu from "../assets/images/ravindu.webp";
-import kaveesha from "../assets/images/kaveesha.webp";
+import tharindu from "@/assets/images/tharindu.webp";
+import thamash from "@/assets/images/thamash.webp";
+import ravindu from "@/assets/images/ravindu.webp";
+import kaveesha from "@/assets/images/kaveesha.webp";
 
 // Blog post cover images
-import aiBanking from "../assets/images/secure-online-banking.webp";
-import scalableApps from "../assets/images/building-scalable-apps.webp";
-import ibmQuantum from "../assets/images/IBM-Quantum-Lab.webp";
-import cloudMigration from "../assets/images/cloud-migration.webp";
-import uxDesign from "../assets/images/ui-ux-design.webp";
-import aiTrends from "../assets/images/ai-trends.webp";
-import devops from "../assets/images/devops.webp";
-import quantumHealthcare from "../assets/images/quantum-healthcare.webp";
-import security from "../assets/images/cybersecurity-strategies-2024.webp";
+import aiBanking from "@/assets/images/secure-online-banking.webp";
+import scalableApps from "@/assets/images/building-scalable-apps.webp";
+import ibmQuantum from "@/assets/images/IBM-Quantum-Lab.webp";
+import cloudMigration from "@/assets/images/cloud-migration.webp";
+import uxDesign from "@/assets/images/ui-ux-design.webp";
+import aiTrends from "@/assets/images/ai-trends.webp";
+import devops from "@/assets/images/devops.webp";
+import quantumHealthcare from "@/assets/images/quantum-healthcare.webp";
+import security from "@/assets/images/cybersecurity-strategies-2024.webp";
 
 const blogPosts = [
   {

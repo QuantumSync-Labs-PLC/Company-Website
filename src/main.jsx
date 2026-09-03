@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import App from "@/App";
 import "./theme/tailwind.css";
 
 /**
@@ -11,16 +11,16 @@ import "./theme/tailwind.css";
 if ('requestIdleCallback' in window) {
   requestIdleCallback(() => {
     // Preload high-traffic pages
-    import("./pages/Services");
-    import("./pages/About");
-    import("./pages/Contact");
+    import("@/pages/Services");
+    import("@/pages/About");
+    import("@/pages/Contact");
   });
 } else {
   // Fallback for browsers that don't support requestIdleCallback
   setTimeout(() => {
-    import("./pages/Services");
-    import("./pages/About");
-    import("./pages/Contact");
+    import("@/pages/Services");
+    import("@/pages/About");
+    import("@/pages/Contact");
   }, 1000);
 }
 

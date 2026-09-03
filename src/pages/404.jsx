@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PageMeta from "../components/common/PageMeta";
+import PageMeta from "@/components/seo/PageMeta";
 
 export default function NotFoundPage() {
   return (
@@ -49,13 +49,13 @@ export default function NotFoundPage() {
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
           <Link
             to="/"
-            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base font-body text-center"
+            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-on-primary font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-base font-body text-center"
           >
             Go Home
           </Link>
           <Link
             to="/services"
-            className="glass border border-qs-primary text-qs-primary hover:bg-qs-primary hover:text-qs-bg font-bold px-10 py-4 rounded-glass transition-all duration-300 transform hover:scale-105 text-base font-body text-center"
+            className="glass border border-qs-primary text-qs-primary hover:bg-qs-primary hover:text-qs-on-primary font-bold px-10 py-4 rounded-glass transition-all duration-300 transform hover:scale-105 text-base font-body text-center"
           >
             Explore Services
           </Link>

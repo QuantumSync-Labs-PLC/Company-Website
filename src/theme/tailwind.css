@@ -6,51 +6,104 @@
    "Deep-Space Holographic" palette
 ============================================ */
 
+/*
+  Structure, and why it is this way:
+
+  :root holds the LIGHT palette. [data-theme="dark"] overrides it. A
+  prefers-color-scheme block gives dark to visitors whose OS asks for it even
+  when JavaScript never runs — guarded by :not([data-theme="light"]) so an
+  explicit light choice still wins. The theme script sets data-theme="light"
+  explicitly rather than removing the attribute, which is what makes that guard
+  possible.
+
+  Every colour a theme needs is declared in :root first. A value that only
+  exists inside a media or [data-theme] block would be undefined in the other
+  state, which is how themes end up rendering one theme's text on the other
+  theme's background.
+*/
+
 :root {
-  /* ----- Light Theme (Default) ----- */
-  --qs-bg: #f5f7fc;
-  --qs-bg-alt: #eef1f9;
-  --qs-surface: rgba(11, 20, 38, 0.03);
+  color-scheme: light;
+
+  /* ----- Light Theme (default) ----- */
+  --qs-bg: #eef1f8;
+  --qs-bg-alt: #e4e9f4;
+
+  /* Opaque, not a translucent wash. A translucent surface multiplies with
+     whatever is behind it, so nested cards drift and never read as distinct. */
+  --qs-surface: #ffffff;
+  --qs-surface-solid: #ffffff;
   --qs-surface-elevated: #ffffff;
-  --qs-hairline: rgba(11, 20, 38, 0.1);
+  --qs-surface-sunken: #e7ebf5;
+  --qs-input-bg: #ffffff;
+
+  --qs-hairline: rgba(11, 20, 38, 0.14);
+  --qs-hairline-hover: rgba(14, 116, 144, 0.45);
   --qs-border: var(--qs-hairline);
 
   /* Text */
   --qs-text: #0b1426;
-  --qs-text-muted: #57617a;
+  --qs-text-muted: #55607a;
   --qs-text-section: #131f38;
 
-  /* Brand / Accent */
-  --qs-primary: #0891a8;
-  --qs-primary-hover: #067288;
-  --qs-primary-soft: rgba(8, 145, 168, 0.12);
-  --qs-violet: #6d3fd6;
-  --qs-violet-hover: #5a2fc2;
-  --qs-violet-soft: rgba(109, 63, 214, 0.12);
+  /* Brand / Accent.
+     Cyan had to move a long way down for light: #0891a8 measured 3.48:1, and
+     no cyan light enough to still read as cyan clears 4.5:1 on a pale ground.
+     #0e7490 keeps the hue and reaches 5.00:1. */
+  --qs-primary: #0e7490;
+  --qs-primary-hover: #0b5a71;
+  --qs-primary-soft: rgba(14, 116, 144, 0.12);
+  --qs-violet: #5b32c0;
+  --qs-violet-hover: #4a26a6;
+  --qs-violet-soft: rgba(91, 50, 192, 0.12);
   --qs-accent: var(--qs-violet);
   --qs-accent-hover: var(--qs-violet-hover);
   --qs-accent-soft: var(--qs-violet-soft);
 
-  /* Signal accent (lime) */
-  --qs-signal: #6f9200;
-  --qs-signal-soft: rgba(111, 146, 0, 0.14);
+  /* Signal accent (olive in light — lime cannot carry text on white) */
+  --qs-signal: #4f6b00;
+  --qs-signal-soft: rgba(79, 107, 0, 0.14);
 
   /* Semantic */
-  --qs-danger: #dc2626;
-  --qs-success: #0f9d64;
-  --qs-warning: #b3790a;
+  --qs-danger: #b81c1c;
+  --qs-success: #0a6c47;
+  --qs-warning: #8a5a00;
   --qs-info: var(--qs-primary);
 
-  /* Gradients & effects */
-  --qs-gradient-primary: linear-gradient(120deg, #0891a8 0%, #6d3fd6 55%, #c6389a 100%);
-  --qs-gradient-signal: linear-gradient(120deg, #0891a8 0%, #6f9200 100%);
-  --qs-glass-bg: rgba(255, 255, 255, 0.7);
+  /* Text colours for sitting ON a filled brand colour */
+  --qs-on-primary: #ffffff;
+  --qs-on-accent: #ffffff;
+  --qs-on-signal: #ffffff;
+  --qs-on-gradient: #ffffff;
 
-  /* Shadows */
-  --qs-shadow-soft: 0 2px 14px rgba(11, 20, 38, 0.08);
-  --qs-shadow-medium: 0 10px 30px rgba(11, 20, 38, 0.12);
-  --qs-shadow-neon: 0 0 20px 2px rgba(8, 145, 168, 0.28), 0 2px 12px rgba(11, 20, 38, 0.1);
-  --qs-shadow-neon-accent: 0 0 20px 2px rgba(109, 63, 214, 0.28), 0 2px 12px rgba(11, 20, 38, 0.1);
+  /* Gradient stops are named so contrast against them can be checked */
+  --qs-gradient-start: #0e7490;
+  --qs-gradient-mid: #5b32c0;
+  --qs-gradient-end: #a4237c;
+
+  /* Gradients & effects */
+  --qs-gradient-primary: linear-gradient(
+    120deg,
+    var(--qs-gradient-start) 0%,
+    var(--qs-gradient-mid) 55%,
+    var(--qs-gradient-end) 100%
+  );
+  --qs-gradient-signal: linear-gradient(120deg, var(--qs-primary) 0%, var(--qs-signal) 100%);
+  --qs-glass-bg: #ffffff;
+
+  /* Light gets its depth from shadow, dark gets it from lightness.
+     The old light shadows were too faint to separate a white card
+     from a near-white page. */
+  --qs-shadow-soft: 0 1px 2px rgba(11, 20, 38, 0.06), 0 4px 12px rgba(11, 20, 38, 0.08);
+  --qs-shadow-medium: 0 2px 4px rgba(11, 20, 38, 0.07), 0 12px 28px rgba(11, 20, 38, 0.13);
+  --qs-shadow-neon: 0 2px 6px rgba(14, 116, 144, 0.2), 0 10px 24px rgba(11, 20, 38, 0.14);
+  --qs-shadow-neon-accent: 0 2px 6px rgba(91, 50, 192, 0.2), 0 10px 24px rgba(11, 20, 38, 0.14);
+
+  /* Decorative line colours, so effects don't hardcode white */
+  --qs-scanline: rgba(11, 20, 38, 0.035);
+  --qs-selection-bg: rgba(14, 116, 144, 0.22);
+  --qs-selection-fg: #0b1426;
+  --qs-overlay: rgba(11, 20, 38, 0.45);
 
   /* Radii - sharper, more engineered */
   --qs-radius-sm: 0.375rem;
@@ -60,28 +113,37 @@
   --qs-radius-2xl: 1.25rem;
 }
 
-/* ----- Dark Theme (primary experience) ----- */
+/* ----- Dark Theme ----- */
 [data-theme="dark"] {
+  color-scheme: dark;
+
   /* Void-black base */
   --qs-bg: #060810;
   --qs-bg-alt: #0a0d18;
-  --qs-surface: rgba(255, 255, 255, 0.03);
-  --qs-surface-elevated: #0d111f;
-  --qs-hairline: rgba(255, 255, 255, 0.08);
+
+  --qs-surface: #10151f;
+  --qs-surface-solid: #10151f;
+  --qs-surface-elevated: #161d2b;
+  --qs-surface-sunken: #0a0e17;
+  /* Darker than the card it sits in, so a field reads as a field */
+  --qs-input-bg: #0a0e17;
+
+  --qs-hairline: rgba(255, 255, 255, 0.11);
+  --qs-hairline-hover: rgba(34, 211, 238, 0.35);
   --qs-border: var(--qs-hairline);
 
   /* Text */
   --qs-text: #e7ecf5;
-  --qs-text-muted: #7e8aa3;
+  --qs-text-muted: #8b96ad;
   --qs-text-section: #c7d0e3;
 
   /* Brand / Accent */
   --qs-primary: #22d3ee;
   --qs-primary-hover: #5ddfef;
   --qs-primary-soft: rgba(34, 211, 238, 0.14);
-  --qs-violet: #8b5cf6;
-  --qs-violet-hover: #a689ff;
-  --qs-violet-soft: rgba(139, 92, 246, 0.16);
+  --qs-violet: #a78bfa;
+  --qs-violet-hover: #c0aaff;
+  --qs-violet-soft: rgba(167, 139, 250, 0.16);
   --qs-accent: var(--qs-violet);
   --qs-accent-hover: var(--qs-violet-hover);
   --qs-accent-soft: var(--qs-violet-soft);
@@ -91,21 +153,41 @@
   --qs-signal-soft: rgba(197, 255, 74, 0.16);
 
   /* Semantic */
-  --qs-danger: #ff5d72;
+  --qs-danger: #ff8b99;
   --qs-success: #34e6a8;
   --qs-warning: #ffb84d;
   --qs-info: var(--qs-primary);
 
-  /* Gradients & effects */
-  --qs-gradient-primary: linear-gradient(120deg, #22d3ee 0%, #8b5cf6 55%, #f65fb5 100%);
-  --qs-gradient-signal: linear-gradient(120deg, #22d3ee 0%, #c5ff4a 100%);
-  --qs-glass-bg: rgba(13, 17, 31, 0.5);
+  /* On bright neon fills, the page black is the readable label colour —
+     white on #22d3ee is 1.81:1. */
+  --qs-on-primary: #060810;
+  --qs-on-accent: #060810;
+  --qs-on-signal: #060810;
+  --qs-on-gradient: #060810;
+
+  --qs-gradient-start: #22d3ee;
+  --qs-gradient-mid: #8b5cf6;
+  --qs-gradient-end: #f65fb5;
+
+  --qs-gradient-primary: linear-gradient(
+    120deg,
+    var(--qs-gradient-start) 0%,
+    var(--qs-gradient-mid) 55%,
+    var(--qs-gradient-end) 100%
+  );
+  --qs-gradient-signal: linear-gradient(120deg, var(--qs-primary) 0%, var(--qs-signal) 100%);
+  --qs-glass-bg: rgba(16, 21, 31, 0.72);
 
   /* Shadows */
   --qs-shadow-soft: 0 6px 24px rgba(0, 0, 0, 0.45);
   --qs-shadow-medium: 0 10px 36px rgba(0, 0, 0, 0.55);
   --qs-shadow-neon: 0 0 24px 3px rgba(34, 211, 238, 0.35), 0 2px 12px rgba(0, 0, 0, 0.5);
   --qs-shadow-neon-accent: 0 0 24px 3px rgba(139, 92, 246, 0.35), 0 2px 12px rgba(0, 0, 0, 0.5);
+
+  --qs-scanline: rgba(255, 255, 255, 0.025);
+  --qs-selection-bg: rgba(34, 211, 238, 0.3);
+  --qs-selection-fg: #ffffff;
+  --qs-overlay: rgba(0, 0, 0, 0.55);
 
   /* Radii */
   --qs-radius-sm: 0.375rem;
@@ -115,6 +197,69 @@
   --qs-radius-2xl: 1.25rem;
 }
 
+/*
+  CSS-only fallback: a dark-preferring OS gets the dark theme even if the
+  pre-paint script never runs. An explicit light choice still wins.
+*/
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --qs-bg: #060810;
+    --qs-bg-alt: #0a0d18;
+    --qs-surface: #10151f;
+    --qs-surface-solid: #10151f;
+    --qs-surface-elevated: #161d2b;
+    --qs-surface-sunken: #0a0e17;
+    --qs-input-bg: #0a0e17;
+    --qs-hairline: rgba(255, 255, 255, 0.11);
+    --qs-hairline-hover: rgba(34, 211, 238, 0.35);
+    --qs-border: var(--qs-hairline);
+
+    --qs-text: #e7ecf5;
+    --qs-text-muted: #8b96ad;
+    --qs-text-section: #c7d0e3;
+
+    --qs-primary: #22d3ee;
+    --qs-primary-hover: #5ddfef;
+    --qs-primary-soft: rgba(34, 211, 238, 0.14);
+    --qs-violet: #a78bfa;
+    --qs-violet-hover: #c0aaff;
+    --qs-violet-soft: rgba(167, 139, 250, 0.16);
+    --qs-accent: var(--qs-violet);
+    --qs-accent-hover: var(--qs-violet-hover);
+    --qs-accent-soft: var(--qs-violet-soft);
+
+    --qs-signal: #c5ff4a;
+    --qs-signal-soft: rgba(197, 255, 74, 0.16);
+
+    --qs-danger: #ff8b99;
+    --qs-success: #34e6a8;
+    --qs-warning: #ffb84d;
+    --qs-info: var(--qs-primary);
+
+    --qs-on-primary: #060810;
+    --qs-on-accent: #060810;
+    --qs-on-signal: #060810;
+    --qs-on-gradient: #060810;
+
+    --qs-gradient-start: #22d3ee;
+    --qs-gradient-mid: #8b5cf6;
+    --qs-gradient-end: #f65fb5;
+    --qs-glass-bg: rgba(16, 21, 31, 0.72);
+
+    --qs-shadow-soft: 0 6px 24px rgba(0, 0, 0, 0.45);
+    --qs-shadow-medium: 0 10px 36px rgba(0, 0, 0, 0.55);
+    --qs-shadow-neon: 0 0 24px 3px rgba(34, 211, 238, 0.35), 0 2px 12px rgba(0, 0, 0, 0.5);
+    --qs-shadow-neon-accent: 0 0 24px 3px rgba(139, 92, 246, 0.35), 0 2px 12px rgba(0, 0, 0, 0.5);
+
+    --qs-scanline: rgba(255, 255, 255, 0.025);
+    --qs-selection-bg: rgba(34, 211, 238, 0.3);
+    --qs-selection-fg: #ffffff;
+    --qs-overlay: rgba(0, 0, 0, 0.55);
+  }
+}
+
 /* ============================================
    Fonts: Space Grotesk (headline), Inter (body), JetBrains Mono (labels)
 ============================================ */
@@ -122,7 +267,6 @@
 html {
   background: var(--qs-bg);
   color: var(--qs-text);
-  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body {
@@ -161,30 +305,63 @@ h6,
 ============================================ */
 .glass {
   background: var(--qs-glass-bg);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
   border: 1px solid var(--qs-hairline);
   border-radius: var(--qs-radius-lg);
   box-shadow: var(--qs-shadow-soft);
 }
 
-.glass:hover {
-  border-color: rgba(34, 211, 238, 0.25);
+/* The blur only does visible work over the dark theme's translucent panels.
+   In light the panel is opaque, so blurring costs a compositing layer and
+   renders nothing. */
+[data-theme="dark"] .glass {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
-html:not([data-theme="dark"]) .glass:hover {
-  border-color: rgba(8, 145, 168, 0.3);
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .glass {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Was two hardcoded hex values, one per theme. A token beats color-mix here:
+   same result, and no dependency on Chrome 111+ for a hover border. */
+.glass:hover {
+  border-color: var(--qs-hairline-hover);
 }
 
 /* ============================================
    Holographic text (gradient clip on headings)
 ============================================ */
 .holo-text {
+  /* Solid colour first: if background-clip:text is unsupported or the gradient
+     fails to resolve, the heading degrades to readable rather than invisible. */
+  color: var(--qs-text);
   background-image: var(--qs-gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .holo-text {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Gradient headings are transparent text; without this, selecting one shows an
+   empty highlight band. */
+::selection {
+  background: var(--qs-selection-bg);
+  color: var(--qs-selection-fg);
+}
+
+.holo-text::selection,
+.holo-text *::selection {
+  -webkit-text-fill-color: var(--qs-selection-fg);
+  color: var(--qs-selection-fg);
+  background: var(--qs-selection-bg);
 }
 
 /* ============================================
@@ -237,34 +414,34 @@ html:not([data-theme="dark"]) .glass:hover {
   position: relative;
 }
 
+/* The line colour is a token, so light draws a dark line instead of painting
+   white on white and rendering nothing. */
 .scanlines::after {
   content: "";
   position: absolute;
   inset: 0;
   background-image: repeating-linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.025) 0px,
-    rgba(255, 255, 255, 0.025) 1px,
+    var(--qs-scanline) 0px,
+    var(--qs-scanline) 1px,
     transparent 1px,
     transparent 3px
   );
   opacity: 0.5;
   pointer-events: none;
   z-index: 1;
-  mix-blend-mode: overlay;
-}
-
-html:not([data-theme="dark"]) .scanlines::after {
-  opacity: 0.15;
 }
 
 /* ============================================
-   Smooth Transitions for Theme Toggle
+   Theme switching
+
+   There is deliberately no universal `* { transition: ... }` here. It used to
+   animate every node in the document, which made the theme toggle visibly lag
+   while thousands of elements interpolated at once, delayed every hover state
+   by a quarter second, and collided with the explicit `transition-colors`
+   written on individual components. Components that want a colour transition
+   already ask for one.
 ============================================ */
-* {
-  transition: background-color 0.25s ease, color 0.25s ease,
-    border-color 0.25s ease;
-}
 
 /* ============================================
    Network Background Pattern (cheap 2D backdrop layer)
@@ -290,30 +467,20 @@ html:not([data-theme="dark"]) .scanlines::after {
   z-index: 0;
 }
 
-html:not([data-theme="dark"]) .bg-network-pattern::before {
-  background-image: radial-gradient(circle, #0891a8 1px, transparent 1px),
-    radial-gradient(circle, #6d3fd6 0.5px, transparent 0.5px);
-  background-size: 80px 80px, 200px 200px;
-  background-position: 0 0, 40px 60px;
-  opacity: 0.08;
-}
-
-[data-theme="dark"] .bg-network-pattern::before {
-  background-image: radial-gradient(circle, #22d3ee 1.5px, transparent 1.5px),
-    radial-gradient(circle, #8b5cf6 0.5px, transparent 0.5px);
-  background-size: 80px 80px, 200px 200px;
-  background-position: 0 0, 40px 60px;
+/* Both themes previously repeated this rule with hardcoded hexes. The dots now
+   take their colour from the tokens, so the pattern follows the palette. */
+.bg-network-pattern::before {
+  background-image:
+    radial-gradient(circle, var(--qs-primary) 1px, transparent 1px),
+    radial-gradient(circle, var(--qs-accent) 0.5px, transparent 0.5px);
   opacity: 0.1;
 }
 
-[data-theme="dark"] .bg-network-pattern::after {
+.bg-network-pattern::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(circle, rgba(34, 211, 238, 0.4), transparent 2px);
+  inset: 0;
+  background-image: radial-gradient(circle, var(--qs-primary), transparent 2px);
   background-size: 150px 150px;
   background-position: 0 0;
   opacity: 0;
@@ -322,41 +489,22 @@ html:not([data-theme="dark"]) .bg-network-pattern::before {
   z-index: 1;
 }
 
-html:not([data-theme="dark"]) .bg-network-pattern::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(circle, rgba(8, 145, 168, 0.25), transparent 2px);
-  background-size: 150px 150px;
-  background-position: 0 0;
-  opacity: 0;
-  animation: nodeGlow 5s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
 @keyframes nodeGlow {
   0%,
   100% {
-    opacity: 0.2;
+    opacity: 0.12;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
 /* ============================================
    Buttons/Glow/Shadow
 ============================================ */
+/* Alias of the themed token — was two hardcoded per-theme rules. */
 .shadow-neon-blue {
-  box-shadow: 0 0 18px 2px rgba(34, 211, 238, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-html:not([data-theme="dark"]) .shadow-neon-blue {
-  box-shadow: 0 0 16px 1px rgba(8, 145, 168, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--qs-shadow-neon);
 }
 
 .bg-main-gradient {
@@ -400,27 +548,37 @@ html:not([data-theme="dark"]) .shadow-neon-blue {
 }
 
 /* ============================================
-   Light Mode Form & Input Enhancements
+   Form controls
+
+   Previously styled for light only, which left dark-theme fields filled with
+   3% white inside a translucent card — no visible edge between field and card.
+   Both themes now get an explicit fill from --qs-input-bg, which is lighter
+   than the card in light and darker than it in dark.
 ============================================ */
-html:not([data-theme="dark"]) input,
-html:not([data-theme="dark"]) textarea,
-html:not([data-theme="dark"]) select {
-  background-color: #ffffff;
+input,
+textarea,
+select {
+  background-color: var(--qs-input-bg);
   color: var(--qs-text);
   border-color: var(--qs-hairline);
 }
 
-html:not([data-theme="dark"]) input::placeholder,
-html:not([data-theme="dark"]) textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: var(--qs-text-muted);
+  opacity: 1; /* Firefox dims placeholders by default, below our checked ratio */
 }
 
-html:not([data-theme="dark"]) button {
-  transition: all 0.2s ease;
-}
-
-html:not([data-theme="dark"]) .glass p,
-html:not([data-theme="dark"]) .glass span,
-html:not([data-theme="dark"]) .glass li {
-  color: inherit;
+/* Chrome repaints autofilled fields with its own near-white background. The
+   inset shadow trick is the only way to override it; color-scheme on :root
+   handles the rest of the native UI. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--qs-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--qs-input-bg) inset;
+  box-shadow: 0 0 0 1000px var(--qs-input-bg) inset;
+  caret-color: var(--qs-text);
 }

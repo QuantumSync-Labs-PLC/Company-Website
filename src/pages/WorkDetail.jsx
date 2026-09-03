@@ -1,13 +1,21 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { servicesForCaseStudy } from "@/data/crossLinks";
+import { bookingEnabled } from "@/components/integrations/BookingEmbed";
+import { trackCaseStudyView } from "@/utils/analytics";
 import { ArrowLeft, Award } from "lucide-react";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import JsonLd, { createCaseStudySchema } from "../components/common/JsonLd";
-import caseStudies from "../data/caseStudies";
-import StatCounter from "../components/common/StatCounter";
-import Button from "../components/common/Button";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import JsonLd, {
+  createCaseStudySchema,
+  createBreadcrumbSchema,
+  createGraph,
+} from "@/components/seo/JsonLd";
+import caseStudies from "@/data/caseStudies";
+import StatCounter from "@/components/marketing/StatCounter";
+import Button from "@/components/ui/Button";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
@@ -15,11 +23,17 @@ export default function WorkDetail() {
   const { id } = useParams();
   const study = caseStudies.find((s) => s.id === id);
 
+  const usedServices = servicesForCaseStudy(study);
+
+  useEffect(() => {
+    if (study) trackCaseStudyView(study.id, study.title);
+  }, [study]);
+
   if (!study) {
     return (
       <div className="relative min-h-screen flex flex-col bg-qs-bg">
         <Header />
-        <main className="flex-grow flex items-center justify-center">
+        <main className="grow flex items-center justify-center">
           <div className="text-center">
             <h1 className="font-headline text-4xl font-bold text-qs-text mb-4">
               Case Study Not Found
@@ -46,10 +60,19 @@ export default function WorkDetail() {
         description={study.summary}
         url={`/work/${study.id}`}
       >
-        <JsonLd schema={createCaseStudySchema(study)} />
+        <JsonLd
+          schema={createGraph(
+            createCaseStudySchema(study),
+            createBreadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Case Studies", path: "/work" },
+              { name: study.title, path: `/work/${study.id}` },
+            ])
+          )}
+        />
       </PageMeta>
 
-      <main role="main" className="flex-grow">
+      <main role="main" className="grow">
         {/* Back Link */}
         <section className="py-6 px-4 md:px-6 bg-qs-bg border-b border-qs-primary/10">
           <div className="max-w-4xl mx-auto">
@@ -236,19 +259,58 @@ export default function WorkDetail() {
           </section>
         )}
 
+        {/* Services used — the reverse of the proof links on each service page */}
+        {usedServices.length > 0 && (
+          <section className="relative py-16 sm:py-20 px-4 md:px-6 bg-qs-bg">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex justify-center mb-4">
+                <span className="eyebrow">What we brought to it</span>
+              </div>
+              <h2 className="font-headline text-3xl font-bold holo-text mb-12 text-center">
+                Services Used
+              </h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {usedServices.map((service) => {
+                  const Icon = service.icon;
+                  return (
+                    <li key={service.id}>
+                      <Link
+                        to={`/services/${service.id}`}
+                        className="group flex flex-col h-full gap-3 p-6 rounded-qs-lg glass border border-qs-primary/10 hover:border-qs-primary/40 transition-colors duration-300"
+                      >
+                        {Icon && (
+                          <span className="w-11 h-11 flex items-center justify-center rounded-full bg-qs-primary/10 border border-qs-primary/40">
+                            <Icon className="text-qs-primary" size={20} />
+                          </span>
+                        )}
+                        <span className="font-headline text-lg font-bold text-qs-text group-hover:text-qs-primary transition-colors">
+                          {service.title}
+                        </span>
+                        <span className="font-body text-sm text-qs-text-section">
+                          {service.excerpt}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </section>
+        )}
+
         {/* CTA Section */}
         <section className="relative py-16 sm:py-20 px-4 md:px-6 bg-qs-surface/50 border-t border-qs-primary/10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-headline text-3xl sm:text-4xl font-bold text-qs-text mb-6">
-              Ready to Transform Your Business?
+              Facing a similar challenge?
             </h2>
             <p className="font-body text-qs-text-section text-lg mb-10">
-              Let's discuss how QuantumSync Labs can help you achieve similar results.
+              Tell us where you are and we&apos;ll come back with an approach within one working day.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
+              <Link to={bookingEnabled ? "/contact#book" : "/contact"}>
                 <Button variant="primary" size="md">
-                  Start a Project
+                  {bookingEnabled ? "Book a call" : "Start a Project"}
                 </Button>
               </Link>
               <Link to="/work">

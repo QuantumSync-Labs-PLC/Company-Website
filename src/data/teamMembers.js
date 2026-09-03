@@ -1,8 +1,8 @@
 // Team member images
-import tharindu from "../assets/images/tharindu.webp";
-import kaveesha from "../assets/images/kaveesha.webp";
-import thamash from "../assets/images/thamash.webp";
-import ravindu from "../assets/images/ravindu.webp";
+import tharindu from "@/assets/images/tharindu.webp";
+import kaveesha from "@/assets/images/kaveesha.webp";
+import thamash from "@/assets/images/thamash.webp";
+import ravindu from "@/assets/images/ravindu.webp";
 
 /**
  * Team members and leadership information

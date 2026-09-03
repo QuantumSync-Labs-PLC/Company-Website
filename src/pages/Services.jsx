@@ -1,14 +1,14 @@
 // src/pages/Services.jsx
 
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import services from "../data/services";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import services from "@/data/services";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import ServiceCard from "../components/common/ServiceCard";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
+import ServiceCard from "@/components/marketing/ServiceCard";
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -80,7 +80,7 @@ export default function Services() {
                       service={service}
                       index={i}
                       variants={cardVariants}
-                      whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 60px #22d3ee40" }}
+                      whileHover={{ y: -8, scale: 1.02, boxShadow: "var(--qs-shadow-neon)" }}
                       size={isFeatured ? "lg" : "md"}
                     />
                   </div>

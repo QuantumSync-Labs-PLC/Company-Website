@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import {
   Facebook, Linkedin, Instagram, Github, Music, Mail, Phone,
 } from "lucide-react";
-import logo from "../../assets/images/logo-wordmark-ui.webp";
-import NewsletterForm from "../common/NewsletterForm";
+import logo from "@/assets/images/logo-wordmark-ui.webp";
+import NewsletterForm from "@/components/marketing/NewsletterForm";
+import routes from "@/constants/routes";
 
 // Social Media Links
 const socialLinks = [
@@ -33,20 +34,13 @@ const contactDetails = [
   },
 ];
 
-const quickLinks = [
-  { name: "Home", to: "/" },
-  { name: "Services", to: "/services" },
-  { name: "About", to: "/about" },
-  { name: "Work", to: "/work" },
-  { name: "Blog", to: "/blog" },
-  { name: "Careers", to: "/careers" },
-  { name: "Contact", to: "/contact" },
-];
+// Same source as the header, so a new page appears in both or neither.
+const quickLinks = routes.map((route) => ({ name: route.name, to: route.path }));
 
 function Footer() {
   return (
     <footer className="bg-transparent mt-24 relative z-10 grid-backdrop" role="contentinfo">
-      <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-20 rounded-lg flex flex-col md:flex-row md:items-start items-center justify-between gap-12 md:gap-16 border border-qs-hairline" style={{background: 'var(--qs-glass-bg)', backdropFilter: 'blur(20px)'}}>
+      <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-20 rounded-lg flex flex-col md:flex-row md:items-start items-center justify-between gap-12 md:gap-16 border border-qs-hairline bg-qs-glass backdrop-blur-xl" >
         {/* Left: Logo & About */}
         <motion.div
           className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-4"

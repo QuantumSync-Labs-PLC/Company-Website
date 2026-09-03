@@ -75,7 +75,7 @@ export default function Carousel({
       {/* Navigation */}
       <button
         aria-label="Previous"
-        className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass border border-qs-primary hover:bg-qs-primary hover:text-qs-bg shadow-lg transition-all duration-300 hover:scale-110 ${arrowColor}`}
+        className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass border border-qs-primary hover:bg-qs-primary hover:text-qs-on-primary shadow-lg transition-all duration-300 hover:scale-110 ${arrowColor}`}
         onClick={() => paginate(-1)}
         tabIndex={0}
         type="button"
@@ -85,7 +85,7 @@ export default function Carousel({
       </button>
       <button
         aria-label="Next"
-        className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass border border-qs-primary hover:bg-qs-primary hover:text-qs-bg shadow-lg transition-all duration-300 hover:scale-110 ${arrowColor}`}
+        className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass border border-qs-primary hover:bg-qs-primary hover:text-qs-on-primary shadow-lg transition-all duration-300 hover:scale-110 ${arrowColor}`}
         onClick={() => paginate(1)}
         tabIndex={0}
         type="button"

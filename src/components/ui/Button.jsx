@@ -20,17 +20,17 @@ export default function Button({
 
   const variantStyles = {
     primary:
-      "bg-qs-primary text-qs-bg hover:bg-qs-primary-hover hover:shadow-qs-neon",
+      "bg-qs-primary text-qs-on-primary hover:bg-qs-primary-hover hover:shadow-qs-neon",
     signal:
-      "bg-qs-signal text-qs-bg hover:brightness-110 hover:shadow-qs-neon",
+      "bg-qs-signal text-qs-on-signal hover:brightness-110 hover:shadow-qs-neon",
     glass:
       "glass text-qs-primary border border-qs-hairline hover:border-qs-primary/40 hover:bg-qs-primary-soft",
     ghost:
       "bg-transparent text-qs-primary border border-qs-hairline hover:bg-qs-primary-soft hover:border-qs-primary/40",
     outline:
-      "bg-transparent border border-qs-primary text-qs-primary hover:bg-qs-primary hover:text-qs-bg",
+      "bg-transparent border border-qs-primary text-qs-primary hover:bg-qs-primary hover:text-qs-on-primary",
     holo:
-      "bg-qs-gradient-primary text-white hover:shadow-qs-neon-accent",
+      "bg-qs-gradient-primary text-qs-on-gradient hover:shadow-qs-neon-accent",
   };
 
   return (

@@ -1,19 +1,23 @@
 import { lazy, Suspense } from "react";
-import ScrollToTop from "../components/common/ScrollToTop";
-import Header from "../components/layout/Header";
-import PageMeta from "../components/common/PageMeta";
-import JsonLd, { createOrganizationSchema } from "../components/common/JsonLd";
-import HeroSection from "../sections/HeroSection";
-import Spinner from "../components/common/Spinner";
-import CtaBar from "../components/common/CtaBar";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import Header from "@/components/layout/Header";
+import PageMeta from "@/components/seo/PageMeta";
+import JsonLd, {
+  createOrganizationSchema,
+  createProfessionalServiceSchema,
+  createGraph,
+} from "@/components/seo/JsonLd";
+import HeroSection from "@/sections/HeroSection";
+import Spinner from "@/components/ui/Spinner";
+import CtaBar from "@/components/marketing/CtaBar";
 
 // Lazy load below-the-fold sections
-const ServicesSection = lazy(() => import("../sections/ServicesSection"));
-const ProjectsSection = lazy(() => import("../sections/ProjectsSection"));
-const TechStackSection = lazy(() => import("../sections/TechStackSection"));
-const WhyUsSection = lazy(() => import("../sections/WhyUsSection"));
-const ContactSection = lazy(() => import("../sections/ContactSection"));
-const Footer = lazy(() => import("../components/layout/Footer"));
+const ServicesSection = lazy(() => import("@/sections/ServicesSection"));
+const ProjectsSection = lazy(() => import("@/sections/ProjectsSection"));
+const TechStackSection = lazy(() => import("@/sections/TechStackSection"));
+const WhyUsSection = lazy(() => import("@/sections/WhyUsSection"));
+const ContactSection = lazy(() => import("@/sections/ContactSection"));
+const Footer = lazy(() => import("@/components/layout/Footer"));
 
 // Lightweight fallback
 function SectionFallback() {
@@ -35,11 +39,16 @@ export default function Home() {
         description="Empowering digital transformation through innovative, secure, and scalable IT solutions. Cloud, AI, and software engineering services."
         url="/"
       >
-        <JsonLd schema={createOrganizationSchema()} />
+        <JsonLd
+          schema={createGraph(
+            createOrganizationSchema(),
+            createProfessionalServiceSchema()
+          )}
+        />
       </PageMeta>
       <ScrollToTop showButton={true} />
       <Header />
-      <main className="flex-grow flex flex-col">
+      <main className="grow flex flex-col">
         <HeroSection />
         <Suspense fallback={<SectionFallback />}>
           <ServicesSection />

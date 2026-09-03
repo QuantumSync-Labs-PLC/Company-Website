@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import TeamSection from "../sections/TeamSection";
-import WhyUsSection from "../sections/WhyUsSection";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import TeamSection from "@/sections/TeamSection";
+import WhyUsSection from "@/sections/WhyUsSection";
 import { motion } from "framer-motion";
-import logo from "../assets/images/Logo 3.1.webp";
+import logo from "@/assets/images/Logo 3.1.webp";
 
 const values = [
   {
@@ -120,7 +120,7 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: i * 0.09, type: "spring", stiffness: 100 }}
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 60px #22d3ee40" }}
+                  whileHover={{ y: -8, scale: 1.02, boxShadow: "var(--qs-shadow-neon)" }}
                   className="glass rounded-qs-lg shadow-neon border border-qs-primary/10 p-6 sm:p-7 text-center transition-all duration-300 hover:border-qs-primary/30"
                 >
                   <div className="font-headline text-qs-primary text-xl font-bold mb-3">

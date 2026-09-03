@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import Button from "./Button";
+import Button from "@/components/ui/Button";
 
 const defaultVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -25,7 +25,7 @@ export default function CaseStudyCard({
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
       variants={variants}
-      whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 60px #22d3ee40" }}
+      whileHover={{ y: -8, scale: 1.02, boxShadow: "var(--qs-shadow-neon)" }}
       className="transition-all duration-300"
     >
       <Link to={`/work/${caseStudy.id}`} className="block h-full">
@@ -39,14 +39,14 @@ export default function CaseStudyCard({
               loading="lazy"
             />
             {caseStudy.featured && (
-              <div className="absolute top-4 right-4 bg-qs-signal text-qs-bg px-3 py-1 rounded-full text-xs font-bold">
+              <div className="absolute top-4 right-4 bg-qs-signal text-qs-on-signal px-3 py-1 rounded-full text-xs font-bold">
                 Featured
               </div>
             )}
           </div>
 
           {/* Content */}
-          <div className="flex flex-col flex-grow p-6 sm:p-7">
+          <div className="flex flex-col grow p-6 sm:p-7">
             {/* Industry Badge */}
             <div className="inline-flex w-fit mb-3">
               <span className="text-xs font-bold text-qs-accent bg-qs-accent/10 px-3 py-1.5 rounded-full">
@@ -65,7 +65,7 @@ export default function CaseStudyCard({
             </p>
 
             {/* Summary */}
-            <p className="font-body text-sm sm:text-base text-qs-text-section mb-6 flex-grow leading-relaxed">
+            <p className="font-body text-sm sm:text-base text-qs-text-section mb-6 grow leading-relaxed">
               {caseStudy.summary}
             </p>
 

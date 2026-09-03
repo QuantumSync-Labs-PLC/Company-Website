@@ -11,13 +11,28 @@ import PropTypes from "prop-types";
  * - Optionally renders a floating "Back to Top" button
  */
 export default function ScrollToTop({ showButton = true, offset = 200 }) {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const [visible, setVisible] = useState(false);
 
-  // Scroll to top when route/path changes
+  // Scroll to top on route change — unless the URL names a section, in which
+  // case honour it. CTAs link to /contact#book, and forcing the top would
+  // land visitors above the booking calendar they just asked for.
   useEffect(() => {
+    if (hash) {
+      // Wait a frame: lazy sections may not be in the DOM on the first paint.
+      const id = requestAnimationFrame(() => {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }
+      });
+      return () => cancelAnimationFrame(id);
+    }
+
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
+  }, [pathname, hash]);
 
   // Show floating button after scrolling down
   useEffect(() => {
@@ -43,8 +58,7 @@ export default function ScrollToTop({ showButton = true, offset = 200 }) {
             exit={{ y: 60, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 24 }}
             onClick={handleScrollTop}
-            className="fixed bottom-7 right-7 z-50 p-4 rounded-full glass border border-qs-primary/20 shadow-neon-blue hover:bg-qs-primary hover:text-qs-bg text-qs-primary text-xl transition-all duration-300 hover:scale-110"
-            style={{ boxShadow: "0 12px 32px rgb(0, 115, 255, 0.4)" }}
+            className="fixed bottom-7 right-7 z-50 p-4 rounded-full glass border border-qs-primary/20 shadow-neon-blue hover:bg-qs-primary hover:text-qs-on-primary text-qs-primary text-xl transition-all duration-300 hover:scale-110"
           >
             <ArrowUp size={28} />
           </motion.button>

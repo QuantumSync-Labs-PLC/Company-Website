@@ -18,15 +18,15 @@
  * @property {string} featured - Boolean-like; featured cases appear first in listings
  */
 
-import secureOnlineBankingCover from "../assets/images/secure-online-banking.webp";
-import cloudMigrationCover from "../assets/images/cloud-migration.webp";
-import cybersecurityCover from "../assets/images/cybersecurity.webp";
-import buildingScalableAppsCover from "../assets/images/building-scalable-apps.webp";
-import quantumHealthcareCover from "../assets/images/quantum-healthcare.webp";
-import ibmQuantumLabCover from "../assets/images/IBM-Quantum-Lab.webp";
-import aiTrendsCover from "../assets/images/ai-trends.webp";
-import cloudCover from "../assets/images/cloud.webp";
-import devopsCover from "../assets/images/devops.webp";
+import secureOnlineBankingCover from "@/assets/images/secure-online-banking.webp";
+import cloudMigrationCover from "@/assets/images/cloud-migration.webp";
+import cybersecurityCover from "@/assets/images/cybersecurity.webp";
+import buildingScalableAppsCover from "@/assets/images/building-scalable-apps.webp";
+import quantumHealthcareCover from "@/assets/images/quantum-healthcare.webp";
+import ibmQuantumLabCover from "@/assets/images/IBM-Quantum-Lab.webp";
+import aiTrendsCover from "@/assets/images/ai-trends.webp";
+import cloudCover from "@/assets/images/cloud.webp";
+import devopsCover from "@/assets/images/devops.webp";
 
 const caseStudies = [
   {
@@ -34,7 +34,7 @@ const caseStudies = [
     title: "FinTech Platform Modernization",
     client: "SecureBank International",
     industry: "Financial Services",
-    serviceIds: ["cloud-infrastructure", "custom-software", "security-consulting"],
+    serviceIds: ["cloud-architecture", "custom-software-development", "cybersecurity"],
     summary: "Architected and deployed a modern, scalable cloud-native banking platform for a legacy financial institution.",
     challenge: "A major financial services company was running monolithic systems built in the 1990s. Legacy infrastructure couldn't handle demand, compliance was manual and error-prone, and customer experience was outdated.",
     solution: "QuantumSync Labs designed and built a cloud-native microservices architecture on AWS, implemented automated compliance workflows, and created a modern, responsive web and mobile interface. We used containerization (Docker/Kubernetes), real-time data pipelines, and advanced security protocols.",
@@ -59,7 +59,7 @@ const caseStudies = [
     title: "Healthcare AI Diagnostic Platform",
     client: "MediCare Networks",
     industry: "Healthcare & Life Sciences",
-    serviceIds: ["ai-machine-learning", "custom-software", "cloud-infrastructure"],
+    serviceIds: ["data-analytics-ai", "custom-software-development", "cloud-architecture"],
     summary: "Built an AI-powered diagnostic platform that assists radiologists with image analysis and patient data integration.",
     challenge: "Healthcare providers struggled with diagnostic bottlenecks, manual image analysis, and delayed patient results. Integrating AI into clinical workflows while maintaining HIPAA compliance was complex.",
     solution: "Developed a HIPAA-compliant AI platform using TensorFlow and PyTorch for medical image analysis. Integrated with existing EHR systems via HL7/FHIR standards, created an intuitive clinical dashboard, and implemented robust data security and audit trails.",
@@ -84,7 +84,7 @@ const caseStudies = [
     title: "E-Commerce Platform Scaling",
     client: "RetailPro Global",
     industry: "Retail & E-Commerce",
-    serviceIds: ["cloud-infrastructure", "custom-software", "performance-optimization"],
+    serviceIds: ["cloud-architecture", "custom-software-development", "maintenance-support"],
     summary: "Scaled an e-commerce platform to handle 10x traffic during peak seasons without performance degradation.",
     challenge: "During Black Friday and Cyber Monday, the platform would slow down or crash under load. Database queries were inefficient, caching was absent, and the infrastructure couldn't auto-scale.",
     solution: "Implemented Redis caching layers, optimized database queries with indexing and query analysis, deployed CDN for static assets, and configured auto-scaling Kubernetes clusters. Also implemented real-time inventory synchronization across multiple warehouses.",
@@ -109,7 +109,7 @@ const caseStudies = [
     title: "Enterprise SaaS Migration",
     client: "Global Manufacturing Corp",
     industry: "Manufacturing",
-    serviceIds: ["cloud-infrastructure", "custom-software", "security-consulting"],
+    serviceIds: ["cloud-architecture", "custom-software-development", "cybersecurity"],
     summary: "Migrated enterprise systems from on-premise data centers to a secure, compliant SaaS platform.",
     challenge: "Legacy on-premise infrastructure was expensive to maintain, difficult to scale, and lacked modern security. The company needed a seamless transition with zero business interruption.",
     solution: "Designed a phased migration strategy using AWS. Implemented database replication, created automated backup and disaster recovery systems, and built a modern SaaS dashboard. Trained staff on new systems and provided 24/7 support during transition.",

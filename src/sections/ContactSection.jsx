@@ -1,15 +1,13 @@
 import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
-import SectionShell from "../components/common/SectionShell";
-
-// EmailJS configuration from environment variables
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const USER_ID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
+import SectionShell from "@/components/layout/SectionShell";
+import services from "@/data/services";
+import { SUBJECTS, BUDGET_BANDS } from "@/constants/leadForm";
+import { sendLead } from "@/utils/leads";
+import { trackFormSubmit, trackConversion, trackEvent } from "@/utils/analytics";
 
 export default function ContactSection() {
   const formRef = useRef(null);
@@ -17,26 +15,35 @@ export default function ContactSection() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formEl = e.target;
+
     setSending(true);
     setError(null);
+    trackFormSubmit("home_contact_section");
 
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, USER_ID)
-      .then(
-        () => {
-          setSent(true);
-          setSending(false);
-          // Reset form after success
-          formRef.current?.reset();
-          // Auto-reset success message after 4 seconds
-          setTimeout(() => setSent(false), 4000);
-        },
-        () => {
-          setError("Sorry, something went wrong. Please try again.");
-          setSending(false);
-        }
-      );
+    try {
+      const lead = await sendLead(formEl, "home_contact_section");
+      setSent(true);
+      setSending(false);
+      formEl.reset();
+
+      trackConversion("contact_inquiry");
+      trackEvent("generate_lead", {
+        form_name: "home_contact_section",
+        subject: lead.subject,
+        service: lead.service,
+        budget: lead.budget,
+      });
+
+      // Auto-reset success message after 4 seconds
+      setTimeout(() => setSent(false), 4000);
+    } catch {
+      setError("Sorry, something went wrong. Please try again.");
+      setSending(false);
+      trackEvent("form_error", { form_name: "home_contact_section" });
+    }
   };
 
   return (
@@ -108,12 +115,50 @@ export default function ContactSection() {
             disabled={sending || sent}
           >
             <option value="">Select a subject...</option>
-            <option value="Project Inquiry">Project Inquiry</option>
-            <option value="Support">Support</option>
-            <option value="Partnership">Partnership</option>
-            <option value="General Question">General Question</option>
-            <option value="Other">Other</option>
+            {SUBJECTS.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
           </select>
+        </div>
+
+        {/* Qualification fields — optional, so they never cost a submission */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="home_service" className="font-body text-qs-primary font-semibold text-sm">
+              Service <span className="text-qs-text-muted font-normal">(optional)</span>
+            </label>
+            <select
+              id="home_service"
+              name="service"
+              defaultValue=""
+              className="rounded-qs-lg bg-qs-surface border border-qs-hairline px-4 py-3 font-body text-qs-text focus:outline-none focus:ring-2 focus:ring-qs-primary transition cursor-pointer"
+              disabled={sending || sent}
+            >
+              <option value="">Select a service...</option>
+              {services.map((s) => (
+                <option key={s.id} value={s.title}>{s.title}</option>
+              ))}
+              <option value="Something else">Something else</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="home_budget" className="font-body text-qs-primary font-semibold text-sm">
+              Budget <span className="text-qs-text-muted font-normal">(optional)</span>
+            </label>
+            <select
+              id="home_budget"
+              name="budget"
+              defaultValue=""
+              className="rounded-qs-lg bg-qs-surface border border-qs-hairline px-4 py-3 font-body text-qs-text focus:outline-none focus:ring-2 focus:ring-qs-primary transition cursor-pointer"
+              disabled={sending || sent}
+            >
+              <option value="">Select a range...</option>
+              {BUDGET_BANDS.map((b) => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Message field */}
@@ -135,7 +180,7 @@ export default function ContactSection() {
         {/* Submit button */}
         <button
           type="submit"
-          className="flex items-center justify-center bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold rounded-qs-lg px-7 py-3 shadow-qs-neon transition text-base mt-2 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-105 duration-300 focus:outline-none focus:ring-2 focus:ring-qs-primary"
+          className="flex items-center justify-center bg-qs-primary hover:bg-qs-primary-hover text-qs-on-primary font-bold rounded-qs-lg px-7 py-3 shadow-qs-neon transition text-base mt-2 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-105 duration-300 focus:outline-none focus:ring-2 focus:ring-qs-primary"
           disabled={sending || sent}
         >
           {sending && "Sending..."}
@@ -145,7 +190,7 @@ export default function ContactSection() {
 
         {/* Status messages */}
         {error && (
-          <div className="text-red-400 text-sm text-center font-semibold">
+          <div className="text-qs-danger text-sm text-center font-semibold">
             {error}
           </div>
         )}

@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
-import Badge from "../components/common/Badge";
-import Button from "../components/common/Button";
-import formatDate from "../utils/formatDate";
-import careers from "../data/careers";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
+import Badge from "@/components/ui/Badge";
+import Button from "@/components/ui/Button";
+import formatDate from "@/utils/formatDate";
+import careers from "@/data/careers";
 
 const APPLY_FORM_URL = "https://forms.gle/fK6DENogbvbDKrwc9";
 

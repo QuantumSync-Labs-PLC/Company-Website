@@ -15,9 +15,22 @@ export default {
           bg: "var(--qs-bg)",
           "bg-alt": "var(--qs-bg-alt)",
           surface: "var(--qs-surface)",
+          "surface-solid": "var(--qs-surface-solid)",
           "surface-elevated": "var(--qs-surface-elevated)",
+          "surface-sunken": "var(--qs-surface-sunken)",
+          "input-bg": "var(--qs-input-bg)",
+          overlay: "var(--qs-overlay)",
+          glass: "var(--qs-glass-bg)",
           border: "var(--qs-border)",
           hairline: "var(--qs-hairline)",
+
+          /* Label colours for text sitting ON a filled brand colour.
+             In dark these are the page black, because white on #22d3ee
+             measures 1.81:1. */
+          "on-primary": "var(--qs-on-primary)",
+          "on-accent": "var(--qs-on-accent)",
+          "on-signal": "var(--qs-on-signal)",
+          "on-gradient": "var(--qs-on-gradient)",
 
           text: "var(--qs-text)",
           "text-muted": "var(--qs-text-muted)",

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 
 export default function NetworkBackground() {
   const canvasRef = useRef(null);
@@ -25,10 +25,30 @@ export default function NetworkBackground() {
     const particles = [];
     const particleCount = 50;
 
-    // Colors based on theme (cyan/violet holographic palette)
+    // Colours come from the CSS tokens rather than a hardcoded pair, so the
+    // canvas follows the palette instead of duplicating it. Re-read on every
+    // theme change because the effect depends on `theme`.
+    const styles = getComputedStyle(document.documentElement);
+    const token = (name, fallback) =>
+      styles.getPropertyValue(name).trim() || fallback;
+
     const isDark = theme === 'dark';
-    const lineColor = isDark ? 'rgba(34, 211, 238, 0.12)' : 'rgba(8, 145, 168, 0.08)';
-    const particleColor = isDark ? 'rgba(34, 211, 238, 0.35)' : 'rgba(8, 145, 168, 0.25)';
+    const primary = token('--qs-primary', isDark ? '#22d3ee' : '#0e7490');
+    const pageBg = token('--qs-bg', isDark ? '#060810' : '#eef1f8');
+
+    const alpha = (hex, a) => {
+      const h = hex.replace('#', '');
+      if (h.length !== 6) return hex;
+      const r = parseInt(h.slice(0, 2), 16);
+      const g = parseInt(h.slice(2, 4), 16);
+      const b = parseInt(h.slice(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
+    };
+
+    const lineColor = alpha(primary, isDark ? 0.12 : 0.1);
+    const particleColor = alpha(primary, isDark ? 0.35 : 0.3);
+    const glowColor = alpha(primary, 0.25);
+    const trailColor = alpha(pageBg, isDark ? 0.05 : 0.1);
 
     class Particle {
       constructor() {
@@ -60,7 +80,7 @@ export default function NetworkBackground() {
 
         // Glow effect for dark theme
         if (isDark) {
-          ctx.strokeStyle = `rgba(34, 211, 238, 0.25)`;
+          ctx.strokeStyle = glowColor;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -76,9 +96,7 @@ export default function NetworkBackground() {
     let animationId;
     const animate = () => {
       // Clear canvas with slight trail effect
-      ctx.fillStyle = isDark
-        ? 'rgba(6, 8, 16, 0.05)'
-        : 'rgba(245, 247, 252, 0.1)';
+      ctx.fillStyle = trailColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Update and draw particles

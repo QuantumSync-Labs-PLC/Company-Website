@@ -1,10 +1,10 @@
 // src/sections/ProjectsSection.jsx
 
-import reviews from "../data/reviews";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
-import SectionShell from "../components/common/SectionShell";
-import TestimonialCarousel from "../components/common/TestimonialCarousel";
-import StatCounter from "../components/common/StatCounter";
+import reviews from "@/data/reviews";
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
+import SectionShell from "@/components/layout/SectionShell";
+import TestimonialCarousel from "@/components/marketing/TestimonialCarousel";
+import StatCounter from "@/components/marketing/StatCounter";
 
 export default function ProjectsSection() {
   return (

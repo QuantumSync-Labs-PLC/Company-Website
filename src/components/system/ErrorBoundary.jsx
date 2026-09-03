@@ -31,13 +31,13 @@ class ErrorBoundary extends Component {
               We're sorry for the inconvenience. An unexpected error occurred while rendering this page.
             </p>
             <div className="bg-qs-surface/70 rounded-glass p-5 mb-10 text-left overflow-auto max-h-56 border border-qs-primary/30">
-              <p className="font-mono text-sm text-red-400 whitespace-pre-wrap break-words">
+              <p className="font-mono text-sm text-qs-danger whitespace-pre-wrap break-words">
                 {this.state.error?.toString()}
               </p>
             </div>
             <button
               onClick={() => window.location.href = '/'}
-              className="inline-flex items-center justify-center font-headline px-10 py-4 rounded-glass text-base font-bold transition-all duration-300 shadow-neon-blue bg-qs-primary text-qs-bg hover:bg-qs-primary-hover hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-qs-primary"
+              className="inline-flex items-center justify-center font-headline px-10 py-4 rounded-glass text-base font-bold transition-all duration-300 shadow-neon-blue bg-qs-primary text-qs-on-primary hover:bg-qs-primary-hover hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-qs-primary"
             >
               Go Back Home
             </button>

@@ -2,19 +2,12 @@ import { useState, useEffect, useRef, memo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/images/Logo 3.1.webp";
-import ThemeToggle from "../common/ThemeToggle";
-import { useTheme } from "../../hooks/useTheme";
+import logo from "@/assets/images/Logo 3.1.webp";
+import ThemeToggle from "@/components/ui/ThemeToggle";
+import routes from "@/constants/routes";
 
-const navLinks = [
-  { name: "Home", to: "/" },
-  { name: "Services", to: "/services" },
-  { name: "About", to: "/about" },
-  { name: "Work", to: "/work" },
-  { name: "Blog", to: "/blog" },
-  { name: "Careers", to: "/careers" },
-  { name: "Contact", to: "/contact" },
-];
+// Navigation comes from constants/routes.js so Header and Footer can't drift apart.
+const navLinks = routes.map((route) => ({ name: route.name, to: route.path }));
 
 const linkVariants = {
   initial: { opacity: 0, y: -10 },
@@ -25,7 +18,6 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const location = useLocation();
-  const { theme } = useTheme();
 
   // Prevent background scroll and trap focus when menu is open
   useEffect(() => {
@@ -56,12 +48,16 @@ function Header() {
     return () => window.removeEventListener("keydown", handler);
   }, [menuOpen]);
 
+  // One background layer, not two. There used to be a
+  // `from-qs-bg via-qs-surface to-qs-bg` gradient underneath the nav as well;
+  // in light theme its midpoint was a translucent dark value, which painted a
+  // grey band from the dark palette across the header.
   return (
-    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl transition-all duration-300" role="banner">
-      {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-r from-qs-bg via-qs-surface to-qs-bg opacity-95" />
-
-      <nav className="relative flex items-center justify-between px-4 md:px-12 h-16 md:h-20 max-w-[1400px] mx-auto w-full border-b border-qs-hairline" aria-label="Primary" style={{background: 'var(--qs-glass-bg)', backdropFilter: 'blur(20px)'}}>
+    <header className="fixed top-0 left-0 w-full z-50" role="banner">
+      <nav
+        className="relative flex items-center justify-between px-4 md:px-12 h-16 md:h-20 max-w-[1400px] mx-auto w-full border-b border-qs-hairline bg-qs-glass backdrop-blur-xl"
+        aria-label="Primary"
+      >
         {/* Logo & Title */}
         <motion.div
           className="flex items-center gap-3 cursor-pointer"
@@ -124,23 +120,23 @@ function Header() {
         <div className="md:hidden flex items-center gap-3">
           <ThemeToggle />
           <button
-            className="flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-transparent hover:bg-qs-primary/10 transition group"
+            className="flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-transparent text-qs-text hover:bg-qs-primary/10 transition group"
             aria-label={menuOpen ? "Close Menu" : "Open Menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((prev) => !prev)}
           >
-            <span 
-              className={`block w-6 h-0.5 rounded-full transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : "mb-1.5"}`}
-              style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#0f172a" }}
+            {/* bg-current inherits the button's themed text colour via CSS.
+                Deriving it from JS theme state instead caused a hydration
+                mismatch against the prerendered HTML on every light-theme load. */}
+            <span
+              className={`block w-6 h-0.5 rounded-full bg-current transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : "mb-1.5"}`}
             ></span>
-            <span 
-              className={`block w-6 h-0.5 rounded-full transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
-              style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#0f172a" }}
+            <span
+              className={`block w-6 h-0.5 rounded-full bg-current transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
             ></span>
-            <span 
-              className={`block w-6 h-0.5 rounded-full transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : "mt-1.5"}`}
-              style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#0f172a" }}
+            <span
+              className={`block w-6 h-0.5 rounded-full bg-current transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : "mt-1.5"}`}
             ></span>
           </button>
         </div>
@@ -154,7 +150,7 @@ function Header() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+                className="md:hidden fixed inset-0 bg-qs-overlay backdrop-blur-sm z-40"
                 onClick={() => setMenuOpen(false)}
               />
               {/* Menu */}
@@ -165,11 +161,7 @@ function Header() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                className="md:hidden absolute top-17 left-3 right-3 flex flex-col py-4 gap-1 border border-qs-hairline z-50 rounded-lg shadow-qs-medium"
-                style={{
-                  background: 'var(--qs-glass-bg)',
-                  backdropFilter: 'blur(24px)',
-                }}
+                className="md:hidden absolute top-17 left-3 right-3 flex flex-col py-4 gap-1 border border-qs-hairline z-50 rounded-lg shadow-qs-medium bg-qs-glass backdrop-blur-xl"
                 tabIndex={-1}
                 role="menu"
               >

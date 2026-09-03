@@ -101,7 +101,7 @@ export default function BlogFilterBar({ posts = [], onFilterChange }) {
                 whileTap={{ scale: 0.95 }}
                 className={`px-4 py-2 rounded-full font-body text-sm font-semibold transition-all duration-300 border ${
                   isSelected
-                    ? "bg-qs-primary text-qs-bg border-qs-primary shadow-neon"
+                    ? "bg-qs-primary text-qs-on-primary border-qs-primary shadow-neon"
                     : "bg-qs-surface/50 text-qs-primary border-qs-primary/20 hover:border-qs-primary/50 hover:bg-qs-surface"
                 }`}
               >

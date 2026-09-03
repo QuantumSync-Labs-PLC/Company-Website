@@ -14,6 +14,3 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://www.quantumsynclabs.com/sitemap.xml
-
-# Crawl delay (in seconds)
-Crawl-delay: 1

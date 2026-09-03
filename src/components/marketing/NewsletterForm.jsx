@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Mail, Check, AlertCircle } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { trackNewsletterSignup } from "@/utils/analytics";
 
 export default function NewsletterForm({
   placeholder = "Enter your email",
@@ -12,30 +13,33 @@ export default function NewsletterForm({
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null); // 'success', 'error', or null
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
       setStatus("error");
+      setErrorMessage("Please enter a valid email address.");
       return;
     }
-
-    setLoading(true);
-    setStatus(null);
 
     // Mailchimp form submission
     const mailchimpFormAction = import.meta.env.VITE_MAILCHIMP_FORM_ACTION;
     const mailchimpEmail = import.meta.env.VITE_MAILCHIMP_EMAIL_TAG || "EMAIL";
 
+    // No list configured means the address has nowhere to go. Say so rather
+    // than showing a success message for a signup that would be discarded.
     if (!mailchimpFormAction) {
-      // If Mailchimp is not configured, show a placeholder message
-      setTimeout(() => {
-        setStatus("success");
-        setEmail("");
-        setLoading(false);
-      }, 1000);
+      setStatus("error");
+      setErrorMessage(
+        "Newsletter signup is temporarily unavailable. Email us at labsquantumsync@gmail.com and we'll add you to the list."
+      );
       return;
     }
+
+    setLoading(true);
+    setStatus(null);
+    setErrorMessage("");
 
     try {
       const formData = new FormData();
@@ -56,9 +60,11 @@ export default function NewsletterForm({
 
       setStatus("success");
       setEmail("");
+      trackNewsletterSignup();
     } catch (error) {
       console.error("Newsletter subscription error:", error);
       setStatus("error");
+      setErrorMessage("Something went wrong. Please try again in a moment.");
     } finally {
       setLoading(false);
       // Auto-reset status after 4 seconds
@@ -105,7 +111,7 @@ export default function NewsletterForm({
         <button
           type="submit"
           disabled={loading || status === "success"}
-          className="px-6 py-3 rounded-qs-lg bg-qs-signal hover:bg-qs-signal text-qs-bg font-bold font-headline transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 whitespace-nowrap hover:scale-105 active:scale-95"
+          className="px-6 py-3 rounded-qs-lg bg-qs-signal hover:bg-qs-signal text-qs-on-primary font-bold font-headline transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 whitespace-nowrap hover:scale-105 active:scale-95"
         >
           {status === "success" ? (
             <>
@@ -113,7 +119,7 @@ export default function NewsletterForm({
             </>
           ) : loading ? (
             <>
-              <div className="w-4 h-4 border-2 border-qs-bg border-t-transparent rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-qs-on-signal border-t-transparent rounded-full animate-spin" />
               Subscribing...
             </>
           ) : (
@@ -128,10 +134,11 @@ export default function NewsletterForm({
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="mt-3 flex items-center gap-2 text-red-400 text-sm font-body"
+          className="mt-3 flex items-start gap-2 text-qs-danger text-sm font-body"
+          role="alert"
         >
-          <AlertCircle size={16} />
-          <span>Please enter a valid email address.</span>
+          <AlertCircle size={16} className="shrink-0 mt-0.5" />
+          <span>{errorMessage}</span>
         </motion.div>
       )}
 

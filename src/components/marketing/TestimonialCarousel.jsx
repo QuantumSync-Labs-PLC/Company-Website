@@ -1,4 +1,4 @@
-import Carousel from "./Carousel";
+import Carousel from "@/components/ui/Carousel";
 import { Star } from "lucide-react";
 
 export default function TestimonialCarousel({ testimonials = [] }) {

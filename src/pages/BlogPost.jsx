@@ -1,11 +1,17 @@
+import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import blogPosts from "../data/blogPosts";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import JsonLd, { createArticleSchema } from "../components/common/JsonLd";
-import ResponsiveImage from "../components/common/ResponsiveImage";
+import blogPosts from "@/data/blogPosts";
+import { trackBlogPostView } from "@/utils/analytics";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import JsonLd, {
+  createArticleSchema,
+  createBreadcrumbSchema,
+  createGraph,
+} from "@/components/seo/JsonLd";
+import ResponsiveImage from "@/components/ui/ResponsiveImage";
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -23,6 +29,10 @@ export default function BlogPost() {
         .slice(0, 2)
     : [];
 
+  useEffect(() => {
+    if (post) trackBlogPostView(post.id, post.title);
+  }, [post]);
+
   if (!post) {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center bg-qs-bg px-4">
@@ -30,7 +40,7 @@ export default function BlogPost() {
           <h2 className="font-headline text-3xl sm:text-4xl text-qs-primary font-bold mb-4">Post Not Found</h2>
           <p className="font-body text-qs-text-section mb-8 text-lg">The blog post you're looking for doesn't exist.</p>
           <button
-            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
+            className="bg-qs-primary hover:bg-qs-primary-hover text-qs-on-primary font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105"
             onClick={() => navigate("/blog")}
           >
             Back to Blog
@@ -53,7 +63,16 @@ export default function BlogPost() {
         url={postUrl}
         ogImage={post.cover}
       >
-        <JsonLd schema={createArticleSchema(post)} />
+        <JsonLd
+          schema={createGraph(
+            createArticleSchema(post),
+            createBreadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Blog", path: "/blog" },
+              { name: post.title, path: `/blog/${post.id}` },
+            ])
+          )}
+        />
       </PageMeta>
       <main className="flex-1 py-16 sm:py-20 md:py-28 px-4 flex flex-col items-center" role="main">
         <article className="glass rounded-glass shadow-neon-blue border border-qs-primary/10 max-w-4xl w-full mx-auto p-6 sm:p-8 md:p-12 lg:p-14">
@@ -80,7 +99,7 @@ export default function BlogPost() {
           <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold holo-text mb-6 sm:mb-8 leading-tight">{post.title}</h1>
           {/* Content (HTML string, safe if sanitized before) */}
           <div
-            className="font-body text-qs-text-section text-base sm:text-lg leading-relaxed prose prose-invert max-w-none mb-8"
+            className="font-body text-qs-text-section text-base sm:text-lg leading-relaxed mb-8"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
           {/* Tags */}
@@ -97,7 +116,7 @@ export default function BlogPost() {
           {/* Back button */}
           <Link
             to="/blog"
-            className="inline-block mt-10 bg-qs-primary hover:bg-qs-primary-hover text-qs-bg font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+            className="inline-block mt-10 bg-qs-primary hover:bg-qs-primary-hover text-qs-on-primary font-bold px-10 py-4 rounded-glass shadow-neon-blue transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
           >
             ← Back to Blog
           </Link>

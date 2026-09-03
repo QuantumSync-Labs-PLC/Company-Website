@@ -2,11 +2,11 @@
 
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import services from "../data/services";
-import ServiceCard from "../components/common/ServiceCard";
-import SkeletonCard from "../components/common/SkeletonCard";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
-import SectionShell from "../components/common/SectionShell";
+import services from "@/data/services";
+import ServiceCard from "@/components/marketing/ServiceCard";
+import SkeletonCard from "@/components/ui/SkeletonCard";
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
+import SectionShell from "@/components/layout/SectionShell";
 
 // Only show the first N (or featured) services on home page
 const SERVICE_PREVIEW_COUNT = 6;
@@ -51,7 +51,7 @@ export default function ServicesSection() {
                     service={service}
                     index={i}
                     variants={cardVariants}
-                    whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 60px #22d3ee40" }}
+                    whileHover={{ y: -8, scale: 1.02, boxShadow: "var(--qs-shadow-neon)" }}
                     size={isFeatured ? "lg" : "md"}
                   />
                 </div>

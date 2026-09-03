@@ -1,13 +1,13 @@
 import { lazy } from "react";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/common/ScrollToTop";
-import PageMeta from "../components/common/PageMeta";
-import caseStudies from "../data/caseStudies";
-import CaseStudyCard from "../components/common/CaseStudyCard";
-import SectionBackgroundBlur from "../components/common/SectionBackgroundBlur";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageMeta from "@/components/seo/PageMeta";
+import caseStudies from "@/data/caseStudies";
+import CaseStudyCard from "@/components/marketing/CaseStudyCard";
+import SectionBackgroundBlur from "@/components/layout/SectionBackgroundBlur";
 
-const Spinner = lazy(() => import("../components/common/Spinner"));
+const Spinner = lazy(() => import("@/components/ui/Spinner"));
 
 export default function Work() {
   const featuredStudies = caseStudies.filter((study) => study.featured);
@@ -23,7 +23,7 @@ export default function Work() {
         url="/work"
       />
 
-      <main role="main" className="flex-grow">
+      <main role="main" className="grow">
         {/* Hero Section */}
         <section className="relative py-20 sm:py-24 lg:py-32 flex flex-col items-center justify-center bg-qs-bg min-h-[45vh] sm:min-h-[50vh] px-4">
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">

@@ -25,13 +25,13 @@ import {
  */
 
 // Service cover images
-import softwareDevCover from "../assets/images/software-dev.webp";
-import mobileAppsCover from "../assets/images/mobile-apps.webp";
-import cloudCover from "../assets/images/cloud.webp";
-import uiuxCover from "../assets/images/ui-ux.webp";
-import analyticsCover from "../assets/images/analytics.webp";
-import cybersecurityCover from "../assets/images/cybersecurity.webp";
-import maintenanceCover from "../assets/images/maintenance.webp";
+import softwareDevCover from "@/assets/images/software-dev.webp";
+import mobileAppsCover from "@/assets/images/mobile-apps.webp";
+import cloudCover from "@/assets/images/cloud.webp";
+import uiuxCover from "@/assets/images/ui-ux.webp";
+import analyticsCover from "@/assets/images/analytics.webp";
+import cybersecurityCover from "@/assets/images/cybersecurity.webp";
+import maintenanceCover from "@/assets/images/maintenance.webp";
 
 const services = [
   {
