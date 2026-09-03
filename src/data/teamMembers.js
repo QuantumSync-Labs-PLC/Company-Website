@@ -23,7 +23,7 @@ import ravindu from "../assets/images/ravindu.webp";
 const teamMembers = [
   {
     name: "Tharindu Gunarathna",
-    role: "Co-Founder & Chief Executive Officer",
+    role: "Director & Co-Founder",
     photoPath: tharindu,
     socials: [
       {
@@ -31,12 +31,11 @@ const teamMembers = [
         url: "https://www.linkedin.com/in/tharindu-danushka/",
         label: "LinkedIn",
       },
-      { icon: "Github", url: "https://github.com/DATDSG", label: "GitHub" },
     ],
   },
   {
     name: "Thamash Weragoda",
-    role: "Co-Founder & Chief Technology Officer",
+    role: "Director & Co-Founder",
     photoPath: thamash,
     socials: [
       {
@@ -44,27 +43,17 @@ const teamMembers = [
         url: "https://www.linkedin.com/in/thamash-weragoda",
         label: "LinkedIn",
       },
-      {
-        icon: "Github",
-        url: "https://github.com/Thamashwerago",
-        label: "GitHub",
-      },
     ],
   },
   {
     name: "Ravindu Waduwawala",
-    role: "Co-Founder & Chief Marketing Officer",
+    role: "Director & Co-Founder",
     photoPath: ravindu,
     socials: [
       {
         icon: "Linkedin",
         url: "https://www.linkedin.com/in/wrswaduwawala/",
         label: "LinkedIn",
-      },
-      {
-        icon: "Github",
-        url: "https://github.com/RavinduSandaruwan",
-        label: "GitHub",
       },
     ],
   },
